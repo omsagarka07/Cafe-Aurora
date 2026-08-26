@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>the Moonlit Cafe</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="Styles.css">
+
+    <style>
+        li::marker {
+
+            content: none;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm">
+
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="#" id="logo"><img src="IMG/l2.png " style="height: 60px; width: 200px;"
+                    alt=""></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="mynavbar">
+
+                <ul class="navbar-nav me-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link nh" href="Index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nh" href="About.html">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nh" href="Menu.html">Menu</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nh active" id="Offer" href="Offer.html"><i
+                                class="fa-brands fa-free-code-camp"></i> &nbsp; Offer</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nh" href="Product.html">Product</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nh" href="Gallary.html">Gallary</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nh" href="Review.html">Review</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nh" href="Blogs.html">Blogs</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link nh" href="Box.html">Box</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nh" href="Contect.html">Contect</a>
+                    </li>
+
+                </ul>
+
+                <li class="nav-item">
+                    <a class="nav-link nh" href="javascript:void(0)"></a>
+                </li>
+
+                <li class="nav-item ">
+
+                    <button type="button" class="btn btn-custom active"  data-bs-toggle="modal" data-bs-target="#myModal" id="clik" style="margin-top: 2px; background-color: white;">
+                        Login &nbsp; <i class="fa-solid fa-arrow-right-to-bracket fa-flip"></i>
+                    </button>
+
+                   
+
+                </li>
+                
+            </div>
+
+        </div>
+
+    </nav>
+    <br>
+
+
+
+
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Login</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="/action_page.php">
+
+                        <div class="mb-3 mt-3">
+
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label for="pwd" class="form-label">Password:</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="Enter password"
+                                name="pswd">
+
+                        </div>
+
+                        <div class="form-check mb-3">
+
+                            <label class="form-check-label">
+
+                                <input class="form-check-input" type="checkbox" name="remember"> Remember me
+
+                            </label>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+
+                    <button type="submit" class="btn btn-custom">Submit</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!--offer start-->
+    <h1 class="heading">Special Offer <span>Save your money</span></h1>
+
+    <br><br><br>
+
+
+
+    <br><br><br>
+    <div class="offer-header">
+        <h1>Special Offers</h1>
+    </div>
+
+    <br><br><br><br><br><br>
+
+
+
+    <section class="banner-container">
+
+        <div class="banner">
+            <img src="IMG/home-bg.png" alt="">
+            <div class="content" style="color: #b2744c;">
+                <span>special offer</span><br>
+                <h3>upto 50% off</h3><br><br><br><br><br><br><br><br><br><br>
+                <a href="#" class="btn"> shop now</a>
+            </div>
+        </div>
+
+        <div class="banner">
+            <img src="IMG/coffee-base.gif" alt="">
+            <div class="content">
+                <span>special offer</span>
+                <h3>upto 50% off</h3><br><br><br><br><br><br><br><br><br><br>
+                <a href="#" class="btn"> shop now</a>
+            </div>
+        </div>
+
+        <div class="banner">
+            <img src="IMG/main.png" alt="">
+            <div class="content">
+                <span>special offer</span>
+                <h3>upto 50% off</h3><br><br><br><br><br><br><br><br><br><br>
+                <a href="#" class="btn"> shop now</a>
+            </div>
+        </div>
+
+    </section>
+
+    <br><br><br><br><br><br>
+
+    <div class="offer-header">
+        <h1>Special Day</h1>
+    </div>
+
+
+    <!-- Offers Section -->
+    <section class="container mt-5">
+
+        <div class="row">
+            <div class="col-md-4 mt-4">
+                <div class="card offer-card" style="height: 550px;">
+                    <img src="IMG/off1.png" class="card-img-top" alt="Offer 1">
+                    <div class="card-body">
+                        <h5 class="card-title"><h1>Buy One Get One Free</h1></h5>
+                        <p class="card-text"><h4>Enjoy our special offer of Buy One Get One Free on all coffees every
+                            Monday.</h4></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <div class="card offer-card" style="height: 550px;">
+                    <img src="IMG/off2.png" class="card-img-top" alt="Offer 2">
+                    <div class="card-body"><br><br><br><br><br><br><br><br><br>
+                        <h5 class="card-title"><h1>20% Off on Desserts</h1></h5>
+                        <p class="card-text"><h4>Get 20% off on all desserts every Wednesday. Don't miss out on our
+                            delicious treats!</h4></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <div class="card offer-card" style="height: 550px;">
+                    <img src="IMG/off3.png" class="card-img-top" alt="Offer 3">
+                    <div class="card-body"><br><br>
+                        <h5 class="card-title"><h1>Happy Hour</h1></h5>
+                        <p class="card-text"><h4>Join us for Happy Hour from 4 PM to 6 PM every Friday with 50% off on
+                            selected drinks.</h4></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br><br><br><br><br><br>
+
+
+    <!--offer end-->
+
+
+
+
+
+    <!-- FOOTER -->
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="container-fluid p-5 text- text-center">
+
+                <div class="container mt-5">
+
+                    <div class="row">
+
+                        <div class="col-sm-3">
+
+                            <div class="box">
+
+                                <h3 class="our"><i class="fa-solid fa-code-branch">&nbsp;</i>Our Branches</h3>
+
+                                <a href="#"><i class="fas fa-arrow"></i> India</a>
+                                <a href="#"><i class="fas fa-arrow"></i> USA</a>
+                                <a href="#"><i class="fas fa-arrow"></i> France</a>
+                                <a href="#"><i class="fas fa-arrow"></i> Africa</a>
+                                <a href="#"><i class="fas fa-arrow"></i> Japan</a>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="col-sm-3">
+
+                            <div class="box">
+
+                                <h3><i class="fa-solid fa-link"></i>&nbsp;Quick Links</h3>
+
+                                <a href="Index.html"><i class="fas fa-arrow"></i> Home</a>
+                                <a href="About.html"><i class="fas fa-arrow"></i> About</a>
+                                <a href="Menu.html"><i class="fas fa-arrow"></i> Menu</a>
+                                <a href="Product.html"><i class="fas fa-arrow"></i> Prodhuct</a>
+                                <a href="Gallary.html"><i class="fas fa-arrow"></i> Gallary</a>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-sm-3">
+
+                            <div class="box">
+
+                                <h3><i class="fa-regular fa-address-book"></i>&nbsp;Contact Info</h3>
+
+                                <a href="#"><i class="fa-solid fa-phone fa-shake"></i>+91-5846285485</a>
+                                <a href="#"><i class="fa-solid fa-phone fa-shake"></i> +91-7186294385</a>
+                                <a href="#"><i class="fa-solid fa-envelope fa-bounce"></i> moonlit.cafe@gmail.com</a>
+                                <a href="https://www.google.com/maps/uv?pb=!1s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6!3m1!7e115!4s%2Fmaps%2Fplace%2Fthe%2Bmoonlit%2Bcafe%2Bporbandar%2F%4021.6359339%2C69.6778502%2C3a%2C75y%2C300.34h%2C90t%2Fdata%3D*213m4*211e1*213m2*211si9pTdnw0_o1bippCGwQ39Q*212e0*214m2*213m1*211s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6%3Fsa%3DX%26ved%3D2ahUKEwjfjJSNi4qHAxVp-TgGHR-qDlYQpx96BAgyEAA!5sthe%20moonlit%20cafe%20porbandar%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e2!2si9pTdnw0_o1bippCGwQ39Q&cr=le_a7&hl=en&ved=1t%3A206134&ictx=111"><i class="fa-solid fa-location-dot fa-beat-fade"></i> &nbsp; JMPH+C3, Porbandar, Gujarat 360576</a>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-sm-3">
+
+                            <div class="box">
+
+                                <h3><i class="fa-solid fa-share-nodes"></i>&nbsp;Social Media</h3>
+
+                                <a href="https://www.facebook.com/cafemoonlightlatur/"><i class="fab fa-facebook-f"></i> Facebook</a>
+                                <a href="https://www.instagram.com/__moonlightcafe__/"><i class="fab fa-instagram"></i> Instagram</a>
+                                <a href="the moonlit cafe porbandar youtube"><i class="fab fa-youtube"></i> Youtube</a>
+                                <a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>
+                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="text-center" style="height: 50px; font-size: x-large; background-color: #b2744c;">
+
+            <small class="center">&copy; The Moonlit Cafe | All Rights Reserved</small>
+
+        </div>
+
+    </section>
+
+    <script src="Script.js"></script>
+
+</body>
+
+</html>
