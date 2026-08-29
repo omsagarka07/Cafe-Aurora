@@ -2,497 +2,1689 @@
 <html lang="en">
 
 <head>
-    <title>the Moonlit Cafe</title>
+    <title>Cafe Aurora - Reviews</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="description" content="Cafe Aurora - Customer reviews and testimonials">
 
-    <link rel="stylesheet" href="Styles.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        li::marker {
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-            content: none;
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fcf8f3;
+            color: #2d1f14;
+            overflow-x: hidden;
+        }
 
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fcf8f3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b2744c;
+            border-radius: 50px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8f5c3a;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: linear-gradient(135deg, #2d1f14 0%, #4a3122 100%);
+            padding: 10px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+            border-bottom: 3px solid #b2744c;
+        }
+
+        .navbar .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .navbar .navbar-brand img {
+            height: 55px;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+        .navbar .navbar-brand img:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar .brand-text {
+            color: #f5d6b3;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-left: 2px solid #b2744c;
+            padding-left: 14px;
+            line-height: 1.2;
+        }
+        .navbar .brand-text small {
+            display: block;
+            font-size: 0.55rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #b8a392;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .navbar .nav-link {
+            color: #f5ebe0 !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 16px !important;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active {
+            color: #f5d6b3 !important;
+            background: rgba(178, 116, 76, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .navbar .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #b2744c;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar .nav-link:hover::after,
+        .navbar .nav-link.active::after {
+            width: 60%;
+        }
+
+        .navbar .btn-custom {
+            background: #b2744c;
+            color: #fff !important;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(178, 116, 76, 0.4);
+            flex-shrink: 0;
+        }
+
+        .navbar .btn-custom:hover {
+            background: #8f5c3a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(178, 116, 76, 0.5);
+        }
+
+        .navbar-toggler {
+            border: 2px solid #b2744c;
+            padding: 6px 10px;
+            flex-shrink: 0;
+        }
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        /* ===== MODAL ===== */
+        .modal-content {
+            background: #fcf8f3;
+            border-radius: 20px;
+            border: 3px solid #b2744c;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            border-bottom: 2px solid #b2744c;
+            background: #2d1f14;
+            border-radius: 18px 18px 0 0;
+            padding: 20px 30px;
+        }
+
+        .modal-header .modal-title {
+            color: #f5ebe0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+        }
+
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-body .form-label {
+            font-weight: 600;
+            color: #2d1f14;
+        }
+
+        .modal-body .form-control {
+            border-radius: 12px;
+            border: 2px solid #d4c5b5;
+            padding: 12px 16px;
+            background: #fff;
+            transition: border 0.3s ease;
+        }
+
+        .modal-body .form-control:focus {
+            border-color: #b2744c;
+            box-shadow: 0 0 0 4px rgba(178, 116, 76, 0.2);
+        }
+
+        .modal-footer {
+            border-top: none;
+            padding: 0 30px 30px 30px;
+            justify-content: center;
+        }
+
+        .modal-footer .btn-custom {
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            padding: 12px 50px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.4);
+            width: 100%;
+        }
+
+        .modal-footer .btn-custom:hover {
+            background: #8f5c3a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(178, 116, 76, 0.5);
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            background: linear-gradient(135deg, #2d1f14 0%, #4a3122 100%);
+            padding: 60px 0 50px;
+            border-bottom: 4px solid #b2744c;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .page-header::before {
+            content: '⭐';
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 8rem;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        .page-header h1 {
+            color: #f5d6b3;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 700;
+        }
+        .page-header p {
+            color: #b8a392;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 10px auto 0;
+        }
+        .page-header .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin: 0 0 10px 0;
+            justify-content: center;
+        }
+        .page-header .breadcrumb-item a {
+            color: #b2744c;
+        }
+        .page-header .breadcrumb-item.active {
+            color: #f5d6b3;
+        }
+        .page-header .breadcrumb-item+.breadcrumb-item::before {
+            color: #b8a392;
+        }
+
+        /* ===== REVIEW SECTION ===== */
+        .review-section {
+            padding: 40px 0 30px;
+            background: #fff;
+        }
+
+        .review-section .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #2d1f14;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .review-section .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #b2744c, #d4a373);
+            border-radius: 4px;
+        }
+
+        .review-section .section-subtitle {
+            color: #6b5a4a;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* ===== REVIEW CARDS ===== */
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .review-card {
+            background: #fcf8f3;
+            border-radius: 24px;
+            padding: 30px 25px 25px;
+            text-align: center;
+            border: 2px solid #f5ebe0;
+            transition: all 0.4s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            border-color: #b2744c;
+            box-shadow: 0 15px 50px rgba(178, 116, 76, 0.1);
+        }
+
+        .review-card .review-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #b2744c;
+            padding: 3px;
+            margin: 0 auto 12px;
+            background: #fff;
+        }
+
+        .review-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2d1f14;
+            margin: 0;
+        }
+
+        .review-card .role {
+            font-size: 0.85rem;
+            color: #b2744c;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .review-card .stars {
+            color: #f5a623;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .review-card .review-text {
+            font-size: 0.95rem;
+            color: #4a3a2e;
+            line-height: 1.7;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .review-card .review-text::before {
+            content: '"';
+            font-size: 1.8rem;
+            color: #b2744c;
+            opacity: 0.4;
+            margin-right: 4px;
+        }
+
+        .review-card .review-text::after {
+            content: '"';
+            font-size: 1.8rem;
+            color: #b2744c;
+            opacity: 0.4;
+            margin-left: 4px;
+        }
+
+        /* ===== WRITE REVIEW FORM ===== */
+        .write-review-section {
+            background: #f5ebe0;
+            padding: 60px 0;
+        }
+
+        .write-review-section .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            color: #2d1f14;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .write-review-section .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #b2744c, #d4a373);
+            border-radius: 4px;
+        }
+
+        .review-form-wrapper {
+            background: #fff;
+            border-radius: 24px;
+            padding: 40px 35px;
+            max-width: 700px;
+            margin: 0 auto;
+            border: 2px solid #f5ebe0;
+            transition: all 0.3s ease;
+        }
+
+        .review-form-wrapper:hover {
+            border-color: #b2744c;
+            box-shadow: 0 15px 50px rgba(178, 116, 76, 0.06);
+        }
+
+        .review-form-wrapper .form-label {
+            font-weight: 600;
+            color: #2d1f14;
+        }
+
+        .review-form-wrapper .form-control {
+            border-radius: 12px;
+            border: 2px solid #d4c5b5;
+            padding: 12px 16px;
+            background: #fcf8f3;
+            transition: border 0.3s ease;
+        }
+
+        .review-form-wrapper .form-control:focus {
+            border-color: #b2744c;
+            box-shadow: 0 0 0 4px rgba(178, 116, 76, 0.15);
+        }
+
+        .review-form-wrapper textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .review-form-wrapper .star-rating-input {
+            display: flex;
+            gap: 8px;
+            font-size: 2rem;
+            color: #d4c5b5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .review-form-wrapper .star-rating-input .star {
+            transition: all 0.2s ease;
+        }
+
+        .review-form-wrapper .star-rating-input .star:hover,
+        .review-form-wrapper .star-rating-input .star.active {
+            color: #f5a623;
+            transform: scale(1.15);
+        }
+
+        .review-form-wrapper .btn-submit {
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.3);
+            width: 100%;
+        }
+
+        .review-form-wrapper .btn-submit:hover {
+            background: #8f5c3a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(178, 116, 76, 0.4);
+        }
+
+        /* ===== TOAST NOTIFICATION ===== */
+        .toast-container {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            z-index: 9999;
+        }
+
+        .toast-custom {
+            background: #2d1f14;
+            color: #f5d6b3;
+            border: 2px solid #b2744c;
+            border-radius: 16px;
+            padding: 16px 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            animation: slideUp 0.4s ease forwards;
+            min-width: 260px;
+        }
+
+        .toast-custom .toast-icon {
+            font-size: 1.6rem;
+            color: #b2744c;
+        }
+
+        .toast-custom .toast-msg {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .toast-custom.hide {
+            animation: slideDown 0.3s ease forwards;
+        }
+
+        @keyframes slideDown {
+            to {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            padding: 60px 0;
+            background: #2d1f14;
+            color: #f5ebe0;
+            border-top: 4px solid #b2744c;
+            border-bottom: 4px solid #b2744c;
+        }
+        .newsletter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            color: #f5d6b3;
+        }
+        .newsletter p {
+            color: #b8a392;
+        }
+        .newsletter .input-group {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .newsletter .form-control {
+            border-radius: 50px 0 0 50px;
+            border: 2px solid #b2744c;
+            padding: 14px 20px;
+            background: #fff;
+        }
+        .newsletter .form-control:focus {
+            border-color: #f5d6b3;
+            box-shadow: 0 0 0 4px rgba(178, 116, 76, 0.2);
+        }
+        .newsletter .btn-gold {
+            border-radius: 0 50px 50px 0;
+            padding: 14px 32px;
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .newsletter .btn-gold:hover {
+            background: #8f5c3a;
+            transform: translateY(-2px);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #2d1f14;
+            color: #f5ebe0;
+            padding-top: 50px;
+            border-top: 6px solid #b2744c;
+        }
+
+        .footer .box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #f5d6b3;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer .box h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #b2744c;
+            border-radius: 4px;
+        }
+
+        .footer .box a {
+            display: block;
+            color: #d4c5b5;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer .box a:hover {
+            color: #f5d6b3;
+            padding-left: 12px;
+            border-bottom-color: rgba(178, 116, 76, 0.2);
+        }
+
+        .footer .box a i {
+            margin-right: 12px;
+            color: #b2744c;
+            width: 22px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .footer .box a:hover i {
+            transform: scale(1.2);
+            color: #f5d6b3;
+        }
+
+        .footer .text-center {
+            background: #1f140e;
+            padding: 18px 0;
+            margin-top: 30px;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #b8a392;
+            border-top: 1px solid rgba(178, 116, 76, 0.2);
+        }
+
+        .footer .text-center small {
+            opacity: 0.8;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1060;
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #backToTop:hover {
+            background: #8f5c3a;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 35px rgba(178, 116, 76, 0.5);
+        }
+
+        /* ================================================================
+                   FULLY RESPONSIVE BREAKPOINTS
+                   ================================================================ */
+
+        @media (max-width: 1199px) {
+            .navbar .nav-link {
+                font-size: 0.85rem;
+                padding: 6px 12px !important;
+            }
+            .navbar .brand-text {
+                font-size: 1.4rem;
+            }
+            .review-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .navbar .navbar-brand img {
+                height: 45px;
+            }
+            .navbar .brand-text {
+                font-size: 1.2rem;
+                padding-left: 10px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.45rem;
+                letter-spacing: 2px;
+            }
+            .navbar .nav-link {
+                font-size: 0.9rem;
+                padding: 8px 16px !important;
+                white-space: normal;
+            }
+            .navbar .btn-custom {
+                padding: 6px 18px;
+                font-size: 0.8rem;
+                margin-top: 8px;
+                width: 100%;
+                text-align: center;
+            }
+            .navbar .navbar-nav {
+                padding: 10px 0;
+            }
+            .page-header {
+                padding: 40px 0 30px;
+            }
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            .review-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+            .review-card {
+                padding: 24px 20px 20px;
+                border-radius: 20px;
+            }
+            .review-card .review-avatar {
+                width: 70px;
+                height: 70px;
+            }
+            .review-card h3 {
+                font-size: 1rem;
+            }
+            .review-card .review-text {
+                font-size: 0.9rem;
+            }
+            .review-form-wrapper {
+                padding: 30px 24px;
+                border-radius: 20px;
+            }
+            .footer .box {
+                margin-bottom: 30px;
+            }
+            .footer .box h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .navbar {
+                padding: 8px 0;
+            }
+            .navbar .navbar-brand img {
+                height: 38px;
+            }
+            .navbar .brand-text {
+                font-size: 1rem;
+                padding-left: 8px;
+                border-left-width: 1.5px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.4rem;
+                letter-spacing: 1.5px;
+            }
+            .navbar .nav-link {
+                font-size: 0.85rem;
+                padding: 6px 12px !important;
+            }
+            .navbar .btn-custom {
+                font-size: 0.75rem;
+                padding: 6px 14px;
+            }
+            .navbar-toggler {
+                padding: 4px 8px;
+            }
+            .navbar-toggler-icon {
+                width: 22px;
+                height: 22px;
+            }
+
+            .page-header {
+                padding: 30px 0 25px;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .page-header p {
+                font-size: 0.95rem;
+                padding: 0 15px;
+            }
+
+            .review-section {
+                padding: 30px 0 20px;
+            }
+            .review-section .section-title {
+                font-size: 1.8rem;
+            }
+            .review-section .section-title::after {
+                width: 60px;
+                height: 3px;
+            }
+            .review-section .section-subtitle {
+                font-size: 0.95rem;
+                padding: 0 15px;
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            .review-card {
+                padding: 20px 16px 16px;
+                border-radius: 16px;
+            }
+            .review-card .review-avatar {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 8px;
+            }
+            .review-card h3 {
+                font-size: 0.9rem;
+            }
+            .review-card .role {
+                font-size: 0.75rem;
+            }
+            .review-card .stars {
+                font-size: 0.85rem;
+                letter-spacing: 1.5px;
+                margin-bottom: 6px;
+            }
+            .review-card .review-text {
+                font-size: 0.82rem;
+                line-height: 1.6;
+            }
+            .review-card .review-text::before,
+            .review-card .review-text::after {
+                font-size: 1.4rem;
+            }
+
+            .write-review-section {
+                padding: 40px 0;
+            }
+            .write-review-section .section-title {
+                font-size: 1.5rem;
+            }
+            .write-review-section .section-title::after {
+                width: 60px;
+                height: 3px;
+            }
+
+            .review-form-wrapper {
+                padding: 24px 18px;
+                border-radius: 18px;
+            }
+            .review-form-wrapper .form-label {
+                font-size: 0.9rem;
+            }
+            .review-form-wrapper .form-control {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+            .review-form-wrapper .star-rating-input {
+                font-size: 1.6rem;
+                gap: 6px;
+            }
+            .review-form-wrapper .btn-submit {
+                padding: 12px 30px;
+                font-size: 0.95rem;
+            }
+
+            .newsletter {
+                padding: 40px 0;
+            }
+            .newsletter .input-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .newsletter .form-control {
+                border-radius: 50px;
+            }
+            .newsletter .btn-gold {
+                border-radius: 50px;
+                width: 100%;
+            }
+
+            .footer {
+                padding-top: 35px;
+            }
+            .footer .box h3 {
+                font-size: 1.1rem;
+                margin-bottom: 18px;
+                padding-bottom: 10px;
+            }
+            .footer .box a {
+                font-size: 0.85rem;
+                padding: 6px 0;
+            }
+            .footer .text-center {
+                font-size: 0.85rem;
+                padding: 14px 0;
+                margin-top: 20px;
+            }
+
+            .modal-header {
+                padding: 16px 20px;
+            }
+            .modal-header .modal-title {
+                font-size: 1.2rem;
+            }
+            .modal-body {
+                padding: 20px;
+            }
+            .modal-body .form-control {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+            .modal-footer {
+                padding: 0 20px 20px 20px;
+            }
+            .modal-footer .btn-custom {
+                padding: 10px 30px;
+                font-size: 0.9rem;
+            }
+
+            .toast-container {
+                bottom: 80px;
+                right: 16px;
+                left: 16px;
+            }
+            .toast-custom {
+                padding: 14px 18px;
+                min-width: auto;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .navbar-brand img {
+                height: 32px;
+            }
+            .navbar .brand-text {
+                font-size: 0.85rem;
+                padding-left: 6px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.35rem;
+                letter-spacing: 1px;
+            }
+            .navbar .nav-link {
+                font-size: 0.8rem;
+                padding: 4px 10px !important;
+            }
+            .navbar .btn-custom {
+                font-size: 0.7rem;
+                padding: 5px 12px;
+            }
+
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            .page-header p {
+                font-size: 0.85rem;
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .review-card {
+                padding: 14px 12px 12px;
+                border-radius: 14px;
+            }
+            .review-card .review-avatar {
+                width: 48px;
+                height: 48px;
+            }
+            .review-card h3 {
+                font-size: 0.8rem;
+            }
+            .review-card .role {
+                font-size: 0.65rem;
+            }
+            .review-card .stars {
+                font-size: 0.7rem;
+                letter-spacing: 1px;
+            }
+            .review-card .review-text {
+                font-size: 0.72rem;
+            }
+            .review-card .review-text::before,
+            .review-card .review-text::after {
+                font-size: 1.1rem;
+            }
+
+            .review-form-wrapper {
+                padding: 18px 14px;
+                border-radius: 14px;
+            }
+            .review-form-wrapper .form-label {
+                font-size: 0.8rem;
+            }
+            .review-form-wrapper .form-control {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            .review-form-wrapper .star-rating-input {
+                font-size: 1.3rem;
+                gap: 4px;
+            }
+            .review-form-wrapper .btn-submit {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+
+            .footer .box h3 {
+                font-size: 1rem;
+            }
+            .footer .box a {
+                font-size: 0.8rem;
+                padding: 5px 0;
+            }
+            .footer .box a i {
+                width: 18px;
+                margin-right: 8px;
+            }
+            .footer .text-center {
+                font-size: 0.7rem;
+                padding: 12px 0;
+            }
+
+            .modal-header {
+                padding: 12px 16px;
+            }
+            .modal-header .modal-title {
+                font-size: 1rem;
+            }
+            .modal-body {
+                padding: 16px;
+            }
+            .modal-body .form-label {
+                font-size: 0.85rem;
+            }
+            .modal-body .form-control {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            .modal-footer .btn-custom {
+                padding: 8px 20px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .navbar .brand-text {
+                font-size: 0.7rem;
+                padding-left: 4px;
+            }
+            .navbar .navbar-brand img {
+                height: 28px;
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .review-card {
+                padding: 10px 8px 10px;
+            }
+            .review-card .review-avatar {
+                width: 40px;
+                height: 40px;
+            }
+            .review-card h3 {
+                font-size: 0.7rem;
+            }
+            .review-card .review-text {
+                font-size: 0.65rem;
+            }
+            .review-card .stars {
+                font-size: 0.6rem;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .text-gold {
+            color: #b2744c;
+        }
+        .bg-gold-light {
+            background: #fcf8f3;
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        .fade-in-delay-1 {
+            animation-delay: 0.2s;
+        }
+        .fade-in-delay-2 {
+            animation-delay: 0.4s;
+        }
+        .fade-in-delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
     </style>
-
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-sm">
-
-        <div class="container-fluid">
-
-            <a class="navbar-brand" href="#" id="logo"><img src="IMG/l2.png " style="height: 60px; width: 200px;"
-                    alt=""></a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="Index.html">
+                <span class="brand-text d-none d-sm-inline-block">
+                    Cafe Aurora
+                    <small>since 2026</small>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" aria-controls="mynavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-
             </button>
-
             <div class="collapse navbar-collapse" id="mynavbar">
-
-                <ul class="navbar-nav me-auto">
-
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link nh" href="Index.html">Home</a>
+                        <a class="nav-link" href="Index.html"><i class="fa-solid fa-house"></i> Home</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link nh" href="About.html">About</a>
+                        <a class="nav-link" href="About.html"><i class="fa-regular fa-address-card"></i> About</a>
                     </li>
-
+                    <li class="nav-item"><a class="nav-link" href="Menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Offer.html">Offer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Product.html">Product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Gallery.html">Gallery</a></li>
                     <li class="nav-item">
-                        <a class="nav-link nh" href="Menu.html">Menu</a>
+                        <a class="nav-link active" href="Review.html"><i class="fa-regular fa-star"></i> Review</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Offer.html">Offer</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Product.html">Product</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Gallary.html">Gallary</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh active" id="Review" href="Review.html">Review</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Blogs.html">Blogs</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Box.html">Box</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Contect.html">Contect</a>
-                    </li>
-
+                    <li class="nav-item"><a class="nav-link" href="Blogs.html">Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Box.html">Box</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Contect.html">Contact</a></li>
                 </ul>
-
-                <li class="nav-item">
-                    <a class="nav-link nh" href="javascript:void(0)"></a>
-                </li>
-
-                <li class="nav-item ">
-
-                    <button type="button" class="btn btn-custom active" data-bs-toggle="modal" data-bs-target="#myModal" id="clik" style="margin-top: 2px; background-color: white;">
-                        Login &nbsp; <i class="fa-solid fa-arrow-right-to-bracket fa-flip"></i>
-                    </button>
-
-                </li>
-
+                <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Login &nbsp; <i class="fa-solid fa-arrow-right-to-bracket fa-flip"></i>
+                </button>
             </div>
-
         </div>
-
     </nav>
-    <br>
 
-
-
-
-
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
+    <!-- ===== LOGIN MODAL ===== -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
-                <!-- Modal Header -->
                 <div class="modal-header">
-
-                    <h4 class="modal-title">Login</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-
+                    <h4 class="modal-title" id="modalLabel"><i class="fa-regular fa-circle-user me-2"></i>Welcome Back</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-                <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="/action_page.php">
-
-                        <div class="mb-3 mt-3">
-
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-
-                        </div>
-
+                    <form id="loginForm">
                         <div class="mb-3">
-
-                            <label for="pwd" class="form-label">Password:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password"
-                                name="pswd">
-
+                            <label for="loginEmail" class="form-label"><i class="fa-regular fa-envelope me-2"></i>Email</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email" required>
                         </div>
-
+                        <div class="mb-3">
+                            <label for="loginPwd" class="form-label"><i class="fa-solid fa-lock me-2"></i>Password</label>
+                            <input type="password" class="form-control" id="loginPwd" placeholder="Enter your password" required>
+                        </div>
                         <div class="form-check mb-3">
-
-                            <label class="form-check-label">
-
-                                <input class="form-check-input" type="checkbox" name="remember"> Remember me
-
-                            </label>
-
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                            <label class="form-check-label" for="remember">Remember me</label>
                         </div>
-
+                        <button type="submit" class="btn btn-custom w-100"><i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Sign In</button>
                     </form>
-
                 </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-
-                    <button type="submit" class="btn btn-custom" style="background-color: white;">Submit</button>
-
-                </div>
-
             </div>
-
         </div>
-
     </div>
 
-
-
-
-
-    <!-- review section starts -->
-    <h1 class="heading">Customer's Review<span>what people says</span></h1><br><br>
-    <h1 class="heading"><span>Coffee Maker</span></h1>
-
-    <section class="review">
-
-        <div class="box-container">
-
-            <div class="box">
-                <br>
-                <div class="image">
-
-                    <img src="IMG/rev1.jpg" alt="" class="user">
-
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-8">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="Index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Reviews</li>
+                        </ol>
+                    </nav>
+                    <h1>Customer Reviews</h1>
+                    <p>Hear what our amazing customers have to say about their experience at Cafe Aurora. Your feedback inspires us to do better every day.</p>
                 </div>
-                <br>
-                <h3>Jayesh Odedra</h3>
-                <h4>Coffee Maker</h4>
-                <br>
-
-                <b>Rating</b>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-
             </div>
-
-            <div class="box">
-                <br>
-                <div class="image">
-
-                    <img src="IMG/rev2.jpg" alt="" class="user">
-
-                </div>
-                <br>
-                <h3> Sachin yuvraj</h3>
-                <h4>Coffee Maker</h4>
-                <br>
-                <b>Rating</b>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star-half text-warning"></i>
-
-            </div>
-
-            <div class="box">
-                <br>
-                <div class="image">
-
-                    <img src="IMG/rev3.jpg" alt="" class="user">
-
-                </div>
-                <br>
-                <h3> Radhika Detroja</h3>
-                <h4>Coffee Maker</h4>
-                <br>
-                <b>Rating</b>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star-half text-warning"></i>
-
-            </div>
-
-
-
         </div>
-
     </section>
 
-    <section class="review">
+    <!-- ===== REVIEW SECTION ===== -->
+    <section class="review-section">
+        <div class="container">
 
-        <div class="box-container">
-
-            <div class="box">
-                <br>
-                <div class="image">
-
-                    <img src="IMG/review-3.png" alt="" class="user">
-
-                </div>
-                <br>
-                <h3>Mihir Rana</h3>
-                <h4>satisfied client</h4>
-                <br>
-                <b>Rating</b>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star-half text-warning"></i>
-
-
+            <div class="text-center mb-3">
+                <h2 class="section-title">What People <span class="text-gold">Say</span></h2>
+                <p class="section-subtitle">Real reviews from real customers who have visited Cafe Aurora and loved every moment.</p>
             </div>
 
-            <div class="box">
-                <br>
-                <div class="image">
-
-                    <img src="IMG/review-1.png" alt="" class="user">
-
-                </div>
-                <br>
-                <h3>Jaydev Modi</h3>
-                <h4>COffee Maker</h4>
-                <br>
-                <b>Rating</b>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star-half text-warning"></i>
-
-
-
-
-            </div>
-
-            <div class="box">
-                <br>
-                <div class="image">
-
-                    <img src="IMG/review-2.png" alt="" class="user">
-
-                </div>
-                <br>
-                <h3>Mira Parmar</h3>
-                <h4>satisfied client</h4>
-                <br>
-                <b>Rating</b>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star-half text-warning"></i>
-
-
-
-            </div>
-
-
-
-        </div>
-
-    </section>
-
-    <section class="review">
-
-        <div class="box-container">
-
-            <div class="box">
-                <br>
-                <div class="image">
-
-                    <img src="IMG/review-4.png" alt="" class="user">
-
-                </div>
-                <br>
-                <h3>Mahi Shah</h3>
-                <h4>Coffee Maker</h4>
-                <br>
-                <b>Rating</b>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star-half text-warning"></i>
-
-
-
-            </div>
-
-            <div class="box">
-                <br>
-                <div class="image">
-
-                    <img src="IMG/review-5.png" alt="" class="user">
-
-                </div>
-                <br>
-                <h3>Jay Dadhi</h3>
-                    <h4>Coffee Maker</h4>
-                    <br>
-                    <b>Rating</b>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star-half text-warning"></i>
-
-
-
-            </div>
-
-            <div class="box">
-                <br>
-                <div class="image">
-
-                    <img src="IMG/review-6.png" alt="" class="user">
-
-                </div>
-                <br>
-                <h3>Priya parmar</h3>
-                <h4>Coffee Maker</h4>
-                <br>
-                <b>Rating</b>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star-half text-warning"></i>
-
+            <!-- ===== REVIEW GRID ===== -->
+            <div class="review-grid" id="reviewGrid">
+                <!-- Reviews will be injected by JavaScript -->
             </div>
 
         </div>
-
     </section>
 
+    <!-- ===== WRITE REVIEW SECTION ===== -->
+    <section class="write-review-section">
+        <div class="container">
 
-    <!-- review section ends -->
+            <div class="text-center mb-4">
+                <h2 class="section-title">Share Your <span class="text-gold">Experience</span></h2>
+                <p class="text-muted" style="max-width:600px;margin:0 auto;">Have you visited Cafe Aurora? We'd love to hear your story! Share your feedback with us.</p>
+            </div>
 
-
-
-
-
-    <!-- FOOTER -->
-    <section class="footer">
-
-        <div class="box-container">
-
-            <div class="container-fluid p-5 text- text-center">
-
-                <div class="container mt-5">
-
-                    <div class="row">
-
-                        <div class="col-sm-3">
-
-                            <div class="box">
-
-                                <h3 class="our"><i class="fa-solid fa-code-branch">&nbsp;</i>Our Branches</h3>
-
-                                <a href="#"><i class="fas fa-arrow"></i> India</a>
-                                <a href="#"><i class="fas fa-arrow"></i> USA</a>
-                                <a href="#"><i class="fas fa-arrow"></i> France</a>
-                                <a href="#"><i class="fas fa-arrow"></i> Africa</a>
-                                <a href="#"><i class="fas fa-arrow"></i> Japan</a>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="col-sm-3">
-
-                            <div class="box">
-
-                                <h3><i class="fa-solid fa-link"></i>&nbsp;Quick Links</h3>
-
-                                <a href="Index.html"><i class="fas fa-arrow"></i> Home</a>
-                                <a href="About.html"><i class="fas fa-arrow"></i> About</a>
-                                <a href="Menu.html"><i class="fas fa-arrow"></i> Menu</a>
-                                <a href="Product.html"><i class="fas fa-arrow"></i> Prodhuct</a>
-                                <a href="Gallary.html"><i class="fas fa-arrow"></i> Gallary</a>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="col-sm-3">
-
-                            <div class="box">
-
-                                <h3><i class="fa-regular fa-address-book"></i>&nbsp;Contact Info</h3>
-
-                                <a href="#"><i class="fa-solid fa-phone fa-shake"></i>+91-5846285485</a>
-                                <a href="#"><i class="fa-solid fa-phone fa-shake"></i> +91-7186294385</a>
-                                <a href="#"><i class="fa-solid fa-envelope fa-bounce"></i> moonlit.cafe@gmail.com</a>
-                                <a href="https://www.google.com/maps/uv?pb=!1s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6!3m1!7e115!4s%2Fmaps%2Fplace%2Fthe%2Bmoonlit%2Bcafe%2Bporbandar%2F%4021.6359339%2C69.6778502%2C3a%2C75y%2C300.34h%2C90t%2Fdata%3D*213m4*211e1*213m2*211si9pTdnw0_o1bippCGwQ39Q*212e0*214m2*213m1*211s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6%3Fsa%3DX%26ved%3D2ahUKEwjfjJSNi4qHAxVp-TgGHR-qDlYQpx96BAgyEAA!5sthe%20moonlit%20cafe%20porbandar%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e2!2si9pTdnw0_o1bippCGwQ39Q&cr=le_a7&hl=en&ved=1t%3A206134&ictx=111"><i class="fa-solid fa-location-dot fa-beat-fade"></i> &nbsp; JMPH+C3, Porbandar, Gujarat 360576</a>
-
-                            </div>
-
-
-                        </div>
-
-                        <div class="col-sm-3">
-
-                            <div class="box">
-
-                                <h3><i class="fa-solid fa-share-nodes"></i>&nbsp;Social Media</h3>
-
-                                <a href="https://www.facebook.com/cafemoonlightlatur/"><i class="fab fa-facebook-f"></i> Facebook</a>
-                                <a href="https://www.instagram.com/__moonlightcafe__/"><i class="fab fa-instagram"></i> Instagram</a>
-                                <a href="the moonlit cafe porbandar youtube"><i class="fab fa-youtube"></i> Youtube</a>
-                                <a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-
-                            </div>
-
-                        </div>
-
+            <div class="review-form-wrapper">
+                <form id="reviewForm">
+                    <div class="mb-3">
+                        <label for="reviewName" class="form-label"><i class="fa-regular fa-user me-2"></i>Your Name</label>
+                        <input type="text" class="form-control" id="reviewName" placeholder="Enter your full name" required>
                     </div>
-
-                </div>
-
+                    <div class="mb-3">
+                        <label for="reviewEmail" class="form-label"><i class="fa-regular fa-envelope me-2"></i>Email Address</label>
+                        <input type="email" class="form-control" id="reviewEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fa-regular fa-star me-2"></i>Your Rating</label>
+                        <div class="star-rating-input" id="starRating">
+                            <span class="star" data-value="1"><i class="fa-regular fa-star"></i></span>
+                            <span class="star" data-value="2"><i class="fa-regular fa-star"></i></span>
+                            <span class="star" data-value="3"><i class="fa-regular fa-star"></i></span>
+                            <span class="star" data-value="4"><i class="fa-regular fa-star"></i></span>
+                            <span class="star" data-value="5"><i class="fa-regular fa-star"></i></span>
+                        </div>
+                        <input type="hidden" id="ratingValue" value="0">
+                        <small class="text-muted" id="ratingLabel">Select a rating</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reviewComment" class="form-label"><i class="fa-regular fa-comment me-2"></i>Your Review</label>
+                        <textarea class="form-control" id="reviewComment" rows="4" placeholder="Tell us about your experience..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit"><i class="fa-regular fa-paper-plane me-2"></i>Submit Review</button>
+                </form>
             </div>
 
         </div>
-
-
-        <div class="text-center" style="height: 50px; font-size: x-large; background-color: #b2744c;">
-
-            <small class="center">&copy; The Moonlit Cafe | All Rights Reserved</small>
-
-        </div>
-
     </section>
-    
-    <script src="Script.js"></script>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2><i class="fa-regular fa-envelope me-2"></i>Stay in Touch</h2>
+                    <p>Subscribe to our newsletter for the latest updates, special offers, and cafe news delivered straight to your inbox.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Enter your email address" aria-label="Email" id="newsletterEmail">
+                        <button class="btn btn-gold" type="button" id="newsletterBtn">Subscribe</button>
+                    </div>
+                    <small class="d-block mt-3 text-gold">We respect your privacy. Unsubscribe anytime.</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TOAST CONTAINER ===== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="box">
+                        <h3><i class="fa-solid fa-code-branch me-2"></i>Our Branches</h3>
+                        <a href="#"><i class="fas fa-arrow-right"></i> India</a>
+                        <a href="#"><i class="fas fa-arrow-right"></i> USA</a>
+                        <a href="#"><i class="fas fa-arrow-right"></i> France</a>
+                        <a href="#"><i class="fas fa-arrow-right"></i> Africa</a>
+                        <a href="#"><i class="fas fa-arrow-right"></i> Japan</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="box">
+                        <h3><i class="fa-solid fa-link me-2"></i>Quick Links</h3>
+                        <a href="Index.html"><i class="fas fa-arrow-right"></i> Home</a>
+                        <a href="About.html"><i class="fas fa-arrow-right"></i> About</a>
+                        <a href="Menu.html"><i class="fas fa-arrow-right"></i> Menu</a>
+                        <a href="Product.html"><i class="fas fa-arrow-right"></i> Product</a>
+                        <a href="Gallery.html"><i class="fas fa-arrow-right"></i> Gallery</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="box">
+                        <h3><i class="fa-regular fa-address-book me-2"></i>Contact Info</h3>
+                        <a href="#"><i class="fa-solid fa-phone fa-shake"></i> +91-5846285485</a>
+                        <a href="#"><i class="fa-solid fa-phone fa-shake"></i> +91-7186294385</a>
+                        <a href="#"><i class="fa-solid fa-envelope fa-bounce"></i> cafe.aurora@gmail.com</a>
+                        <a href="https://www.google.com/maps/uv?pb=!1s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6!3m1!7e115!4s%2Fmaps%2Fplace%2Fthe%2Bmoonlit%2Bcafe%2Bporbandar%2F%4021.6359339%2C69.6778502%2C3a%2C75y%2C300.34h%2C90t%2Fdata%3D*213m4*211e1*213m2*211si9pTdnw0_o1bippCGwQ39Q*212e0*214m2*213m1*211s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6%3Fsa%3DX%26ved%3D2ahUKEwjfjJSNi4qHAxVp-TgGHR-qDlYQpx96BAgyEAA!5sthe%20moonlit%20cafe%20porbandar%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e2!2si9pTdnw0_o1bippCGwQ39Q&cr=le_a7&hl=en&ved=1t%3A206134&ictx=111">
+                            <i class="fa-solid fa-location-dot fa-beat-fade"></i> JMPH+C3, Porbandar, Gujarat 360576
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="box">
+                        <h3><i class="fa-solid fa-share-nodes me-2"></i>Social Media</h3>
+                        <a href="https://www.facebook.com/cafemoonlightlatur/"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="https://www.instagram.com/__moonlightcafe__/"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="#"><i class="fab fa-youtube"></i> Youtube</a>
+                        <a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>
+                        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <small>&copy; 2026 Cafe Aurora | All Rights Reserved</small>
+        </div>
+    </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Review Data ---
+            const reviews = [{
+                id: 1,
+                name: 'Jayesh Odedra',
+                role: 'Coffee Maker',
+                rating: 4,
+                text: 'The best coffee experience I\'ve ever had! The ambiance is perfect and the staff is incredibly friendly. Highly recommend the cappuccino.',
+                img: 'IMG/rev1.jpg'
+            }, {
+                id: 2,
+                name: 'Sachin Yuvraj',
+                role: 'Coffee Maker',
+                rating: 4.5,
+                text: 'Amazing place to relax and enjoy great coffee. The service is top-notch and the quality of food is outstanding. Will definitely visit again.',
+                img: 'IMG/rev2.jpg'
+            }, {
+                id: 3,
+                name: 'Radhika Detroja',
+                role: 'Coffee Maker',
+                rating: 3.5,
+                text: 'A wonderful cafe with a cozy atmosphere. The desserts are delicious and the coffee is always fresh. A great spot for catching up with friends.',
+                img: 'IMG/rev3.jpg'
+            }, {
+                id: 4,
+                name: 'Mihir Rana',
+                role: 'Satisfied Client',
+                rating: 4.5,
+                text: 'Cafe Aurora has become my go-to place for morning coffee. The staff remembers my order and the quality never disappoints. Love it here!',
+                img: 'IMG/review-3.png'
+            }, {
+                id: 5,
+                name: 'Jaydev Modi',
+                role: 'Coffee Maker',
+                rating: 4.5,
+                text: 'The latte art here is incredible! Every cup is a masterpiece. The atmosphere is warm and inviting. A true gem in the city.',
+                img: 'IMG/review-1.png'
+            }, {
+                id: 6,
+                name: 'Mira Parmar',
+                role: 'Satisfied Client',
+                rating: 4.5,
+                text: 'I\'ve been coming here for years and the quality has always been consistent. The staff is like family and the coffee is world-class.',
+                img: 'IMG/review-2.png'
+            }, {
+                id: 7,
+                name: 'Mahi Shah',
+                role: 'Coffee Maker',
+                rating: 4.5,
+                text: 'The cold brew is a game-changer! Perfect for hot days. The cafe has a great vibe and the music is always on point.',
+                img: 'IMG/review-4.png'
+            }, {
+                id: 8,
+                name: 'Jay Dadhi',
+                role: 'Coffee Maker',
+                rating: 3.5,
+                text: 'Great place to work remotely. The Wi-Fi is fast, the coffee is strong, and the seating is comfortable. Highly recommended for digital nomads.',
+                img: 'IMG/review-5.png'
+            }, {
+                id: 9,
+                name: 'Priya Parmar',
+                role: 'Coffee Maker',
+                rating: 4.5,
+                text: 'The best cafe in town! The pastries are fresh, the coffee is amazing, and the staff always greets you with a smile. A must-visit!',
+                img: 'IMG/review-6.png'
+            }];
+
+            const reviewGrid = document.getElementById('reviewGrid');
+
+            // --- Render Stars ---
+            function renderStars(rating) {
+                let html = '';
+                const fullStars = Math.floor(rating);
+                const hasHalf = rating % 1 !== 0;
+                for (let i = 0; i < fullStars; i++) {
+                    html += '<i class="fa-solid fa-star"></i>';
+                }
+                if (hasHalf) {
+                    html += '<i class="fa-solid fa-star-half-stroke"></i>';
+                }
+                const emptyStars = 5 - Math.ceil(rating);
+                for (let i = 0; i < emptyStars; i++) {
+                    html += '<i class="fa-regular fa-star"></i>';
+                }
+                return html;
+            }
+
+            // --- Render Reviews ---
+            function renderReviews() {
+                reviewGrid.innerHTML = '';
+                reviews.forEach(review => {
+                    const card = document.createElement('div');
+                    card.className = 'review-card';
+                    card.innerHTML = `
+                        <img src="${review.img}" alt="${review.name}" class="review-avatar" onerror="this.style.background='#d4c5b5';this.style.borderRadius='50%';this.style.width='80px';this.style.height='80px';">
+                        <h3>${review.name}</h3>
+                        <div class="role">${review.role}</div>
+                        <div class="stars">${renderStars(review.rating)}</div>
+                        <p class="review-text">${review.text}</p>
+                    `;
+                    reviewGrid.appendChild(card);
+                });
+            }
+
+            renderReviews();
+
+            // --- Star Rating Input ---
+            const stars = document.querySelectorAll('.star');
+            const ratingInput = document.getElementById('ratingValue');
+            const ratingLabel = document.getElementById('ratingLabel');
+
+            stars.forEach(star => {
+                star.addEventListener('mouseenter', function() {
+                    const value = parseInt(this.getAttribute('data-value'));
+                    highlightStars(value);
+                });
+
+                star.addEventListener('mouseleave', function() {
+                    const current = parseInt(ratingInput.value) || 0;
+                    highlightStars(current);
+                });
+
+                star.addEventListener('click', function() {
+                    const value = parseInt(this.getAttribute('data-value'));
+                    ratingInput.value = value;
+                    highlightStars(value);
+                    const labels = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+                    ratingLabel.textContent = labels[value] || 'Select a rating';
+                    ratingLabel.style.color = '#b2744c';
+                });
+            });
+
+            function highlightStars(value) {
+                stars.forEach((star, index) => {
+                    const starValue = index + 1;
+                    const icon = star.querySelector('i');
+                    if (starValue <= value) {
+                        icon.className = 'fa-solid fa-star';
+                        star.classList.add('active');
+                    } else {
+                        icon.className = 'fa-regular fa-star';
+                        star.classList.remove('active');
+                    }
+                });
+            }
+
+            // --- Toast Notification ---
+            const toastContainer = document.getElementById('toastContainer');
+
+            function showToast(message, icon = 'fa-regular fa-circle-check') {
+                const existing = toastContainer.querySelector('.toast-custom');
+                if (existing) {
+                    existing.classList.add('hide');
+                    setTimeout(() => existing.remove(), 300);
+                }
+
+                const toast = document.createElement('div');
+                toast.className = 'toast-custom';
+                toast.innerHTML = `
+                    <span class="toast-icon"><i class="${icon}"></i></span>
+                    <span class="toast-msg">${message}</span>
+                `;
+                toastContainer.appendChild(toast);
+
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.classList.add('hide');
+                        setTimeout(() => toast.remove(), 300);
+                    }
+                }, 3500);
+            }
+
+            // --- Submit Review Form ---
+            const reviewForm = document.getElementById('reviewForm');
+
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('reviewName').value.trim();
+                const email = document.getElementById('reviewEmail').value.trim();
+                const rating = parseInt(ratingInput.value);
+                const comment = document.getElementById('reviewComment').value.trim();
+
+                if (!name || !email || !comment) {
+                    alert('Please fill in all fields.');
+                    return;
+                }
+
+                if (!email.includes('@') || !email.includes('.')) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                if (rating === 0) {
+                    alert('Please select a rating.');
+                    return;
+                }
+
+                // Add new review to the grid
+                const newReview = {
+                    id: reviews.length + 1,
+                    name: name,
+                    role: 'Customer',
+                    rating: rating,
+                    text: comment,
+                    img: ''
+                };
+                reviews.push(newReview);
+
+                // Re-render reviews
+                renderReviews();
+
+                // Show success toast
+                showToast('✅ Thank you for your review! We appreciate your feedback.');
+
+                // Reset form
+                reviewForm.reset();
+                ratingInput.value = 0;
+                ratingLabel.textContent = 'Select a rating';
+                ratingLabel.style.color = '';
+                highlightStars(0);
+            });
+
+            // --- Navbar: Close mobile menu on link click ---
+            const navLinks = document.querySelectorAll('.navbar .nav-link');
+            const navCollapse = document.getElementById('mynavbar');
+            if (navCollapse) {
+                const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth < 992 && bsCollapse) {
+                            bsCollapse.hide();
+                        }
+                    });
+                });
+            }
+
+            // --- Back to Top ---
+            const backBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backBtn.classList.add('show');
+                } else {
+                    backBtn.classList.remove('show');
+                }
+            });
+
+            // --- Active nav link highlight ---
+            const currentPath = window.location.pathname.split('/').pop() || 'Review.html';
+            document.querySelectorAll('.navbar .nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPath || (currentPath === 'Review.html' && href === 'Review.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // --- Login Form ---
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = document.getElementById('loginEmail').value.trim();
+                    const pwd = document.getElementById('loginPwd').value.trim();
+                    if (!email || !pwd) {
+                        alert('Please enter both email and password.');
+                        return;
+                    }
+                    alert('Login successful! Welcome back.');
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('myModal'));
+                    if (modal) modal.hide();
+                    loginForm.reset();
+                });
+            }
+
+            // --- Newsletter Subscription ---
+            const newsletterBtn = document.getElementById('newsletterBtn');
+            if (newsletterBtn) {
+                newsletterBtn.addEventListener('click', function() {
+                    const input = document.getElementById('newsletterEmail');
+                    const email = input.value.trim();
+                    if (!email || !email.includes('@') || !email.includes('.')) {
+                        alert('Please enter a valid email address.');
+                        return;
+                    }
+                    showToast('✅ Subscribed successfully! Check your inbox.');
+                    input.value = '';
+                });
+            }
+
+        });
+    </script>
 
 </body>
 

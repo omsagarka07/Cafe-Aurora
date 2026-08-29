@@ -2,419 +2,1492 @@
 <html lang="en">
 
 <head>
-    <title>the Moonlit Cafe</title>
+    <title>Cafe Aurora - About Us</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cafe Aurora - About Us, Our Story, Mission and Values">
+
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="About.css">
-   
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        li::marker {
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-            content: none;
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fcf8f3;
+            color: #2d1f14;
+            overflow-x: hidden;
+        }
 
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fcf8f3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b2744c;
+            border-radius: 50px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8f5c3a;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: linear-gradient(135deg, #2d1f14 0%, #4a3122 100%);
+            padding: 10px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+            border-bottom: 3px solid #b2744c;
+        }
+
+        .navbar .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .navbar .navbar-brand img {
+            height: 55px;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+        .navbar .navbar-brand img:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar .brand-text {
+            color: #f5d6b3;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-left: 2px solid #b2744c;
+            padding-left: 14px;
+            line-height: 1.2;
+        }
+        .navbar .brand-text small {
+            display: block;
+            font-size: 0.55rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #b8a392;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .navbar .nav-link {
+            color: #f5ebe0 !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 16px !important;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active {
+            color: #f5d6b3 !important;
+            background: rgba(178, 116, 76, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .navbar .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #b2744c;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar .nav-link:hover::after,
+        .navbar .nav-link.active::after {
+            width: 60%;
+        }
+
+        .navbar .btn-custom {
+            background: #b2744c;
+            color: #fff !important;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(178, 116, 76, 0.4);
+            flex-shrink: 0;
+        }
+
+        .navbar .btn-custom:hover {
+            background: #8f5c3a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(178, 116, 76, 0.5);
+        }
+
+        .navbar-toggler {
+            border: 2px solid #b2744c;
+            padding: 6px 10px;
+            flex-shrink: 0;
+        }
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        /* ===== MODAL ===== */
+        .modal-content {
+            background: #fcf8f3;
+            border-radius: 20px;
+            border: 3px solid #b2744c;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            border-bottom: 2px solid #b2744c;
+            background: #2d1f14;
+            border-radius: 18px 18px 0 0;
+            padding: 20px 30px;
+        }
+
+        .modal-header .modal-title {
+            color: #f5ebe0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+        }
+
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-body .form-label {
+            font-weight: 600;
+            color: #2d1f14;
+        }
+
+        .modal-body .form-control {
+            border-radius: 12px;
+            border: 2px solid #d4c5b5;
+            padding: 12px 16px;
+            background: #fff;
+            transition: border 0.3s ease;
+        }
+
+        .modal-body .form-control:focus {
+            border-color: #b2744c;
+            box-shadow: 0 0 0 4px rgba(178, 116, 76, 0.2);
+        }
+
+        .modal-footer {
+            border-top: none;
+            padding: 0 30px 30px 30px;
+            justify-content: center;
+        }
+
+        .modal-footer .btn-custom {
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            padding: 12px 50px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.4);
+            width: 100%;
+        }
+
+        .modal-footer .btn-custom:hover {
+            background: #8f5c3a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(178, 116, 76, 0.5);
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            background: linear-gradient(135deg, #2d1f14 0%, #4a3122 100%);
+            padding: 60px 0 50px;
+            border-bottom: 4px solid #b2744c;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .page-header::before {
+            content: '☕';
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 8rem;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        .page-header h1 {
+            color: #f5d6b3;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 700;
+        }
+        .page-header p {
+            color: #b8a392;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 10px auto 0;
+        }
+        .page-header .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin: 0 0 10px 0;
+            justify-content: center;
+        }
+        .page-header .breadcrumb-item a {
+            color: #b2744c;
+        }
+        .page-header .breadcrumb-item.active {
+            color: #f5d6b3;
+        }
+        .page-header .breadcrumb-item+.breadcrumb-item::before {
+            color: #b8a392;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-gold {
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            padding: 12px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.3);
+            display: inline-block;
+        }
+        .btn-gold:hover {
+            background: #8f5c3a;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(178, 116, 76, 0.4);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            padding: 60px 0 40px;
+            background: #fff;
+        }
+
+        .about-section .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #2d1f14;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .about-section .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #b2744c, #d4a373);
+            border-radius: 4px;
+        }
+
+        .about-section .section-subtitle {
+            color: #6b5a4a;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .about-block {
+            background: #fcf8f3;
+            border-radius: 24px;
+            padding: 40px 35px;
+            margin-bottom: 35px;
+            border: 2px solid #f5ebe0;
+            transition: all 0.4s ease;
+        }
+
+        .about-block:hover {
+            transform: translateY(-6px);
+            border-color: #b2744c;
+            box-shadow: 0 15px 50px rgba(178, 116, 76, 0.08);
+        }
+
+        .about-block .block-icon {
+            font-size: 2.8rem;
+            color: #b2744c;
+            margin-bottom: 16px;
+        }
+
+        .about-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #2d1f14;
+            margin-bottom: 14px;
+        }
+
+        .about-block h3 u {
+            text-decoration-color: #b2744c;
+            text-underline-offset: 6px;
+        }
+
+        .about-block p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #4a3a2e;
+        }
+
+        .about-block ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-block ul li {
+            padding: 8px 0;
+            font-size: 1.05rem;
+            color: #4a3a2e;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            border-bottom: 1px solid rgba(178, 116, 76, 0.08);
+        }
+
+        .about-block ul li:last-child {
+            border-bottom: none;
+        }
+
+        .about-block ul li .li-icon {
+            color: #b2744c;
+            font-size: 1.2rem;
+            min-width: 28px;
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .about-block ul li strong {
+            color: #2d1f14;
+            font-weight: 700;
+            min-width: 70px;
+        }
+
+        /* ===== FEATURE GRID ===== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: #fff;
+            border-radius: 18px;
+            padding: 28px 20px;
+            text-align: center;
+            border: 2px solid #f5ebe0;
+            transition: all 0.4s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            border-color: #b2744c;
+            box-shadow: 0 12px 40px rgba(178, 116, 76, 0.1);
+        }
+
+        .feature-item .fi-icon {
+            font-size: 2.4rem;
+            color: #b2744c;
+            margin-bottom: 12px;
+        }
+
+        .feature-item h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: #2d1f14;
+            font-size: 1.1rem;
+        }
+
+        .feature-item p {
+            color: #6b5a4a;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* ===== TEAM / VALUES ===== */
+        .values-section {
+            background: #f5ebe0;
+            padding: 60px 0;
+        }
+
+        .values-section .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #2d1f14;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .values-section .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #b2744c, #d4a373);
+            border-radius: 4px;
+        }
+
+        .value-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            height: 100%;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .value-card:hover {
+            border-color: #b2744c;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(178, 116, 76, 0.1);
+        }
+
+        .value-card .vc-icon {
+            font-size: 2.8rem;
+            color: #b2744c;
+            margin-bottom: 14px;
+        }
+
+        .value-card h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: #2d1f14;
+            font-size: 1.2rem;
+        }
+
+        .value-card p {
+            color: #4a3a2e;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== CTA BANNER ===== */
+        .cta-banner {
+            background: linear-gradient(135deg, #2d1f14 0%, #4a3122 100%);
+            padding: 60px 0;
+            border-top: 4px solid #b2744c;
+            border-bottom: 4px solid #b2744c;
+        }
+
+        .cta-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            color: #f5d6b3;
+        }
+
+        .cta-banner p {
+            color: #b8a392;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #2d1f14;
+            color: #f5ebe0;
+            padding-top: 50px;
+            border-top: 6px solid #b2744c;
+        }
+
+        .footer .box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #f5d6b3;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer .box h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #b2744c;
+            border-radius: 4px;
+        }
+
+        .footer .box a {
+            display: block;
+            color: #d4c5b5;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer .box a:hover {
+            color: #f5d6b3;
+            padding-left: 12px;
+            border-bottom-color: rgba(178, 116, 76, 0.2);
+        }
+
+        .footer .box a i {
+            margin-right: 12px;
+            color: #b2744c;
+            width: 22px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .footer .box a:hover i {
+            transform: scale(1.2);
+            color: #f5d6b3;
+        }
+
+        .footer .text-center {
+            background: #1f140e;
+            padding: 18px 0;
+            margin-top: 30px;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #b8a392;
+            border-top: 1px solid rgba(178, 116, 76, 0.2);
+        }
+
+        .footer .text-center small {
+            opacity: 0.8;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1060;
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #backToTop:hover {
+            background: #8f5c3a;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 35px rgba(178, 116, 76, 0.5);
+        }
+
+        /* ================================================================
+                   FULLY RESPONSIVE BREAKPOINTS
+                   ================================================================ */
+
+        @media (max-width: 1199px) {
+            .navbar .nav-link {
+                font-size: 0.85rem;
+                padding: 6px 12px !important;
+            }
+            .navbar .brand-text {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .navbar .navbar-brand img {
+                height: 45px;
+            }
+            .navbar .brand-text {
+                font-size: 1.2rem;
+                padding-left: 10px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.45rem;
+                letter-spacing: 2px;
+            }
+            .navbar .nav-link {
+                font-size: 0.9rem;
+                padding: 8px 16px !important;
+                white-space: normal;
+            }
+            .navbar .btn-custom {
+                padding: 6px 18px;
+                font-size: 0.8rem;
+                margin-top: 8px;
+                width: 100%;
+                text-align: center;
+            }
+            .navbar .navbar-nav {
+                padding: 10px 0;
+            }
+            .page-header {
+                padding: 40px 0 30px;
+            }
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            .about-block {
+                padding: 30px 24px;
+            }
+            .about-block h3 {
+                font-size: 1.4rem;
+            }
+            .about-block p {
+                font-size: 0.98rem;
+            }
+            .about-block ul li {
+                font-size: 0.98rem;
+            }
+            .feature-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            .footer .box {
+                margin-bottom: 30px;
+            }
+            .footer .box h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .navbar {
+                padding: 8px 0;
+            }
+            .navbar .navbar-brand img {
+                height: 38px;
+            }
+            .navbar .brand-text {
+                font-size: 1rem;
+                padding-left: 8px;
+                border-left-width: 1.5px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.4rem;
+                letter-spacing: 1.5px;
+            }
+            .navbar .nav-link {
+                font-size: 0.85rem;
+                padding: 6px 12px !important;
+            }
+            .navbar .btn-custom {
+                font-size: 0.75rem;
+                padding: 6px 14px;
+            }
+            .navbar-toggler {
+                padding: 4px 8px;
+            }
+            .navbar-toggler-icon {
+                width: 22px;
+                height: 22px;
+            }
+
+            .page-header {
+                padding: 30px 0 25px;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .page-header p {
+                font-size: 0.95rem;
+                padding: 0 15px;
+            }
+
+            .about-section {
+                padding: 40px 0 30px;
+            }
+            .about-section .section-title {
+                font-size: 1.8rem;
+            }
+            .about-section .section-title::after {
+                width: 60px;
+                height: 3px;
+            }
+            .about-section .section-subtitle {
+                font-size: 0.95rem;
+                padding: 0 15px;
+            }
+
+            .about-block {
+                padding: 24px 18px;
+                margin-bottom: 24px;
+                border-radius: 18px;
+            }
+            .about-block .block-icon {
+                font-size: 2.2rem;
+            }
+            .about-block h3 {
+                font-size: 1.25rem;
+            }
+            .about-block p {
+                font-size: 0.92rem;
+                line-height: 1.7;
+            }
+            .about-block ul li {
+                font-size: 0.92rem;
+                padding: 6px 0;
+                gap: 10px;
+            }
+            .about-block ul li .li-icon {
+                font-size: 1rem;
+                min-width: 24px;
+            }
+            .about-block ul li strong {
+                min-width: 60px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            .feature-item {
+                padding: 20px 14px;
+                border-radius: 14px;
+            }
+            .feature-item .fi-icon {
+                font-size: 2rem;
+            }
+            .feature-item h4 {
+                font-size: 0.95rem;
+            }
+            .feature-item p {
+                font-size: 0.85rem;
+            }
+
+            .values-section {
+                padding: 40px 0;
+            }
+            .values-section .section-title {
+                font-size: 1.8rem;
+            }
+            .values-section .section-title::after {
+                width: 60px;
+                height: 3px;
+            }
+
+            .value-card {
+                padding: 24px 18px;
+            }
+            .value-card .vc-icon {
+                font-size: 2.2rem;
+            }
+            .value-card h4 {
+                font-size: 1.05rem;
+            }
+            .value-card p {
+                font-size: 0.9rem;
+            }
+
+            .cta-banner {
+                padding: 40px 0;
+            }
+            .cta-banner h2 {
+                font-size: 1.6rem;
+            }
+            .cta-banner p {
+                font-size: 0.95rem;
+                padding: 0 15px;
+            }
+
+            .footer {
+                padding-top: 35px;
+            }
+            .footer .box h3 {
+                font-size: 1.1rem;
+                margin-bottom: 18px;
+                padding-bottom: 10px;
+            }
+            .footer .box a {
+                font-size: 0.85rem;
+                padding: 6px 0;
+            }
+            .footer .text-center {
+                font-size: 0.85rem;
+                padding: 14px 0;
+                margin-top: 20px;
+            }
+
+            .modal-header {
+                padding: 16px 20px;
+            }
+            .modal-header .modal-title {
+                font-size: 1.2rem;
+            }
+            .modal-body {
+                padding: 20px;
+            }
+            .modal-body .form-control {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+            .modal-footer {
+                padding: 0 20px 20px 20px;
+            }
+            .modal-footer .btn-custom {
+                padding: 10px 30px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .navbar-brand img {
+                height: 32px;
+            }
+            .navbar .brand-text {
+                font-size: 0.85rem;
+                padding-left: 6px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.35rem;
+                letter-spacing: 1px;
+            }
+            .navbar .nav-link {
+                font-size: 0.8rem;
+                padding: 4px 10px !important;
+            }
+            .navbar .btn-custom {
+                font-size: 0.7rem;
+                padding: 5px 12px;
+            }
+
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            .page-header p {
+                font-size: 0.85rem;
+            }
+
+            .about-block {
+                padding: 18px 14px;
+                border-radius: 14px;
+            }
+            .about-block h3 {
+                font-size: 1.1rem;
+            }
+            .about-block p {
+                font-size: 0.85rem;
+            }
+            .about-block ul li {
+                font-size: 0.85rem;
+                padding: 5px 0;
+                flex-wrap: wrap;
+            }
+            .about-block ul li strong {
+                min-width: 50px;
+                font-size: 0.85rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .feature-item {
+                padding: 16px 10px;
+            }
+            .feature-item .fi-icon {
+                font-size: 1.6rem;
+            }
+            .feature-item h4 {
+                font-size: 0.8rem;
+            }
+            .feature-item p {
+                font-size: 0.75rem;
+            }
+
+            .value-card {
+                padding: 18px 14px;
+            }
+            .value-card .vc-icon {
+                font-size: 1.8rem;
+            }
+            .value-card h4 {
+                font-size: 0.95rem;
+            }
+            .value-card p {
+                font-size: 0.8rem;
+            }
+
+            .cta-banner h2 {
+                font-size: 1.3rem;
+            }
+            .cta-banner p {
+                font-size: 0.85rem;
+            }
+
+            .footer .box h3 {
+                font-size: 1rem;
+            }
+            .footer .box a {
+                font-size: 0.8rem;
+                padding: 5px 0;
+            }
+            .footer .box a i {
+                width: 18px;
+                margin-right: 8px;
+            }
+            .footer .text-center {
+                font-size: 0.7rem;
+                padding: 12px 0;
+            }
+
+            .modal-header {
+                padding: 12px 16px;
+            }
+            .modal-header .modal-title {
+                font-size: 1rem;
+            }
+            .modal-body {
+                padding: 16px;
+            }
+            .modal-body .form-label {
+                font-size: 0.85rem;
+            }
+            .modal-body .form-control {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            .modal-footer .btn-custom {
+                padding: 8px 20px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .navbar .brand-text {
+                font-size: 0.7rem;
+                padding-left: 4px;
+            }
+            .navbar .navbar-brand img {
+                height: 28px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .feature-item {
+                padding: 12px 8px;
+            }
+            .feature-item .fi-icon {
+                font-size: 1.3rem;
+            }
+            .feature-item h4 {
+                font-size: 0.7rem;
+            }
+            .feature-item p {
+                font-size: 0.65rem;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .text-gold {
+            color: #b2744c;
+        }
+        .bg-gold-light {
+            background: #fcf8f3;
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        .fade-in-delay-1 {
+            animation-delay: 0.2s;
+        }
+        .fade-in-delay-2 {
+            animation-delay: 0.4s;
+        }
+        .fade-in-delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .img-placeholder {
+            background: #d4c5b5;
+            border-radius: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #6b5a4a;
+            font-weight: 500;
         }
     </style>
-
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-sm">
-
-        <div class="container-fluid">
-
-            <a class="navbar-brand" href="#" id="logo"><img src="IMG/l2.png " style="height: 60px; width: 200px;"
-                    alt=""></a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="Index.html">
+                <span class="brand-text d-none d-sm-inline-block">
+                    Cafe Aurora
+                    <small>since 2026</small>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" aria-controls="mynavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-
             </button>
-
             <div class="collapse navbar-collapse" id="mynavbar">
-
-                <ul class="navbar-nav me-auto">
-
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link nh" href="Index.html">Home</a>
+                        <a class="nav-link" href="Index.html"><i class="fa-solid fa-house"></i> Home</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link nh active" id="about" href="About.html"><i class="fa-regular fa-address-card fa-beat-fade"></i> &nbsp; About</a>
+                        <a class="nav-link active" href="About.html"><i class="fa-regular fa-address-card fa-beat-fade"></i> About</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Menu.html">Menu</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Offer.html">Offer</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Product.html">Product</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Gallary.html">Gallary</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Review.html">Review</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Blogs.html">Blogs</a>
-                    </li>
-
-                    
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Box.html">Box</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Contect.html">Contect</a>
-                    </li>
-
+                    <li class="nav-item"><a class="nav-link" href="Menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Offer.html">Offer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Product.html">Product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Review.html">Review</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Blogs.html">Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Box.html">Box</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Contect.html">Contact</a></li>
                 </ul>
-
-                <li class="nav-item">
-                    <a class="nav-link nh" href="javascript:void(0)"></a>
-                </li>
-
-                <li class="nav-item ">
-
-                    <button type="button" class="btn btn-custom active"  data-bs-toggle="modal" data-bs-target="#myModal" id="clik" style="margin-top: 2px; background-color: white;">
-                        Login &nbsp; <i class="fa-solid fa-arrow-right-to-bracket fa-flip"></i>
-                    </button>
-                    
-                </li>
+                <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Login &nbsp; <i class="fa-solid fa-arrow-right-to-bracket fa-flip"></i>
+                </button>
             </div>
-
         </div>
-
     </nav>
-    <br>
 
-
-
-    
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
+    <!-- ===== LOGIN MODAL ===== -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
-                <!-- Modal Header -->
                 <div class="modal-header">
-
-                    <h4 class="modal-title">Login</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-
+                    <h4 class="modal-title" id="modalLabel"><i class="fa-regular fa-circle-user me-2"></i>Welcome Back</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-                <!-- Modal body -->
                 <div class="modal-body">
                     <form action="/action_page.php">
-
-                        <div class="mb-3 mt-3">
-
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-
-                        </div>
-
                         <div class="mb-3">
-
-                            <label for="pwd" class="form-label">Password:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password"
-                                name="pswd">
-
+                            <label for="email" class="form-label"><i class="fa-regular fa-envelope me-2"></i>Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email" required>
                         </div>
-
+                        <div class="mb-3">
+                            <label for="pwd" class="form-label"><i class="fa-solid fa-lock me-2"></i>Password</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="Enter your password" name="pswd" required>
+                        </div>
                         <div class="form-check mb-3">
-
-                            <label class="form-check-label">
-
-                                <input class="form-check-input" type="checkbox" name="remember"> Remember me
-
-                            </label>
-
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                            <label class="form-check-label" for="remember">Remember me</label>
                         </div>
-
+                        <button type="submit" class="btn btn-custom w-100"><i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Sign In</button>
                     </form>
-
                 </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-
-                    <button type="submit" class="btn btn-custom">Submit</button>
-
-                </div>
-
             </div>
-
         </div>
-
     </div>
 
-    
-    <!-- ABOUT -->
-    <section class="about" id="about">
-
-        <h1 class="heading">about us <span>why choose us</span></h1>
-
-
-        <div class="row">
-
-            <div class="image">
-
-                <img src="IMG/Welcome.png" alt="">
-
-            </div>
-            <div class="content">
-
-                <h1 class="title"><b><u>Welcome to The Moonlit Cafe</u></b></h1>
-
-                <p>
-                <h2>Nestled in the heart of the city, The Moonlit Cafe offers a serene escape from the hustle and
-                    bustle. Our cafe is more than just a place to grab a coffee; it's a haven where you can relax,
-                    unwind, and enjoy the company of friends and family under the soft glow of moonlight.</h2>
-                </p>
-
-            </div>
-
-            <div class="image">
-
-                <img src="IMG/story.png" alt="">
-
-            </div>
-            <div class="content">
-
-                <h1 class="title"><b><u>Our Story</u></b></h1>
-
-                <p>
-                <h2>The Moonlit Cafe was born out of a passion for creating a space where people can gather and enjoy
-                    high-quality food and beverages in a cozy, welcoming atmosphere. Since opening our doors, we have
-                    been committed to providing an exceptional experience for our guests, whether they come for a quick
-                    coffee break, a leisurely meal, or a special event.</h2>
-                </p>
-
-            </div>
-
-            <div class="image">
-
-                <img src="IMG/mi.png" alt="">
-
-            </div>
-            <div class="content">
-
-                <h1 class="title"><b><u>Our Mission</u></b></h1>
-
-                <p>
-                <h2>Our mission is to create a memorable experience for every visitor by offering:</h2>
-                </p>
-                <p>
-                <h1>Delicious Food and Drinks:</h1>
-                <h2>We serve a variety of handcrafted beverages and freshly prepared dishes made with the finest
-                    ingredients.</h2>
-                </p>
-                <p>
-                <h1>Comfortable Atmosphere:</h1>
-                <h2>Our cafe features comfortable seating, warm lighting, and a charming decor that makes you feel at
-                    home.</h2>
-                </p>
-                <p>
-                <h1>Friendly Service:</h1>
-                <h2>Our dedicated staff is here to ensure you have a pleasant visit, providing attentive and
-                    personalized service.</h2>
-                </p>
-
-            </div>
-            <br>
-
-            <div class="image">
-
-                <img src="IMG/offer.png" alt="">
-
-            </div>
-            <div class="content">
-
-                <h1 class="title"><b><u>What We Offer</u></b></h1>
-
-                <p>
-                <h1>Eat: </h1>
-                <h2>Explore our diverse menu, which includes a range of delicious breakfast, lunch, and dinner options,
-                    as well as delectable desserts.</h2>
-                </p>
-                <p>
-                <h1>Drink: </h1>
-                <h2>Enjoy our selection of premium coffees, teas, smoothies, and specialty drinks, each crafted with
-                    care.</h2>
-                </p>
-                <p>
-                <h1>Special Events: </h1>
-                <h2> Host your private events at The Moonlit Cafe, where we offer customized menus and a beautiful
-                    setting for any occasion.</h2>
-                </p>
-                <p>
-                <h1>Box Cricket Stadium: </h1>
-                <h2>Join us for some fun at our unique Box Cricket Stadium, where you can play, relax, and enjoy the
-                    game.</h2>
-                </p>
-
-            </div>
-
-            <div class="image">
-
-                <img src="C:\Users\Lenovo\Desktop\Web Design\IMG\c1.png" alt="">
-
-            </div>
-            <div class="content">
-
-                <h1 class="title"><b><u>Our Commitment to Quality</u></b></h1>
-
-                <p>
-                <h2>At The Moonlit Cafe, we are dedicated to maintaining the highest standards of quality in everything
-                    we do. From sourcing local, organic ingredients to brewing the perfect cup of coffee, we strive to
-                    exceed your expectations every time you visit.</h2>
-                </p>
-
-            </div>
-
-            <div class="image">
-
-                <img src="IMG/joing.png" alt="">
-
-            </div>
-            <div class="content">
-
-                <h1 class="title"><b><u>Join Us</u></b></h1>
-
-                <p>
-                <h2>Whether you're looking for a peaceful spot to read a book, a place to catch up with friends, or a
-                    venue for your next celebration, The Moonlit Cafe is here to welcome you. Come and experience the
-                    magic of our cafe, where every visit is a delightful escape.</h2>
-                </p>
-
-            </div>
-
-
-
-        </div>
-
-    </section>
-
-
-
-
-
-
-
-    <!-- FOOTER -->
-    <section class="footer">
-
-        <div class="box-container">
-
-            <div class="container-fluid p-5 text- text-center">
-
-                <div class="container mt-5">
-
-                    <div class="row">
-
-                        <div class="col-sm-3">
-
-                            <div class="box">
-
-                                <h3 class="our"><i class="fa-solid fa-code-branch">&nbsp;</i>Our Branches</h3>
-
-                                <a href="#"><i class="fas fa-arrow"></i> India</a>
-                                <a href="#"><i class="fas fa-arrow"></i> USA</a>
-                                <a href="#"><i class="fas fa-arrow"></i> France</a>
-                                <a href="#"><i class="fas fa-arrow"></i> Africa</a>
-                                <a href="#"><i class="fas fa-arrow"></i> Japan</a>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="col-sm-3">
-
-                            <div class="box">
-
-                                <h3><i class="fa-solid fa-link"></i>&nbsp;Quick Links</h3>
-
-                                <a href="Index.html"><i class="fas fa-arrow"></i> Home</a>
-                                <a href="About.html"><i class="fas fa-arrow"></i> About</a>
-                                <a href="Menu.html"><i class="fas fa-arrow"></i> Menu</a>
-                                <a href="Product.html"><i class="fas fa-arrow"></i> Prodhuct</a>
-                                <a href="Gallary.html"><i class="fas fa-arrow"></i> Gallary</a>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="col-sm-3">
-
-                            <div class="box">
-
-                                <h3><i class="fa-regular fa-address-book"></i>&nbsp;Contact Info</h3>
-
-                                <a href="#"><i class="fa-solid fa-phone fa-shake"></i>+91-5846285485</a>
-                                <a href="#"><i class="fa-solid fa-phone fa-shake"></i> +91-7186294385</a>
-                                <a href="#"><i class="fa-solid fa-envelope fa-bounce"></i> moonlit.cafe@gmail.com</a>
-                                <a href="https://www.google.com/maps/uv?pb=!1s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6!3m1!7e115!4s%2Fmaps%2Fplace%2Fthe%2Bmoonlit%2Bcafe%2Bporbandar%2F%4021.6359339%2C69.6778502%2C3a%2C75y%2C300.34h%2C90t%2Fdata%3D*213m4*211e1*213m2*211si9pTdnw0_o1bippCGwQ39Q*212e0*214m2*213m1*211s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6%3Fsa%3DX%26ved%3D2ahUKEwjfjJSNi4qHAxVp-TgGHR-qDlYQpx96BAgyEAA!5sthe%20moonlit%20cafe%20porbandar%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e2!2si9pTdnw0_o1bippCGwQ39Q&cr=le_a7&hl=en&ved=1t%3A206134&ictx=111"><i class="fa-solid fa-location-dot fa-beat-fade"></i> &nbsp; JMPH+C3, Porbandar, Gujarat 360576</a>
-
-                            </div>
-
-
-                        </div>
-
-                        <div class="col-sm-3">
-
-                            <div class="box">
-
-                                <h3><i class="fa-solid fa-share-nodes"></i>&nbsp;Social Media</h3>
-
-                                <a href="https://www.facebook.com/cafemoonlightlatur/"><i class="fab fa-facebook-f"></i> Facebook</a>
-                                <a href="https://www.instagram.com/__moonlightcafe__/"><i class="fab fa-instagram"></i> Instagram</a>
-                                <a href="the moonlit cafe porbandar youtube"><i class="fab fa-youtube"></i> Youtube</a>
-                                <a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
+    <!-- ===== PAGE HEADER - FULLY CENTERED ===== -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-8">
+                    <!-- Breadcrumb - Centered -->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="Index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                        </ol>
+                    </nav>
+                    <!-- Heading - Centered -->
+                    <h1>About Cafe Aurora</h1>
+                    <!-- Description - Centered -->
+                    <p>Discover the story behind our passion for coffee, quality ingredients, and the warm community we've built since 2026.</p>
                 </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="about-section">
+        <div class="container">
+
+            <!-- Welcome -->
+            <div class="text-center mb-5">
+                <h2 class="section-title">Welcome to <span class="text-gold">Cafe Aurora</span></h2>
+                <p class="section-subtitle">Nestled in the heart of the city, Cafe Aurora offers a serene escape from the hustle and bustle. Our cafe is more than just a place to grab a coffee — it's a haven where you can relax, unwind, and enjoy the company of friends and family.</p>
+            </div>
+
+            <!-- Our Story -->
+            <div class="about-block">
+                <div class="row align-items-center g-4">
+                    <div class="col-md-6 order-md-2">
+                        <div class="block-icon"><i class="fa-solid fa-book-open"></i></div>
+                        <h3><u>Our Story</u></h3>
+                        <p>Cafe Aurora was born out of a passion for creating a space where people can gather and enjoy high-quality food and beverages in a cozy, welcoming atmosphere. Since opening our doors in 2026, we have been committed to providing an exceptional experience for our guests, whether they come for a quick coffee break, a leisurely meal, or a special event.</p>
+                        <p>Every cup we serve tells a story — from the farmer who nurtured the beans to the barista who carefully brews your drink. We believe in celebrating these connections and bringing people together over something as simple and profound as a great cup of coffee.</p>
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <img src="IMG/story.png" alt="Our Story" class="img-fluid rounded-4 shadow-sm" style="background:#d4c5b5; min-height:200px; object-fit:cover;" onerror="this.style.background='#d4c5b5';this.style.minHeight='200px';">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Our Mission -->
+            <div class="about-block">
+                <div class="row align-items-center g-4">
+                    <div class="col-md-6">
+                        <div class="block-icon"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3><u>Our Mission</u></h3>
+                        <p>Our mission is to create a memorable experience for every visitor by offering:</p>
+                        <ul>
+                            <li>
+                                <span class="li-icon"><i class="fa-solid fa-utensils"></i></span>
+                                <div><strong>Delicious Food &amp; Drinks:</strong> We serve a variety of handcrafted beverages and freshly prepared dishes made with the finest ingredients.</div>
+                            </li>
+                            <li>
+                                <span class="li-icon"><i class="fa-solid fa-couch"></i></span>
+                                <div><strong>Comfortable Atmosphere:</strong> Our cafe features comfortable seating, warm lighting, and charming decor that makes you feel at home.</div>
+                            </li>
+                            <li>
+                                <span class="li-icon"><i class="fa-regular fa-face-smile"></i></span>
+                                <div><strong>Friendly Service:</strong> Our dedicated staff is here to ensure you have a pleasant visit, providing attentive and personalized service.</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="IMG/mi.png" alt="Our Mission" class="img-fluid rounded-4 shadow-sm" style="background:#d4c5b5; min-height:200px; object-fit:cover;" onerror="this.style.background='#d4c5b5';this.style.minHeight='200px';">
+                    </div>
+                </div>
+            </div>
+
+            <!-- What We Offer -->
+            <div class="about-block">
+                <div class="row align-items-center g-4">
+                    <div class="col-md-6 order-md-2">
+                        <div class="block-icon"><i class="fa-regular fa-rectangle-list"></i></div>
+                        <h3><u>What We Offer</u></h3>
+                        <ul>
+                            <li>
+                                <span class="li-icon"><i class="fa-solid fa-egg"></i></span>
+                                <div><strong>Eat:</strong> Explore our diverse menu with delicious breakfast, lunch, dinner options, and delectable desserts.</div>
+                            </li>
+                            <li>
+                                <span class="li-icon"><i class="fa-solid fa-mug-hot"></i></span>
+                                <div><strong>Drink:</strong> Enjoy our selection of premium coffees, teas, smoothies, and specialty drinks crafted with care.</div>
+                            </li>
+                            <li>
+                                <span class="li-icon"><i class="fa-regular fa-calendar-check"></i></span>
+                                <div><strong>Special Events:</strong> Host your private events at Cafe Aurora with customized menus and a beautiful setting for any occasion.</div>
+                            </li>
+                            <li>
+                                <span class="li-icon"><i class="fa-solid fa-gamepad"></i></span>
+                                <div><strong>Box Cricket Stadium:</strong> Join us for some fun at our unique Box Cricket Stadium, where you can play, relax, and enjoy the game.</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <img src="IMG/offer.png" alt="What We Offer" class="img-fluid rounded-4 shadow-sm" style="background:#d4c5b5; min-height:200px; object-fit:cover;" onerror="this.style.background='#d4c5b5';this.style.minHeight='200px';">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Commitment to Quality -->
+            <div class="about-block">
+                <div class="row align-items-center g-4">
+                    <div class="col-md-6">
+                        <div class="block-icon"><i class="fa-solid fa-medal"></i></div>
+                        <h3><u>Our Commitment to Quality</u></h3>
+                        <p>At Cafe Aurora, we are dedicated to maintaining the highest standards of quality in everything we do. From sourcing local, organic ingredients to brewing the perfect cup of coffee, we strive to exceed your expectations every time you visit.</p>
+                        <p>We work directly with ethical coffee farmers and use only the freshest, seasonal ingredients in our kitchen. Our baristas are trained to perfection, ensuring every drink is a work of art.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="IMG/c1.png" alt="Quality Commitment" class="img-fluid rounded-4 shadow-sm" style="background:#d4c5b5; min-height:200px; object-fit:cover;" onerror="this.style.background='#d4c5b5';this.style.minHeight='200px';">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Join Us -->
+            <div class="about-block">
+                <div class="row align-items-center g-4">
+                    <div class="col-md-6 order-md-2">
+                        <div class="block-icon"><i class="fa-regular fa-hand-peace"></i></div>
+                        <h3><u>Join Us</u></h3>
+                        <p>Whether you're looking for a peaceful spot to read a book, a place to catch up with friends, or a venue for your next celebration, Cafe Aurora is here to welcome you.</p>
+                        <p>Come and experience the magic of our cafe, where every visit is a delightful escape. We can't wait to serve you!</p>
+                        <a href="Menu.html" class="btn-gold mt-2"><i class="fa-solid fa-mug-hot me-2"></i>Explore Our Menu</a>
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <img src="IMG/joing.png" alt="Join Us" class="img-fluid rounded-4 shadow-sm" style="background:#d4c5b5; min-height:200px; object-fit:cover;" onerror="this.style.background='#d4c5b5';this.style.minHeight='200px';">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Highlights -->
+            <div class="mt-5">
+                <h3 class="text-center mb-4" style="font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.2rem);">Why Choose <span class="text-gold">Cafe Aurora</span></h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="fi-icon"><i class="fa-solid fa-seedling"></i></div>
+                        <h4>Fresh Ingredients</h4>
+                        <p>Locally sourced, organic produce for every dish</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="fi-icon"><i class="fa-solid fa-mug-saucer"></i></div>
+                        <h4>Premium Coffee</h4>
+                        <p>Ethically sourced beans roasted to perfection</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="fi-icon"><i class="fa-regular fa-heart"></i></div>
+                        <h4>Warm Ambiance</h4>
+                        <p>Cozy, inviting space designed for connection</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="fi-icon"><i class="fa-regular fa-star"></i></div>
+                        <h4>Award Winning</h4>
+                        <p>Recognized for excellence in service and quality</p>
+                    </div>
+                </div>
             </div>
 
         </div>
-
-
-        <div class="text-center" style="height: 50px; font-size: x-large; background-color: #b2744c;">
-
-            <small class="center">&copy; The Moonlit Cafe | All Rights Reserved</small>
-
-        </div>
-
     </section>
 
+    <!-- ===== VALUES SECTION ===== -->
+    <section class="values-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Our Core <span class="text-gold">Values</span></h2>
+                <p class="section-subtitle">The principles that guide everything we do at Cafe Aurora</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    <div class="value-card">
+                        <div class="vc-icon"><i class="fa-regular fa-handshake"></i></div>
+                        <h4>Community</h4>
+                        <p>We believe in bringing people together and creating a space where everyone feels welcome.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="value-card">
+                        <div class="vc-icon"><i class="fa-solid fa-leaf"></i></div>
+                        <h4>Sustainability</h4>
+                        <p>We are committed to ethical sourcing, reducing waste, and protecting our planet.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="value-card">
+                        <div class="vc-icon"><i class="fa-regular fa-gem"></i></div>
+                        <h4>Quality</h4>
+                        <p>We never compromise on quality — from our ingredients to our service.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="value-card">
+                        <div class="vc-icon"><i class="fa-regular fa-face-smile-beam"></i></div>
+                        <h4>Joy</h4>
+                        <p>We aim to bring a smile to every face and make every visit a happy memory.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script src="Script.js"></script>
+    <!-- ===== CTA BANNER ===== -->
+    <section class="cta-banner">
+        <div class="container text-center">
+            <h2>Ready to Experience <span class="text-gold">Cafe Aurora</span>?</h2>
+            <p>Come visit us today and discover why we're the favorite spot for coffee lovers and food enthusiasts alike.</p>
+            <a href="Contact.html" class="btn-gold"><i class="fa-regular fa-map me-2"></i>Find Us</a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="box">
+                        <h3><i class="fa-solid fa-code-branch me-2"></i>Our Branches</h3>
+                        <a href="#"><i class="fas fa-arrow-right"></i> India</a>
+                        <a href="#"><i class="fas fa-arrow-right"></i> USA</a>
+                        <a href="#"><i class="fas fa-arrow-right"></i> France</a>
+                        <a href="#"><i class="fas fa-arrow-right"></i> Africa</a>
+                        <a href="#"><i class="fas fa-arrow-right"></i> Japan</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="box">
+                        <h3><i class="fa-solid fa-link me-2"></i>Quick Links</h3>
+                        <a href="Index.html"><i class="fas fa-arrow-right"></i> Home</a>
+                        <a href="About.html"><i class="fas fa-arrow-right"></i> About</a>
+                        <a href="Menu.html"><i class="fas fa-arrow-right"></i> Menu</a>
+                        <a href="Product.html"><i class="fas fa-arrow-right"></i> Product</a>
+                        <a href="Gallery.html"><i class="fas fa-arrow-right"></i> Gallery</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="box">
+                        <h3><i class="fa-regular fa-address-book me-2"></i>Contact Info</h3>
+                        <a href="#"><i class="fa-solid fa-phone fa-shake"></i> +91-5846285485</a>
+                        <a href="#"><i class="fa-solid fa-phone fa-shake"></i> +91-7186294385</a>
+                        <a href="#"><i class="fa-solid fa-envelope fa-bounce"></i> cafe.aurora@gmail.com</a>
+                        <a href="https://www.google.com/maps/uv?pb=!1s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6!3m1!7e115!4s%2Fmaps%2Fplace%2Fthe%2Bmoonlit%2Bcafe%2Bporbandar%2F%4021.6359339%2C69.6778502%2C3a%2C75y%2C300.34h%2C90t%2Fdata%3D*213m4*211e1*213m2*211si9pTdnw0_o1bippCGwQ39Q*212e0*214m2*213m1*211s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6%3Fsa%3DX%26ved%3D2ahUKEwjfjJSNi4qHAxVp-TgGHR-qDlYQpx96BAgyEAA!5sthe%20moonlit%20cafe%20porbandar%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e2!2si9pTdnw0_o1bippCGwQ39Q&cr=le_a7&hl=en&ved=1t%3A206134&ictx=111">
+                            <i class="fa-solid fa-location-dot fa-beat-fade"></i> JMPH+C3, Porbandar, Gujarat 360576
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="box">
+                        <h3><i class="fa-solid fa-share-nodes me-2"></i>Social Media</h3>
+                        <a href="https://www.facebook.com/cafemoonlightlatur/"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="https://www.instagram.com/__moonlightcafe__/"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="#"><i class="fab fa-youtube"></i> Youtube</a>
+                        <a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>
+                        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <small>&copy; 2026 Cafe Aurora | All Rights Reserved</small>
+        </div>
+    </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Close mobile menu on link click ---
+            const navLinks = document.querySelectorAll('.navbar .nav-link');
+            const navCollapse = document.getElementById('mynavbar');
+            if (navCollapse) {
+                const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth < 992 && bsCollapse) {
+                            bsCollapse.hide();
+                        }
+                    });
+                });
+            }
+
+            // --- Back to Top ---
+            const backBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backBtn.classList.add('show');
+                } else {
+                    backBtn.classList.remove('show');
+                }
+            });
+
+            // --- Active nav link highlight ---
+            const currentPath = window.location.pathname.split('/').pop() || 'About.html';
+            document.querySelectorAll('.navbar .nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPath || (currentPath === 'About.html' && href === 'About.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // --- Smooth scroll for anchor links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+        });
+    </script>
 
 </body>
 

@@ -2,515 +2,1337 @@
 <html lang="en">
 
 <head>
-    <title>the Moonlit Cafe</title>
+    <title>Cafe Aurora - Blogs</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="description" content="Cafe Aurora - Latest coffee blogs, tips, and stories">
 
-    <link rel="stylesheet" href="Styles.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        li::marker {
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-            content: none;
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fcf8f3;
+            color: #2d1f14;
+            overflow-x: hidden;
+        }
 
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fcf8f3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b2744c;
+            border-radius: 50px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8f5c3a;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: linear-gradient(135deg, #2d1f14 0%, #4a3122 100%);
+            padding: 10px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+            border-bottom: 3px solid #b2744c;
+        }
+
+        .navbar .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .navbar .navbar-brand img {
+            height: 55px;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+        .navbar .navbar-brand img:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar .brand-text {
+            color: #f5d6b3;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-left: 2px solid #b2744c;
+            padding-left: 14px;
+            line-height: 1.2;
+        }
+        .navbar .brand-text small {
+            display: block;
+            font-size: 0.55rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #b8a392;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .navbar .nav-link {
+            color: #f5ebe0 !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 16px !important;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active {
+            color: #f5d6b3 !important;
+            background: rgba(178, 116, 76, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .navbar .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #b2744c;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar .nav-link:hover::after,
+        .navbar .nav-link.active::after {
+            width: 60%;
+        }
+
+        .navbar .btn-custom {
+            background: #b2744c;
+            color: #fff !important;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(178, 116, 76, 0.4);
+            flex-shrink: 0;
+        }
+
+        .navbar .btn-custom:hover {
+            background: #8f5c3a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(178, 116, 76, 0.5);
+        }
+
+        .navbar-toggler {
+            border: 2px solid #b2744c;
+            padding: 6px 10px;
+            flex-shrink: 0;
+        }
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        /* ===== MODAL ===== */
+        .modal-content {
+            background: #fcf8f3;
+            border-radius: 20px;
+            border: 3px solid #b2744c;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            border-bottom: 2px solid #b2744c;
+            background: #2d1f14;
+            border-radius: 18px 18px 0 0;
+            padding: 20px 30px;
+        }
+
+        .modal-header .modal-title {
+            color: #f5ebe0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+        }
+
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-body .form-label {
+            font-weight: 600;
+            color: #2d1f14;
+        }
+
+        .modal-body .form-control {
+            border-radius: 12px;
+            border: 2px solid #d4c5b5;
+            padding: 12px 16px;
+            background: #fff;
+            transition: border 0.3s ease;
+        }
+
+        .modal-body .form-control:focus {
+            border-color: #b2744c;
+            box-shadow: 0 0 0 4px rgba(178, 116, 76, 0.2);
+        }
+
+        .modal-footer {
+            border-top: none;
+            padding: 0 30px 30px 30px;
+            justify-content: center;
+        }
+
+        .modal-footer .btn-custom {
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            padding: 12px 50px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.4);
+            width: 100%;
+        }
+
+        .modal-footer .btn-custom:hover {
+            background: #8f5c3a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(178, 116, 76, 0.5);
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            background: linear-gradient(135deg, #2d1f14 0%, #4a3122 100%);
+            padding: 60px 0 50px;
+            border-bottom: 4px solid #b2744c;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .page-header::before {
+            content: '📝';
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 8rem;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        .page-header h1 {
+            color: #f5d6b3;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 700;
+        }
+        .page-header p {
+            color: #b8a392;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 10px auto 0;
+        }
+        .page-header .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin: 0 0 10px 0;
+            justify-content: center;
+        }
+        .page-header .breadcrumb-item a {
+            color: #b2744c;
+        }
+        .page-header .breadcrumb-item.active {
+            color: #f5d6b3;
+        }
+        .page-header .breadcrumb-item+.breadcrumb-item::before {
+            color: #b8a392;
+        }
+
+        /* ===== BLOG SECTION ===== */
+        .blog-section {
+            padding: 50px 0 30px;
+            background: #fff;
+        }
+
+        .blog-section .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #2d1f14;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .blog-section .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #b2744c, #d4a373);
+            border-radius: 4px;
+        }
+
+        .blog-section .section-subtitle {
+            color: #6b5a4a;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* ===== BLOG CARDS ===== */
+        .blog-card {
+            background: #fcf8f3;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 2px solid #f5ebe0;
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            border-color: #b2744c;
+            box-shadow: 0 15px 50px rgba(178, 116, 76, 0.12);
+        }
+
+        .blog-card .blog-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: #d4c5b5;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-image {
+            transform: scale(1.03);
+        }
+
+        .blog-card .blog-body {
+            padding: 24px 24px 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #8f7a6a;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .blog-card .blog-meta a {
+            color: #8f7a6a;
+            transition: color 0.3s ease;
+        }
+
+        .blog-card .blog-meta a:hover {
+            color: #b2744c;
+        }
+
+        .blog-card .blog-meta i {
+            margin-right: 5px;
+        }
+
+        .blog-card .blog-meta .heart {
+            color: #e74c3c;
+        }
+
+        .blog-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2d1f14;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .blog-card p {
+            font-size: 0.95rem;
+            color: #4a3a2e;
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .blog-card .btn-read {
+            background: transparent;
+            color: #b2744c;
+            border: 2px solid #b2744c;
+            padding: 8px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            align-self: flex-start;
+            margin-top: 16px;
+        }
+
+        .blog-card .btn-read:hover {
+            background: #b2744c;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(178, 116, 76, 0.3);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-gold {
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            padding: 12px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.3);
+            display: inline-block;
+        }
+        .btn-gold:hover {
+            background: #8f5c3a;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(178, 116, 76, 0.4);
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            padding: 60px 0;
+            background: #2d1f14;
+            color: #f5ebe0;
+            border-top: 4px solid #b2744c;
+            border-bottom: 4px solid #b2744c;
+        }
+        .newsletter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            color: #f5d6b3;
+        }
+        .newsletter p {
+            color: #b8a392;
+        }
+        .newsletter .input-group {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .newsletter .form-control {
+            border-radius: 50px 0 0 50px;
+            border: 2px solid #b2744c;
+            padding: 14px 20px;
+            background: #fff;
+        }
+        .newsletter .form-control:focus {
+            border-color: #f5d6b3;
+            box-shadow: 0 0 0 4px rgba(178, 116, 76, 0.2);
+        }
+        .newsletter .btn-gold {
+            border-radius: 0 50px 50px 0;
+            padding: 14px 32px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #2d1f14;
+            color: #f5ebe0;
+            padding-top: 50px;
+            border-top: 6px solid #b2744c;
+        }
+
+        .footer .box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #f5d6b3;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer .box h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #b2744c;
+            border-radius: 4px;
+        }
+
+        .footer .box a {
+            display: block;
+            color: #d4c5b5;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer .box a:hover {
+            color: #f5d6b3;
+            padding-left: 12px;
+            border-bottom-color: rgba(178, 116, 76, 0.2);
+        }
+
+        .footer .box a i {
+            margin-right: 12px;
+            color: #b2744c;
+            width: 22px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .footer .box a:hover i {
+            transform: scale(1.2);
+            color: #f5d6b3;
+        }
+
+        .footer .text-center {
+            background: #1f140e;
+            padding: 18px 0;
+            margin-top: 30px;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #b8a392;
+            border-top: 1px solid rgba(178, 116, 76, 0.2);
+        }
+
+        .footer .text-center small {
+            opacity: 0.8;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1060;
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #backToTop:hover {
+            background: #8f5c3a;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 35px rgba(178, 116, 76, 0.5);
+        }
+
+        /* ================================================================
+                   FULLY RESPONSIVE BREAKPOINTS
+                   ================================================================ */
+
+        @media (max-width: 1199px) {
+            .navbar .nav-link {
+                font-size: 0.85rem;
+                padding: 6px 12px !important;
+            }
+            .navbar .brand-text {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .navbar .navbar-brand img {
+                height: 45px;
+            }
+            .navbar .brand-text {
+                font-size: 1.2rem;
+                padding-left: 10px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.45rem;
+                letter-spacing: 2px;
+            }
+            .navbar .nav-link {
+                font-size: 0.9rem;
+                padding: 8px 16px !important;
+                white-space: normal;
+            }
+            .navbar .btn-custom {
+                padding: 6px 18px;
+                font-size: 0.8rem;
+                margin-top: 8px;
+                width: 100%;
+                text-align: center;
+            }
+            .navbar .navbar-nav {
+                padding: 10px 0;
+            }
+            .page-header {
+                padding: 40px 0 30px;
+            }
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            .blog-card .blog-image {
+                height: 190px;
+            }
+            .blog-card h3 {
+                font-size: 1.1rem;
+            }
+            .footer .box {
+                margin-bottom: 30px;
+            }
+            .footer .box h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .navbar {
+                padding: 8px 0;
+            }
+            .navbar .navbar-brand img {
+                height: 38px;
+            }
+            .navbar .brand-text {
+                font-size: 1rem;
+                padding-left: 8px;
+                border-left-width: 1.5px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.4rem;
+                letter-spacing: 1.5px;
+            }
+            .navbar .nav-link {
+                font-size: 0.85rem;
+                padding: 6px 12px !important;
+            }
+            .navbar .btn-custom {
+                font-size: 0.75rem;
+                padding: 6px 14px;
+            }
+            .navbar-toggler {
+                padding: 4px 8px;
+            }
+            .navbar-toggler-icon {
+                width: 22px;
+                height: 22px;
+            }
+
+            .page-header {
+                padding: 30px 0 25px;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .page-header p {
+                font-size: 0.95rem;
+                padding: 0 15px;
+            }
+
+            .blog-section {
+                padding: 35px 0 20px;
+            }
+            .blog-section .section-title {
+                font-size: 1.8rem;
+            }
+            .blog-section .section-title::after {
+                width: 60px;
+                height: 3px;
+            }
+            .blog-section .section-subtitle {
+                font-size: 0.95rem;
+                padding: 0 15px;
+            }
+
+            .blog-card {
+                border-radius: 18px;
+                margin-bottom: 20px;
+            }
+            .blog-card .blog-image {
+                height: 200px;
+            }
+            .blog-card .blog-body {
+                padding: 20px 18px 22px;
+            }
+            .blog-card h3 {
+                font-size: 1.05rem;
+            }
+            .blog-card p {
+                font-size: 0.9rem;
+            }
+            .blog-card .blog-meta {
+                font-size: 0.8rem;
+            }
+            .blog-card .btn-read {
+                font-size: 0.8rem;
+                padding: 6px 22px;
+            }
+
+            .newsletter {
+                padding: 40px 0;
+            }
+            .newsletter .input-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .newsletter .form-control {
+                border-radius: 50px;
+            }
+            .newsletter .btn-gold {
+                border-radius: 50px;
+                width: 100%;
+            }
+
+            .footer {
+                padding-top: 35px;
+            }
+            .footer .box h3 {
+                font-size: 1.1rem;
+                margin-bottom: 18px;
+                padding-bottom: 10px;
+            }
+            .footer .box a {
+                font-size: 0.85rem;
+                padding: 6px 0;
+            }
+            .footer .text-center {
+                font-size: 0.85rem;
+                padding: 14px 0;
+                margin-top: 20px;
+            }
+
+            .modal-header {
+                padding: 16px 20px;
+            }
+            .modal-header .modal-title {
+                font-size: 1.2rem;
+            }
+            .modal-body {
+                padding: 20px;
+            }
+            .modal-body .form-control {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+            .modal-footer {
+                padding: 0 20px 20px 20px;
+            }
+            .modal-footer .btn-custom {
+                padding: 10px 30px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .navbar-brand img {
+                height: 32px;
+            }
+            .navbar .brand-text {
+                font-size: 0.85rem;
+                padding-left: 6px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.35rem;
+                letter-spacing: 1px;
+            }
+            .navbar .nav-link {
+                font-size: 0.8rem;
+                padding: 4px 10px !important;
+            }
+            .navbar .btn-custom {
+                font-size: 0.7rem;
+                padding: 5px 12px;
+            }
+
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            .page-header p {
+                font-size: 0.85rem;
+            }
+
+            .blog-card .blog-image {
+                height: 170px;
+            }
+            .blog-card .blog-body {
+                padding: 16px 14px 18px;
+            }
+            .blog-card h3 {
+                font-size: 0.95rem;
+            }
+            .blog-card p {
+                font-size: 0.85rem;
+            }
+            .blog-card .blog-meta {
+                font-size: 0.75rem;
+            }
+            .blog-card .btn-read {
+                font-size: 0.75rem;
+                padding: 5px 18px;
+            }
+
+            .footer .box h3 {
+                font-size: 1rem;
+            }
+            .footer .box a {
+                font-size: 0.8rem;
+                padding: 5px 0;
+            }
+            .footer .box a i {
+                width: 18px;
+                margin-right: 8px;
+            }
+            .footer .text-center {
+                font-size: 0.7rem;
+                padding: 12px 0;
+            }
+
+            .modal-header {
+                padding: 12px 16px;
+            }
+            .modal-header .modal-title {
+                font-size: 1rem;
+            }
+            .modal-body {
+                padding: 16px;
+            }
+            .modal-body .form-label {
+                font-size: 0.85rem;
+            }
+            .modal-body .form-control {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            .modal-footer .btn-custom {
+                padding: 8px 20px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .navbar .brand-text {
+                font-size: 0.7rem;
+                padding-left: 4px;
+            }
+            .navbar .navbar-brand img {
+                height: 28px;
+            }
+
+            .blog-card .blog-image {
+                height: 140px;
+            }
+            .blog-card h3 {
+                font-size: 0.85rem;
+            }
+            .blog-card p {
+                font-size: 0.78rem;
+            }
+            .blog-card .blog-meta {
+                font-size: 0.7rem;
+            }
+            .blog-card .btn-read {
+                font-size: 0.7rem;
+                padding: 4px 14px;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .text-gold {
+            color: #b2744c;
+        }
+        .bg-gold-light {
+            background: #fcf8f3;
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        .fade-in-delay-1 {
+            animation-delay: 0.2s;
+        }
+        .fade-in-delay-2 {
+            animation-delay: 0.4s;
+        }
+        .fade-in-delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .img-placeholder {
+            background: #d4c5b5;
+            border-radius: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #6b5a4a;
+            font-weight: 500;
         }
     </style>
-
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-sm">
-
-        <div class="container-fluid">
-
-            <a class="navbar-brand" href="#" id="logo"><img src="IMG/l2.png " style="height: 60px; width: 200px;"
-                    alt=""></a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="Index.html">
+                <span class="brand-text d-none d-sm-inline-block">
+                    Cafe Aurora
+                    <small>since 2026</small>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" aria-controls="mynavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-
             </button>
-
             <div class="collapse navbar-collapse" id="mynavbar">
-
-                <ul class="navbar-nav me-auto">
-
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link nh" href="Index.html">Home</a>
+                        <a class="nav-link" href="Index.html"><i class="fa-solid fa-house"></i> Home</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link nh" href="About.html">About</a>
+                        <a class="nav-link" href="About.html"><i class="fa-regular fa-address-card"></i> About</a>
                     </li>
-
+                    <li class="nav-item"><a class="nav-link" href="Menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Offer.html">Offer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Product.html">Product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Review.html">Review</a></li>
                     <li class="nav-item">
-                        <a class="nav-link nh" href="Menu.html">Menu</a>
+                        <a class="nav-link active" href="Blogs.html"><i class="fa-solid fa-blog fa-beat-fade"></i> Blogs</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Offer.html">Offer</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Product.html">Product</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Gallary.html">Gallary</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Review.html">Review</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh active" id="Blogs" href="Blogs.html"><i class="fa-solid fa-blog"></i> &nbsp;Blogs</a>
-                    </li>
-
-                    
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Box.html">Box</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link nh" href="Contect.html">Contect</a>
-                    </li>
-
+                    <li class="nav-item"><a class="nav-link" href="Box.html">Box</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Contect.html">Contact</a></li>
                 </ul>
-
-                <li class="nav-item">
-                    <a class="nav-link nh" href="javascript:void(0)"></a>
-                </li>
-
-                <li class="nav-item ">
-
-                    <button type="button" class="btn btn-custom active"  data-bs-toggle="modal" data-bs-target="#myModal" id="clik" style="margin-top: 2px; background-color: white;">
-                        Login &nbsp; <i class="fa-solid fa-arrow-right-to-bracket fa-flip"></i>
-                    </button>
-
-                   
-
-                </li>
-
+                <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Login &nbsp; <i class="fa-solid fa-arrow-right-to-bracket fa-flip"></i>
+                </button>
             </div>
-
         </div>
-
     </nav>
-    <br>
 
-
-
-
-
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
+    <!-- ===== LOGIN MODAL ===== -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
-                <!-- Modal Header -->
                 <div class="modal-header">
-
-                    <h4 class="modal-title">Login</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-
+                    <h4 class="modal-title" id="modalLabel"><i class="fa-regular fa-circle-user me-2"></i>Welcome Back</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-                <!-- Modal body -->
                 <div class="modal-body">
                     <form action="/action_page.php">
-
-                        <div class="mb-3 mt-3">
-
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-
-                        </div>
-
                         <div class="mb-3">
-
-                            <label for="pwd" class="form-label">Password:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password"
-                                name="pswd">
-
+                            <label for="email" class="form-label"><i class="fa-regular fa-envelope me-2"></i>Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email" required>
                         </div>
-
+                        <div class="mb-3">
+                            <label for="pwd" class="form-label"><i class="fa-solid fa-lock me-2"></i>Password</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="Enter your password" name="pswd" required>
+                        </div>
                         <div class="form-check mb-3">
-
-                            <label class="form-check-label">
-
-                                <input class="form-check-input" type="checkbox" name="remember"> Remember me
-
-                            </label>
-
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                            <label class="form-check-label" for="remember">Remember me</label>
                         </div>
-
+                        <button type="submit" class="btn btn-custom w-100"><i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Sign In</button>
                     </form>
-
                 </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-
-                    <button type="submit" class="btn btn-custom">Submit</button>
-
-                </div>
-
             </div>
-
         </div>
-
     </div>
 
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-8">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="Index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Blogs</li>
+                        </ol>
+                    </nav>
+                    <h1>Our Blog</h1>
+                    <p>Stories, tips, and insights from the world of coffee — curated just for you by the Cafe Aurora team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- ===== BLOG SECTION ===== -->
+    <section class="blog-section">
+        <div class="container">
 
-    <!-- blog section starts -->
-    <h1 class="heading">Blogs <span></span></h1>
+            <div class="text-center mb-4">
+                <h2 class="section-title">Latest <span class="text-gold">Articles</span></h2>
+                <p class="section-subtitle">Explore our collection of coffee stories, brewing guides, and behind-the-scenes looks at Cafe Aurora.</p>
+            </div>
 
-    <section class="blog">
+            <!-- Row 1 -->
+            <div class="row g-4">
 
-        <div class="boxx-container">
-
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="boxx">
-                            <div class="image">
-                                <img src="IMG/bl1.png" alt="">
+                <!-- Blog 1 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="blog-card">
+                        <img src="IMG/bl1.png" alt="How Should You Feel at a Cafe" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <div class="blog-body">
+                            <div class="blog-meta">
+                                <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
+                                <a href="#"><i class="fa-regular fa-heart heart"></i> 56k</a>
                             </div>
-                            <div class="content">
-                                <div class="icons">
-                                    <a href="#"> <i class="fas fa-calendar"></i> 4th march 2024</a>
-                                    <a href="#"> <i class="fas fa-heart"></i> 56 million</a>
-                                </div>
-                                <h3>How Should You Feel at a The Moonlit Cafe? </h3>
-                                <p>We have been planning for your visit to one of our coffee shops for 26 years. Learn
-                                    about our hospitality philosophy and how we strive to make you feel at home at a The
-                                    Moonlit Cafe Coffee.
-                                </p><br><br><br>
-                                <a href="#" class="btn">read more</a>
-                            </div>
-                        </div><br><br><br>
-
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="boxx">
-                            <div class="image">
-                                <img src="IMG/bl2.png" alt="">
-                            </div>
-                            <div class="content">
-                                <div class="icons">
-                                    <a href="#"> <i class="fas fa-calendar"></i> 4th march 2024</a>
-                                    <a href="#"> <i class="fas fa-heart"></i> 56 million</a>
-                                </div>
-                                <h3>Pursuing Perfection: Barista Training at The moonlit cafe</h3>
-                                <p>Our baristas are the epitome of our mission to chase quality and serve people. Read
-                                    about how our barista training program creates a team up to the task!</p>
-                                <br><br><br><br><br>
-                                <a href="#" class="btn">read more</a>
-                            </div>
+                            <h3>How Should You Feel at a Cafe Aurora?</h3>
+                            <p>We have been planning for your visit to one of our coffee shops for 26 years. Learn about our hospitality philosophy and how we strive to make you feel at home at Cafe Aurora.</p>
+                            <a href="#" class="btn-read">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
                         </div>
-
                     </div>
+                </div>
 
-
-
-                    <div class="col-sm-4">
-                        <div class="boxx">
-                            <div class="image">
-                                <img src="IMG/bl3.png" alt="">
+                <!-- Blog 2 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="blog-card">
+                        <img src="IMG/bl2.png" alt="Barista Training" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <div class="blog-body">
+                            <div class="blog-meta">
+                                <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
+                                <a href="#"><i class="fa-regular fa-heart heart"></i> 56k</a>
                             </div>
-                            <div class="content">
-                                <div class="icons">
-                                    <a href="#"> <i class="fas fa-calendar"></i> 4th march 2024</a>
-                                    <a href="#"> <i class="fas fa-heart"></i> 56 million</a>
-                                </div>
-                                <h3>The moonlit cafe is for Foodie's Too! Our Food & Bakery Program</h3>
-                                <p>The same passion, experience, and quest for continual improvement that drives our
-                                    coffee program also drives our food program. Here, we go into more detail about how
-                                    we shape your dining experience at The Moonlit Cafe.</p>
-                                <br>
-
-                                <a href="#" class="btn">read more</a>
-                            </div>
+                            <h3>Pursuing Perfection: Barista Training at Cafe Aurora</h3>
+                            <p>Our baristas are the epitome of our mission to chase quality and serve people. Read about how our barista training program creates a team up to the task!</p>
+                            <a href="#" class="btn-read">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
                         </div>
-
                     </div>
+                </div>
 
+                <!-- Blog 3 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="blog-card">
+                        <img src="IMG/bl3.png" alt="Food & Bakery Program" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <div class="blog-body">
+                            <div class="blog-meta">
+                                <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
+                                <a href="#"><i class="fa-regular fa-heart heart"></i> 56k</a>
+                            </div>
+                            <h3>Cafe Aurora is for Foodie's Too! Our Food & Bakery Program</h3>
+                            <p>The same passion, experience, and quest for continual improvement that drives our coffee program also drives our food program. Here, we go into more detail about how we shape your dining experience.</p>
+                            <a href="#" class="btn-read">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- Row 2 -->
+            <div class="row g-4 mt-2">
 
-        </div>
-
-        </div>
-
-
-        </div>
-        </div>
-
-    </section>
-    <br><br>
-
-
-    <section class="blog">
-
-        <div class="boxx-container">
-
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="boxx">
-                            <div class="image">
-                                <img src="IMG/bl4.png" alt="">
+                <!-- Blog 4 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="blog-card">
+                        <img src="IMG/bl4.png" alt="Designing a Cafe" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <div class="blog-body">
+                            <div class="blog-meta">
+                                <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
+                                <a href="#"><i class="fa-regular fa-heart heart"></i> 56k</a>
                             </div>
-                            <div class="content">
-                                <div class="icons">
-                                    <a href="#"> <i class="fas fa-calendar"></i> 4th march 2024</a>
-                                    <a href="#"> <i class="fas fa-heart"></i> 56 million</a>
-                                </div>
-                                <h3>Designing a The Moonlit Cafe</h3><br>
-                                <p>Many people know us for our welcoming retail spaces just as much as our specialty
-                                    coffee. In this blog, we discuss the thought and care that goes into each one of our
-                                    cafe spaces.</p>
-                                    <br><br>
-                                <a href="#" class="btn">read more</a>
-                            </div>
+                            <h3>Designing a Cafe Aurora Space</h3>
+                            <p>Many people know us for our welcoming retail spaces just as much as our specialty coffee. In this blog, we discuss the thought and care that goes into each one of our cafe spaces.</p>
+                            <a href="#" class="btn-read">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
                         </div>
-
                     </div>
+                </div>
 
-                    <div class="col-sm-4">
-                        <div class="boxx">
-                            <div class="image">
-                                <img src="IMG/bl5.png" alt="">
+                <!-- Blog 5 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="blog-card">
+                        <img src="IMG/bl5.png" alt="Dalgona Coffee" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <div class="blog-body">
+                            <div class="blog-meta">
+                                <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
+                                <a href="#"><i class="fa-regular fa-heart heart"></i> 56k</a>
                             </div>
-                            <div class="content">
-                                <div class="icons">
-                                    <a href="#"> <i class="fas fa-calendar"></i> 4th march 2024</a>
-                                    <a href="#"> <i class="fas fa-heart"></i> 56 million</a>
-                                </div>
-                                <h3>Make Your Own Dalgona Coffee at Home!</h3>
-                                <p>How to Make Your Own Dalgona Coffee While Staying at Home Stuck at home but still
-                                    need your daily coffee </p>
-                                <br><br><br><br><br>
-                                <a href="#" class="btn">read more</a>
-                            </div>
+                            <h3>Make Your Own Dalgona Coffee at Home!</h3>
+                            <p>How to Make Your Own Dalgona Coffee While Staying at Home — Stuck at home but still need your daily coffee fix? We've got you covered!</p>
+                            <a href="#" class="btn-read">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
                         </div>
-
                     </div>
-                    <div class="col-sm-4">
-                        <div class="boxx">
-                            <div class="image">
-                                <img src="IMG/bl6.png" alt="">
+                </div>
+
+                <!-- Blog 6 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="blog-card">
+                        <img src="IMG/bl6.png" alt="A Heart of Coffee" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <div class="blog-body">
+                            <div class="blog-meta">
+                                <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
+                                <a href="#"><i class="fa-regular fa-heart heart"></i> 56k</a>
                             </div>
-                            <div class="content">
-                                <div class="icons">
-                                    <a href="#"> <i class="fas fa-calendar"></i> 4th march 2024</a>
-                                    <a href="#"> <i class="fas fa-heart"></i> 56 million</a>
-                                </div>
-                                <h3>A Heart Of Coffee</h3><br>
-                                <p>A Heart of Coffee Coffee has been forever been close to my heart. If you ask me, I
-                                    don’t really </p>
-                                <br><br><br><br><br><br>
-                                <a href="#" class="btn">read more</a>
-                            </div>
+                            <h3>A Heart of Coffee</h3>
+                            <p>A Heart of Coffee — Coffee has forever been close to my heart. If you ask me, I don't really ...</p>
+                            <a href="#" class="btn-read">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
                         </div>
-
                     </div>
-
                 </div>
             </div>
 
+            <!-- Row 3 -->
+            <div class="row g-4 mt-2">
 
-        </div>
-
-    </section>
-    <br><br>
-
-
-    <section class="blog">
-
-        <div class="boxx-container">
-
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="boxx">
-                            <div class="image">
-                                <img src="IMG/bl7.png" alt="">
+                <!-- Blog 7 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="blog-card">
+                        <img src="IMG/bl7.png" alt="Who's your Daddy" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <div class="blog-body">
+                            <div class="blog-meta">
+                                <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
+                                <a href="#"><i class="fa-regular fa-heart heart"></i> 56k</a>
                             </div>
-                            <div class="content">
-                                <div class="icons">
-                                    <a href="#"> <i class="fas fa-calendar"></i> 4th march 2024</a>
-                                    <a href="#"> <i class="fas fa-heart"></i> 56 million</a>
-                                </div>
-                                <h3>Who’s your Daddy?</h3><br><br><br><br>
-                                <p>Introduction I know the title sounds a little weird, but I promise you it is related
-                                    to coffee and is</p>
-                                <br><br><br><br>
-                                <a href="#" class="btn">read more</a>
-                            </div>
+                            <h3>Who's your Daddy?</h3>
+                            <p>Introduction — I know the title sounds a little weird, but I promise you it is related to coffee and is ...</p>
+                            <a href="#" class="btn-read">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
                         </div>
-
                     </div>
+                </div>
 
-                    <div class="col-sm-4">
-                        <div class="boxx">
-                            <div class="image">
-                                <img src="IMG/bl8.png" alt="">
+                <!-- Blog 8 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="blog-card">
+                        <img src="IMG/bl8.png" alt="Covid-19 Impact on Coffee Industry" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <div class="blog-body">
+                            <div class="blog-meta">
+                                <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
+                                <a href="#"><i class="fa-regular fa-heart heart"></i> 56k</a>
                             </div>
-                            <div class="content">
-                                <div class="icons">
-                                    <a href="#"> <i class="fas fa-calendar"></i> 4th march 2024</a>
-                                    <a href="#"> <i class="fas fa-heart"></i> 56 million</a>
-                                </div>
-                                <h3>The Impact of the Covid-19 Pandemic on the Coffee Industry of India</h3>
-                                <p>The spread of the Covid-19 pandemic has impacted a variety of individuals and
-                                    industries worldwide. But how has it affected </p>
-                                <br><br><br>
-                                <a href="#" class="btn">read more</a>
-                            </div>
+                            <h3>The Impact of the Covid-19 Pandemic on the Coffee Industry of India</h3>
+                            <p>The spread of the Covid-19 pandemic has impacted a variety of individuals and industries worldwide. But how has it affected ...</p>
+                            <a href="#" class="btn-read">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
                         </div>
-
                     </div>
-                    <div class="col-sm-4">
-                        <div class="boxx">
-                            <div class="image">
-                                <img src="IMG/bl9.png" alt="">
+                </div>
+
+                <!-- Blog 9 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="blog-card">
+                        <img src="IMG/bl9.png" alt="Pour Over vs Chemex" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <div class="blog-body">
+                            <div class="blog-meta">
+                                <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
+                                <a href="#"><i class="fa-regular fa-heart heart"></i> 56k</a>
                             </div>
-                            <div class="content">
-                                <div class="icons">
-                                    <a href="#"> <i class="fas fa-calendar"></i> 4th march 2024</a>
-                                    <a href="#"> <i class="fas fa-heart"></i> 56 million</a>
-                                </div>
-                                <h3>Pour Over vs Chemex, what’s better for you?</h3>
-                                <br><br>
-                                <p>Coffee is a palatable beverage that many people long for to kick start every dull
-                                    morning. It brightens up your </p>
-                                <br><br><br><br>
-                                <a href="#" class="btn">read more</a>
-                            </div>
+                            <h3>Pour Over vs Chemex, what's better for you?</h3>
+                            <p>Coffee is a palatable beverage that many people long for to kick start every dull morning. It brightens up your ...</p>
+                            <a href="#" class="btn-read">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
                         </div>
-
                     </div>
-
                 </div>
             </div>
 
-
-        </div>
-
-    </section>
-    <br><br><br><br><br>
-
-
-
-    <!-- FOOTER -->
-    <section class="footer">
-
-        <div class="box-container">
-
-            <div class="container-fluid p-5 text- text-center">
-
-                <div class="container mt-5">
-
-                    <div class="row">
-
-                        <div class="col-sm-3">
-
-                            <div class="box">
-
-                                <h3 class="our"><i class="fa-solid fa-code-branch">&nbsp;</i>Our Branches</h3>
-
-                                <a href="#"><i class="fas fa-arrow"></i> India</a>
-                                <a href="#"><i class="fas fa-arrow"></i> USA</a>
-                                <a href="#"><i class="fas fa-arrow"></i> France</a>
-                                <a href="#"><i class="fas fa-arrow"></i> Africa</a>
-                                <a href="#"><i class="fas fa-arrow"></i> Japan</a>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="col-sm-3">
-
-                            <div class="box">
-
-                                <h3><i class="fa-solid fa-link"></i>&nbsp;Quick Links</h3>
-
-                                <a href="Index.html"><i class="fas fa-arrow"></i> Home</a>
-                                <a href="About.html"><i class="fas fa-arrow"></i> About</a>
-                                <a href="Menu.html"><i class="fas fa-arrow"></i> Menu</a>
-                                <a href="Product.html"><i class="fas fa-arrow"></i> Prodhuct</a>
-                                <a href="Gallary.html"><i class="fas fa-arrow"></i> Gallary</a>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="col-sm-3">
-
-                            <div class="box">
-
-                                <h3><i class="fa-regular fa-address-book"></i>&nbsp;Contact Info</h3>
-
-                                <a href="#"><i class="fa-solid fa-phone fa-shake"></i>+91-5846285485</a>
-                                <a href="#"><i class="fa-solid fa-phone fa-shake"></i> +91-7186294385</a>
-                                <a href="#"><i class="fa-solid fa-envelope fa-bounce"></i> moonlit.cafe@gmail.com</a>
-                                <a href="https://www.google.com/maps/uv?pb=!1s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6!3m1!7e115!4s%2Fmaps%2Fplace%2Fthe%2Bmoonlit%2Bcafe%2Bporbandar%2F%4021.6359339%2C69.6778502%2C3a%2C75y%2C300.34h%2C90t%2Fdata%3D*213m4*211e1*213m2*211si9pTdnw0_o1bippCGwQ39Q*212e0*214m2*213m1*211s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6%3Fsa%3DX%26ved%3D2ahUKEwjfjJSNi4qHAxVp-TgGHR-qDlYQpx96BAgyEAA!5sthe%20moonlit%20cafe%20porbandar%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e2!2si9pTdnw0_o1bippCGwQ39Q&cr=le_a7&hl=en&ved=1t%3A206134&ictx=111"><i class="fa-solid fa-location-dot fa-beat-fade"></i> &nbsp; JMPH+C3, Porbandar, Gujarat 360576</a>
-
-                            </div>
-
-
-                        </div>
-
-                        <div class="col-sm-3">
-
-                            <div class="box">
-
-                                <h3><i class="fa-solid fa-share-nodes"></i>&nbsp;Social Media</h3>
-
-                                <a href="https://www.facebook.com/cafemoonlightlatur/"><i class="fab fa-facebook-f"></i> Facebook</a>
-                                <a href="https://www.instagram.com/__moonlightcafe__/"><i class="fab fa-instagram"></i> Instagram</a>
-                                <a href="the moonlit cafe porbandar youtube"><i class="fab fa-youtube"></i> Youtube</a>
-                                <a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
+            <!-- Load More -->
+            <div class="text-center mt-5">
+                <a href="#" class="btn-gold"><i class="fa-solid fa-rotate-right me-2"></i>Load More Articles</a>
             </div>
 
         </div>
-
-
-        <div class="text-center" style="height: 50px; font-size: x-large; background-color: #b2744c;">
-
-            <small class="center">&copy; The Moonlit Cafe | All Rights Reserved</small>
-
-        </div>
-
     </section>
 
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2><i class="fa-regular fa-envelope me-2"></i>Subscribe to Our Newsletter</h2>
+                    <p>Get the latest blog posts, coffee tips, and exclusive offers delivered straight to your inbox.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Enter your email address" aria-label="Email">
+                        <button class="btn btn-gold" type="button">Subscribe</button>
+                    </div>
+                    <small class="d-block mt-3 text-gold">We respect your privacy. Unsubscribe anytime.</small>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script src="Script.js"></script>
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="box">
+                        <h3><i class="fa-solid fa-code-branch me-2"></i>Our Branches</h3>
+                        <a href="#"><i class="fas fa-arrow-right"></i> India</a>
+                        <a href="#"><i class="fas fa-arrow-right"></i> USA</a>
+                        <a href="#"><i class="fas fa-arrow-right"></i> France</a>
+                        <a href="#"><i class="fas fa-arrow-right"></i> Africa</a>
+                        <a href="#"><i class="fas fa-arrow-right"></i> Japan</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="box">
+                        <h3><i class="fa-solid fa-link me-2"></i>Quick Links</h3>
+                        <a href="Index.html"><i class="fas fa-arrow-right"></i> Home</a>
+                        <a href="About.html"><i class="fas fa-arrow-right"></i> About</a>
+                        <a href="Menu.html"><i class="fas fa-arrow-right"></i> Menu</a>
+                        <a href="Product.html"><i class="fas fa-arrow-right"></i> Product</a>
+                        <a href="Gallery.html"><i class="fas fa-arrow-right"></i> Gallery</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="box">
+                        <h3><i class="fa-regular fa-address-book me-2"></i>Contact Info</h3>
+                        <a href="#"><i class="fa-solid fa-phone fa-shake"></i> +91-5846285485</a>
+                        <a href="#"><i class="fa-solid fa-phone fa-shake"></i> +91-7186294385</a>
+                        <a href="#"><i class="fa-solid fa-envelope fa-bounce"></i> cafe.aurora@gmail.com</a>
+                        <a href="https://www.google.com/maps/uv?pb=!1s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6!3m1!7e115!4s%2Fmaps%2Fplace%2Fthe%2Bmoonlit%2Bcafe%2Bporbandar%2F%4021.6359339%2C69.6778502%2C3a%2C75y%2C300.34h%2C90t%2Fdata%3D*213m4*211e1*213m2*211si9pTdnw0_o1bippCGwQ39Q*212e0*214m2*213m1*211s0x3957cb00031b8b35%3A0x9dfea6490d8aacd6%3Fsa%3DX%26ved%3D2ahUKEwjfjJSNi4qHAxVp-TgGHR-qDlYQpx96BAgyEAA!5sthe%20moonlit%20cafe%20porbandar%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e2!2si9pTdnw0_o1bippCGwQ39Q&cr=le_a7&hl=en&ved=1t%3A206134&ictx=111">
+                            <i class="fa-solid fa-location-dot fa-beat-fade"></i> JMPH+C3, Porbandar, Gujarat 360576
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="box">
+                        <h3><i class="fa-solid fa-share-nodes me-2"></i>Social Media</h3>
+                        <a href="https://www.facebook.com/cafemoonlightlatur/"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="https://www.instagram.com/__moonlightcafe__/"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="#"><i class="fab fa-youtube"></i> Youtube</a>
+                        <a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>
+                        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <small>&copy; 2026 Cafe Aurora | All Rights Reserved</small>
+        </div>
+    </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Close mobile menu on link click ---
+            const navLinks = document.querySelectorAll('.navbar .nav-link');
+            const navCollapse = document.getElementById('mynavbar');
+            if (navCollapse) {
+                const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth < 992 && bsCollapse) {
+                            bsCollapse.hide();
+                        }
+                    });
+                });
+            }
+
+            // --- Back to Top ---
+            const backBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backBtn.classList.add('show');
+                } else {
+                    backBtn.classList.remove('show');
+                }
+            });
+
+            // --- Active nav link highlight ---
+            const currentPath = window.location.pathname.split('/').pop() || 'Blogs.html';
+            document.querySelectorAll('.navbar .nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPath || (currentPath === 'Blogs.html' && href === 'Blogs.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // --- Smooth scroll for anchor links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+        });
+    </script>
 
 </body>
 
