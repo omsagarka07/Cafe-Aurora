@@ -1010,7 +1010,7 @@
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="Index.html">
+            <a class="navbar-brand" href="index.html">
                 <span class="brand-text d-none d-sm-inline-block">
                     Cafe Aurora
                     <small>since 2026</small>
@@ -1022,21 +1022,21 @@
             <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="Index.html"><i class="fa-solid fa-house"></i> Home</a>
+                        <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="About.html"><i class="fa-regular fa-address-card"></i> About</a>
+                        <a class="nav-link" href="about.html"><i class="fa-regular fa-address-card"></i> About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="Menu.html"><i class="fa-solid fa-mug-hot fa-fade"></i> Menu</a>
+                        <a class="nav-link active" href="menu.html"><i class="fa-solid fa-mug-hot fa-fade"></i> Menu</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="Offer.html">Offer</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Product.html">Product</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Gallery.html">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Review.html">Review</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Blogs.html">Blogs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Box.html">Box</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Contect.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="offer.html">Offer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">Product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="box.html">Box</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
                 <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#myModal">
                     Login &nbsp; <i class="fa-solid fa-arrow-right-to-bracket fa-flip"></i>
@@ -1081,7 +1081,7 @@
                 <div class="col-lg-10 col-xl-8">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="Index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Menu</li>
                         </ol>
                     </nav>
@@ -1164,11 +1164,11 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="box">
                         <h3><i class="fa-solid fa-link me-2"></i>Quick Links</h3>
-                        <a href="Index.html"><i class="fas fa-arrow-right"></i> Home</a>
-                        <a href="About.html"><i class="fas fa-arrow-right"></i> About</a>
-                        <a href="Menu.html"><i class="fas fa-arrow-right"></i> Menu</a>
-                        <a href="Product.html"><i class="fas fa-arrow-right"></i> Product</a>
-                        <a href="Gallery.html"><i class="fas fa-arrow-right"></i> Gallery</a>
+                        <a href="index.html"><i class="fas fa-arrow-right"></i> Home</a>
+                        <a href="about.html"><i class="fas fa-arrow-right"></i> About</a>
+                        <a href="menu.html"><i class="fas fa-arrow-right"></i> Menu</a>
+                        <a href="product.html"><i class="fas fa-arrow-right"></i> Product</a>
+                        <a href="gallery.html"><i class="fas fa-arrow-right"></i> Gallery</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -1341,10 +1341,10 @@
             });
 
             // --- Active nav link highlight ---
-            const currentPath = window.location.pathname.split('/').pop() || 'Menu.html';
+            const currentPath = window.location.pathname.split('/').pop() || 'menu.html';
             document.querySelectorAll('.navbar .nav-link').forEach(link => {
                 const href = link.getAttribute('href');
-                if (href === currentPath || (currentPath === 'Menu.html' && href === 'Menu.html')) {
+                if (href === currentPath || (currentPath === 'menu.html' && href === 'menu.html')) {
                     link.classList.add('active');
                 } else {
                     link.classList.remove('active');
