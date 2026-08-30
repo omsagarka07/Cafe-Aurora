@@ -1,6 +1,7 @@
 # Cafe-Aurora
 
-Cafe Aurora - A modern cafe website built with HTML, CSS, JavaScript and Bootstrap.
+A modern and elegant cafe website — **Cafe Aurora** ☕✨
 
-Live Website:
-https://omsagarka07.github.io/Cafe-Aurora/
+## 🌐 Live Website
+
+[Visit Cafe Aurora](https://omsagarka07.github.io/Cafe-Aurora/)
