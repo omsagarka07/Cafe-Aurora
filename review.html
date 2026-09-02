@@ -21,11 +21,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ===== RESET & BASE ===== */
+        /* ============================================================
+                   RESET & BASE — fully centered, responsive from 320px to 4K
+                   ============================================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -33,6 +39,9 @@
             background: #fcf8f3;
             color: #2d1f14;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         h1,
@@ -54,7 +63,9 @@
             display: block;
         }
 
-        /* ===== SCROLLBAR ===== */
+        /* ============================================================
+                   SCROLLBAR
+                   ============================================================ */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -69,29 +80,41 @@
             background: #8f5c3a;
         }
 
-        /* ===== NAVBAR ===== */
+        /* ============================================================
+                   NAVBAR — sticky, fully responsive, centered brand
+                   ============================================================ */
         .navbar {
             background: linear-gradient(135deg, #2d1f14 0%, #4a3122 100%);
-            padding: 10px 0;
+            padding: 6px 0;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 0;
             z-index: 1050;
             border-bottom: 3px solid #b2744c;
+            min-height: 64px;
+        }
+
+        .navbar .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .navbar .navbar-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             flex-shrink: 0;
+            padding: 0;
         }
 
         .navbar .navbar-brand img {
-            height: 55px;
+            height: 44px;
             width: auto;
             filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
             transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
         .navbar .navbar-brand img:hover {
             transform: scale(1.05);
@@ -100,35 +123,38 @@
         .navbar .brand-text {
             color: #f5d6b3;
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.2rem;
             font-weight: 700;
             letter-spacing: 1px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             border-left: 2px solid #b2744c;
-            padding-left: 14px;
+            padding-left: 12px;
             line-height: 1.2;
+            white-space: nowrap;
+            display: inline-block !important;
         }
         .navbar .brand-text small {
             display: block;
-            font-size: 0.55rem;
+            font-size: 0.45rem;
             font-family: 'Inter', sans-serif;
             font-weight: 300;
             letter-spacing: 3px;
             color: #b8a392;
             text-transform: uppercase;
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         .navbar .nav-link {
             color: #f5ebe0 !important;
             font-weight: 500;
-            font-size: 0.95rem;
-            padding: 8px 16px !important;
+            font-size: 0.85rem;
+            padding: 6px 14px !important;
             border-radius: 30px;
             transition: all 0.3s ease;
             letter-spacing: 0.3px;
             position: relative;
             white-space: nowrap;
+            text-align: center;
         }
 
         .navbar .nav-link:hover,
@@ -152,38 +178,54 @@
 
         .navbar .nav-link:hover::after,
         .navbar .nav-link.active::after {
-            width: 60%;
+            width: 50%;
         }
 
         .navbar .btn-custom {
             background: #b2744c;
             color: #fff !important;
             border: none;
-            padding: 8px 24px;
+            padding: 8px 22px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(178, 116, 76, 0.4);
             flex-shrink: 0;
+            white-space: nowrap;
+            text-align: center;
         }
 
         .navbar .btn-custom:hover {
             background: #8f5c3a;
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(178, 116, 76, 0.5);
+            color: #fff !important;
         }
 
         .navbar-toggler {
             border: 2px solid #b2744c;
-            padding: 6px 10px;
+            padding: 4px 10px;
             flex-shrink: 0;
         }
         .navbar-toggler-icon {
             filter: invert(1);
         }
 
-        /* ===== MODAL ===== */
+        .navbar-collapse {
+            max-height: 75vh;
+            overflow-y: auto;
+            padding: 4px 0;
+        }
+
+        .navbar .navbar-nav {
+            align-items: center;
+            gap: 2px;
+        }
+
+        /* ============================================================
+                   MODAL — centered, responsive
+                   ============================================================ */
         .modal-content {
             background: #fcf8f3;
             border-radius: 20px;
@@ -195,13 +237,13 @@
             border-bottom: 2px solid #b2744c;
             background: #2d1f14;
             border-radius: 18px 18px 0 0;
-            padding: 20px 30px;
+            padding: 16px 28px;
         }
 
         .modal-header .modal-title {
             color: #f5ebe0;
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
         }
 
         .modal-header .btn-close {
@@ -209,7 +251,7 @@
         }
 
         .modal-body {
-            padding: 30px;
+            padding: 28px;
         }
 
         .modal-body .form-label {
@@ -232,7 +274,7 @@
 
         .modal-footer {
             border-top: none;
-            padding: 0 30px 30px 30px;
+            padding: 0 28px 28px 28px;
             justify-content: center;
         }
 
@@ -253,12 +295,15 @@
             background: #8f5c3a;
             transform: translateY(-3px);
             box-shadow: 0 8px 30px rgba(178, 116, 76, 0.5);
+            color: #fff;
         }
 
-        /* ===== PAGE HEADER ===== */
+        /* ============================================================
+                   PAGE HEADER — centered, responsive
+                   ============================================================ */
         .page-header {
             background: linear-gradient(135deg, #2d1f14 0%, #4a3122 100%);
-            padding: 60px 0 50px;
+            padding: 40px 0 32px;
             border-bottom: 4px solid #b2744c;
             position: relative;
             overflow: hidden;
@@ -270,25 +315,27 @@
             right: 5%;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 8rem;
+            font-size: 7rem;
             opacity: 0.05;
             pointer-events: none;
         }
         .page-header h1 {
             color: #f5d6b3;
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-size: clamp(1.8rem, 5vw, 3.2rem);
             font-weight: 700;
+            margin: 0;
         }
         .page-header p {
             color: #b8a392;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 1.4vw, 1.05rem);
             max-width: 700px;
-            margin: 10px auto 0;
+            margin: 8px auto 0;
+            padding: 0 16px;
         }
         .page-header .breadcrumb {
             background: transparent;
             padding: 0;
-            margin: 0 0 10px 0;
+            margin: 0 0 6px 0;
             justify-content: center;
         }
         .page-header .breadcrumb-item a {
@@ -301,7 +348,9 @@
             color: #b8a392;
         }
 
-        /* ===== REVIEW SECTION ===== */
+        /* ============================================================
+                   REVIEW SECTION — centered, responsive
+                   ============================================================ */
         .review-section {
             padding: 40px 0 30px;
             background: #fff;
@@ -309,12 +358,12 @@
 
         .review-section .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
             color: #2d1f14;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             position: relative;
             display: inline-block;
-            padding-bottom: 15px;
+            padding-bottom: 14px;
         }
 
         .review-section .section-title::after {
@@ -323,7 +372,7 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 70px;
             height: 4px;
             background: linear-gradient(90deg, #b2744c, #d4a373);
             border-radius: 4px;
@@ -331,23 +380,24 @@
 
         .review-section .section-subtitle {
             color: #6b5a4a;
-            font-size: 1.1rem;
+            font-size: clamp(0.85rem, 1.2vw, 1.05rem);
             max-width: 700px;
-            margin: 0 auto 40px;
+            margin: 0 auto 35px;
+            padding: 0 16px;
         }
 
-        /* ===== REVIEW CARDS ===== */
+        /* ===== REVIEW GRID ===== */
         .review-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
         .review-card {
             background: #fcf8f3;
             border-radius: 24px;
-            padding: 30px 25px 25px;
+            padding: 28px 22px 22px;
             text-align: center;
             border: 2px solid #f5ebe0;
             transition: all 0.4s ease;
@@ -372,14 +422,14 @@
 
         .review-card h3 {
             font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 1.1vw, 1.1rem);
             font-weight: 700;
             color: #2d1f14;
             margin: 0;
         }
 
         .review-card .role {
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 0.85vw, 0.85rem);
             color: #b2744c;
             font-weight: 500;
             margin-bottom: 8px;
@@ -387,13 +437,13 @@
 
         .review-card .stars {
             color: #f5a623;
-            font-size: 1rem;
+            font-size: clamp(0.85rem, 0.95vw, 1rem);
             letter-spacing: 2px;
             margin-bottom: 10px;
         }
 
         .review-card .review-text {
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 0.95vw, 0.95rem);
             color: #4a3a2e;
             line-height: 1.7;
             font-style: italic;
@@ -402,34 +452,35 @@
 
         .review-card .review-text::before {
             content: '"';
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: #b2744c;
             opacity: 0.4;
             margin-right: 4px;
         }
-
         .review-card .review-text::after {
             content: '"';
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: #b2744c;
             opacity: 0.4;
             margin-left: 4px;
         }
 
-        /* ===== WRITE REVIEW FORM ===== */
+        /* ============================================================
+                   WRITE REVIEW — centered, responsive
+                   ============================================================ */
         .write-review-section {
             background: #f5ebe0;
-            padding: 60px 0;
+            padding: 50px 0;
         }
 
         .write-review-section .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
             color: #2d1f14;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             position: relative;
             display: inline-block;
-            padding-bottom: 15px;
+            padding-bottom: 14px;
         }
 
         .write-review-section .section-title::after {
@@ -438,7 +489,7 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 70px;
             height: 4px;
             background: linear-gradient(90deg, #b2744c, #d4a373);
             border-radius: 4px;
@@ -447,7 +498,7 @@
         .review-form-wrapper {
             background: #fff;
             border-radius: 24px;
-            padding: 40px 35px;
+            padding: 36px 32px;
             max-width: 700px;
             margin: 0 auto;
             border: 2px solid #f5ebe0;
@@ -462,6 +513,7 @@
         .review-form-wrapper .form-label {
             font-weight: 600;
             color: #2d1f14;
+            font-size: clamp(0.85rem, 0.95vw, 0.95rem);
         }
 
         .review-form-wrapper .form-control {
@@ -470,6 +522,7 @@
             padding: 12px 16px;
             background: #fcf8f3;
             transition: border 0.3s ease;
+            font-size: clamp(0.85rem, 0.9vw, 0.95rem);
         }
 
         .review-form-wrapper .form-control:focus {
@@ -493,6 +546,7 @@
 
         .review-form-wrapper .star-rating-input .star {
             transition: all 0.2s ease;
+            cursor: pointer;
         }
 
         .review-form-wrapper .star-rating-input .star:hover,
@@ -508,7 +562,7 @@
             padding: 14px 40px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: clamp(0.95rem, 1vw, 1.05rem);
             transition: all 0.4s ease;
             box-shadow: 0 4px 20px rgba(178, 116, 76, 0.3);
             width: 100%;
@@ -520,7 +574,186 @@
             box-shadow: 0 8px 35px rgba(178, 116, 76, 0.4);
         }
 
-        /* ===== TOAST NOTIFICATION ===== */
+        /* ============================================================
+                   NEWSLETTER — centered, responsive
+                   ============================================================ */
+        .newsletter {
+            padding: 50px 0;
+            background: #2d1f14;
+            color: #f5ebe0;
+            border-top: 4px solid #b2744c;
+            border-bottom: 4px solid #b2744c;
+            text-align: center;
+        }
+        .newsletter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 3vw, 2.4rem);
+            color: #f5d6b3;
+        }
+        .newsletter p {
+            color: #b8a392;
+            font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+            max-width: 600px;
+            margin: 0 auto 18px;
+            padding: 0 16px;
+        }
+        .newsletter .input-group {
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .newsletter .form-control {
+            border-radius: 50px;
+            border: 2px solid #b2744c;
+            padding: 14px 20px;
+            background: #fff;
+            flex: 1 1 200px;
+            min-width: 160px;
+        }
+        .newsletter .form-control:focus {
+            border-color: #f5d6b3;
+            box-shadow: 0 0 0 4px rgba(178, 116, 76, 0.2);
+        }
+        .newsletter .btn-gold {
+            border-radius: 50px;
+            padding: 14px 32px;
+            flex-shrink: 0;
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .newsletter .btn-gold:hover {
+            background: #8f5c3a;
+            transform: translateY(-2px);
+        }
+        .newsletter small {
+            font-size: clamp(0.7rem, 0.8vw, 0.85rem);
+        }
+
+        /* ============================================================
+                   FOOTER — centered, responsive
+                   ============================================================ */
+        .footer {
+            background: #2d1f14;
+            color: #f5ebe0;
+            padding-top: 40px;
+            border-top: 6px solid #b2744c;
+            margin-top: auto;
+        }
+
+        .footer .box {
+            text-align: center;
+        }
+
+        .footer .box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 1.3vw, 1.3rem);
+            color: #f5d6b3;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .footer .box h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 3px;
+            background: #b2744c;
+            border-radius: 4px;
+        }
+
+        .footer .box a {
+            display: block;
+            color: #d4c5b5;
+            padding: 6px 0;
+            font-size: clamp(0.78rem, 0.9vw, 0.9rem);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            text-align: center;
+        }
+
+        .footer .box a:hover {
+            color: #f5d6b3;
+            padding-left: 8px;
+            border-bottom-color: rgba(178, 116, 76, 0.2);
+        }
+
+        .footer .box a i {
+            margin-right: 10px;
+            color: #b2744c;
+            width: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .footer .box a:hover i {
+            transform: scale(1.2);
+            color: #f5d6b3;
+        }
+
+        .footer .text-center {
+            background: #1f140e;
+            padding: 14px 0;
+            margin-top: 24px;
+            font-size: clamp(0.7rem, 0.9vw, 0.9rem);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #b8a392;
+            border-top: 1px solid rgba(178, 116, 76, 0.2);
+            text-align: center;
+        }
+
+        .footer .text-center small {
+            opacity: 0.8;
+        }
+
+        /* ============================================================
+                   BACK TO TOP
+                   ============================================================ */
+        #backToTop {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1060;
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #backToTop:hover {
+            background: #8f5c3a;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 35px rgba(178, 116, 76, 0.5);
+        }
+
+        /* ============================================================
+                   TOAST — responsive
+                   ============================================================ */
         .toast-container {
             position: fixed;
             bottom: 90px;
@@ -575,568 +808,9 @@
             }
         }
 
-        /* ===== NEWSLETTER ===== */
-        .newsletter {
-            padding: 60px 0;
-            background: #2d1f14;
-            color: #f5ebe0;
-            border-top: 4px solid #b2744c;
-            border-bottom: 4px solid #b2744c;
-        }
-        .newsletter h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
-            color: #f5d6b3;
-        }
-        .newsletter p {
-            color: #b8a392;
-        }
-        .newsletter .input-group {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .newsletter .form-control {
-            border-radius: 50px 0 0 50px;
-            border: 2px solid #b2744c;
-            padding: 14px 20px;
-            background: #fff;
-        }
-        .newsletter .form-control:focus {
-            border-color: #f5d6b3;
-            box-shadow: 0 0 0 4px rgba(178, 116, 76, 0.2);
-        }
-        .newsletter .btn-gold {
-            border-radius: 0 50px 50px 0;
-            padding: 14px 32px;
-            background: #b2744c;
-            color: #fff;
-            border: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .newsletter .btn-gold:hover {
-            background: #8f5c3a;
-            transform: translateY(-2px);
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            background: #2d1f14;
-            color: #f5ebe0;
-            padding-top: 50px;
-            border-top: 6px solid #b2744c;
-        }
-
-        .footer .box h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: #f5d6b3;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 12px;
-        }
-
-        .footer .box h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: #b2744c;
-            border-radius: 4px;
-        }
-
-        .footer .box a {
-            display: block;
-            color: #d4c5b5;
-            padding: 8px 0;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .footer .box a:hover {
-            color: #f5d6b3;
-            padding-left: 12px;
-            border-bottom-color: rgba(178, 116, 76, 0.2);
-        }
-
-        .footer .box a i {
-            margin-right: 12px;
-            color: #b2744c;
-            width: 22px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .footer .box a:hover i {
-            transform: scale(1.2);
-            color: #f5d6b3;
-        }
-
-        .footer .text-center {
-            background: #1f140e;
-            padding: 18px 0;
-            margin-top: 30px;
-            font-size: 1rem;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            color: #b8a392;
-            border-top: 1px solid rgba(178, 116, 76, 0.2);
-        }
-
-        .footer .text-center small {
-            opacity: 0.8;
-        }
-
-        /* ===== BACK TO TOP ===== */
-        #backToTop {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1060;
-            background: #b2744c;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.4);
-            transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-        }
-        #backToTop.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        #backToTop:hover {
-            background: #8f5c3a;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 35px rgba(178, 116, 76, 0.5);
-        }
-
-        /* ================================================================
-                   FULLY RESPONSIVE BREAKPOINTS
-                   ================================================================ */
-
-        @media (max-width: 1199px) {
-            .navbar .nav-link {
-                font-size: 0.85rem;
-                padding: 6px 12px !important;
-            }
-            .navbar .brand-text {
-                font-size: 1.4rem;
-            }
-            .review-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 991px) {
-            .navbar .navbar-brand img {
-                height: 45px;
-            }
-            .navbar .brand-text {
-                font-size: 1.2rem;
-                padding-left: 10px;
-            }
-            .navbar .brand-text small {
-                font-size: 0.45rem;
-                letter-spacing: 2px;
-            }
-            .navbar .nav-link {
-                font-size: 0.9rem;
-                padding: 8px 16px !important;
-                white-space: normal;
-            }
-            .navbar .btn-custom {
-                padding: 6px 18px;
-                font-size: 0.8rem;
-                margin-top: 8px;
-                width: 100%;
-                text-align: center;
-            }
-            .navbar .navbar-nav {
-                padding: 10px 0;
-            }
-            .page-header {
-                padding: 40px 0 30px;
-            }
-            .page-header h1 {
-                font-size: 2.2rem;
-            }
-            .review-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 18px;
-            }
-            .review-card {
-                padding: 24px 20px 20px;
-                border-radius: 20px;
-            }
-            .review-card .review-avatar {
-                width: 70px;
-                height: 70px;
-            }
-            .review-card h3 {
-                font-size: 1rem;
-            }
-            .review-card .review-text {
-                font-size: 0.9rem;
-            }
-            .review-form-wrapper {
-                padding: 30px 24px;
-                border-radius: 20px;
-            }
-            .footer .box {
-                margin-bottom: 30px;
-            }
-            .footer .box h3 {
-                font-size: 1.2rem;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .navbar {
-                padding: 8px 0;
-            }
-            .navbar .navbar-brand img {
-                height: 38px;
-            }
-            .navbar .brand-text {
-                font-size: 1rem;
-                padding-left: 8px;
-                border-left-width: 1.5px;
-            }
-            .navbar .brand-text small {
-                font-size: 0.4rem;
-                letter-spacing: 1.5px;
-            }
-            .navbar .nav-link {
-                font-size: 0.85rem;
-                padding: 6px 12px !important;
-            }
-            .navbar .btn-custom {
-                font-size: 0.75rem;
-                padding: 6px 14px;
-            }
-            .navbar-toggler {
-                padding: 4px 8px;
-            }
-            .navbar-toggler-icon {
-                width: 22px;
-                height: 22px;
-            }
-
-            .page-header {
-                padding: 30px 0 25px;
-            }
-            .page-header h1 {
-                font-size: 1.8rem;
-            }
-            .page-header p {
-                font-size: 0.95rem;
-                padding: 0 15px;
-            }
-
-            .review-section {
-                padding: 30px 0 20px;
-            }
-            .review-section .section-title {
-                font-size: 1.8rem;
-            }
-            .review-section .section-title::after {
-                width: 60px;
-                height: 3px;
-            }
-            .review-section .section-subtitle {
-                font-size: 0.95rem;
-                padding: 0 15px;
-            }
-
-            .review-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 14px;
-            }
-            .review-card {
-                padding: 20px 16px 16px;
-                border-radius: 16px;
-            }
-            .review-card .review-avatar {
-                width: 60px;
-                height: 60px;
-                margin-bottom: 8px;
-            }
-            .review-card h3 {
-                font-size: 0.9rem;
-            }
-            .review-card .role {
-                font-size: 0.75rem;
-            }
-            .review-card .stars {
-                font-size: 0.85rem;
-                letter-spacing: 1.5px;
-                margin-bottom: 6px;
-            }
-            .review-card .review-text {
-                font-size: 0.82rem;
-                line-height: 1.6;
-            }
-            .review-card .review-text::before,
-            .review-card .review-text::after {
-                font-size: 1.4rem;
-            }
-
-            .write-review-section {
-                padding: 40px 0;
-            }
-            .write-review-section .section-title {
-                font-size: 1.5rem;
-            }
-            .write-review-section .section-title::after {
-                width: 60px;
-                height: 3px;
-            }
-
-            .review-form-wrapper {
-                padding: 24px 18px;
-                border-radius: 18px;
-            }
-            .review-form-wrapper .form-label {
-                font-size: 0.9rem;
-            }
-            .review-form-wrapper .form-control {
-                padding: 10px 14px;
-                font-size: 0.9rem;
-            }
-            .review-form-wrapper .star-rating-input {
-                font-size: 1.6rem;
-                gap: 6px;
-            }
-            .review-form-wrapper .btn-submit {
-                padding: 12px 30px;
-                font-size: 0.95rem;
-            }
-
-            .newsletter {
-                padding: 40px 0;
-            }
-            .newsletter .input-group {
-                flex-direction: column;
-                gap: 12px;
-            }
-            .newsletter .form-control {
-                border-radius: 50px;
-            }
-            .newsletter .btn-gold {
-                border-radius: 50px;
-                width: 100%;
-            }
-
-            .footer {
-                padding-top: 35px;
-            }
-            .footer .box h3 {
-                font-size: 1.1rem;
-                margin-bottom: 18px;
-                padding-bottom: 10px;
-            }
-            .footer .box a {
-                font-size: 0.85rem;
-                padding: 6px 0;
-            }
-            .footer .text-center {
-                font-size: 0.85rem;
-                padding: 14px 0;
-                margin-top: 20px;
-            }
-
-            .modal-header {
-                padding: 16px 20px;
-            }
-            .modal-header .modal-title {
-                font-size: 1.2rem;
-            }
-            .modal-body {
-                padding: 20px;
-            }
-            .modal-body .form-control {
-                padding: 10px 14px;
-                font-size: 0.9rem;
-            }
-            .modal-footer {
-                padding: 0 20px 20px 20px;
-            }
-            .modal-footer .btn-custom {
-                padding: 10px 30px;
-                font-size: 0.9rem;
-            }
-
-            .toast-container {
-                bottom: 80px;
-                right: 16px;
-                left: 16px;
-            }
-            .toast-custom {
-                padding: 14px 18px;
-                min-width: auto;
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar .navbar-brand img {
-                height: 32px;
-            }
-            .navbar .brand-text {
-                font-size: 0.85rem;
-                padding-left: 6px;
-            }
-            .navbar .brand-text small {
-                font-size: 0.35rem;
-                letter-spacing: 1px;
-            }
-            .navbar .nav-link {
-                font-size: 0.8rem;
-                padding: 4px 10px !important;
-            }
-            .navbar .btn-custom {
-                font-size: 0.7rem;
-                padding: 5px 12px;
-            }
-
-            .page-header h1 {
-                font-size: 1.5rem;
-            }
-            .page-header p {
-                font-size: 0.85rem;
-            }
-
-            .review-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
-            .review-card {
-                padding: 14px 12px 12px;
-                border-radius: 14px;
-            }
-            .review-card .review-avatar {
-                width: 48px;
-                height: 48px;
-            }
-            .review-card h3 {
-                font-size: 0.8rem;
-            }
-            .review-card .role {
-                font-size: 0.65rem;
-            }
-            .review-card .stars {
-                font-size: 0.7rem;
-                letter-spacing: 1px;
-            }
-            .review-card .review-text {
-                font-size: 0.72rem;
-            }
-            .review-card .review-text::before,
-            .review-card .review-text::after {
-                font-size: 1.1rem;
-            }
-
-            .review-form-wrapper {
-                padding: 18px 14px;
-                border-radius: 14px;
-            }
-            .review-form-wrapper .form-label {
-                font-size: 0.8rem;
-            }
-            .review-form-wrapper .form-control {
-                padding: 8px 12px;
-                font-size: 0.85rem;
-            }
-            .review-form-wrapper .star-rating-input {
-                font-size: 1.3rem;
-                gap: 4px;
-            }
-            .review-form-wrapper .btn-submit {
-                padding: 10px 20px;
-                font-size: 0.85rem;
-            }
-
-            .footer .box h3 {
-                font-size: 1rem;
-            }
-            .footer .box a {
-                font-size: 0.8rem;
-                padding: 5px 0;
-            }
-            .footer .box a i {
-                width: 18px;
-                margin-right: 8px;
-            }
-            .footer .text-center {
-                font-size: 0.7rem;
-                padding: 12px 0;
-            }
-
-            .modal-header {
-                padding: 12px 16px;
-            }
-            .modal-header .modal-title {
-                font-size: 1rem;
-            }
-            .modal-body {
-                padding: 16px;
-            }
-            .modal-body .form-label {
-                font-size: 0.85rem;
-            }
-            .modal-body .form-control {
-                padding: 8px 12px;
-                font-size: 0.85rem;
-            }
-            .modal-footer .btn-custom {
-                padding: 8px 20px;
-                font-size: 0.8rem;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .navbar .brand-text {
-                font-size: 0.7rem;
-                padding-left: 4px;
-            }
-            .navbar .navbar-brand img {
-                height: 28px;
-            }
-
-            .review-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-            }
-            .review-card {
-                padding: 10px 8px 10px;
-            }
-            .review-card .review-avatar {
-                width: 40px;
-                height: 40px;
-            }
-            .review-card h3 {
-                font-size: 0.7rem;
-            }
-            .review-card .review-text {
-                font-size: 0.65rem;
-            }
-            .review-card .stars {
-                font-size: 0.6rem;
-            }
-        }
-
-        /* ===== UTILITY ===== */
+        /* ============================================================
+                   UTILITY
+                   ============================================================ */
         .text-gold {
             color: #b2744c;
         }
@@ -1149,13 +823,13 @@
             animation: fadeIn 0.8s ease forwards;
         }
         .fade-in-delay-1 {
-            animation-delay: 0.2s;
+            animation-delay: 0.15s;
         }
         .fade-in-delay-2 {
-            animation-delay: 0.4s;
+            animation-delay: 0.3s;
         }
         .fade-in-delay-3 {
-            animation-delay: 0.6s;
+            animation-delay: 0.45s;
         }
 
         @keyframes fadeIn {
@@ -1163,16 +837,582 @@
                 opacity: 1;
             }
         }
+
+        /* ============================================================
+                   FULLY RESPONSIVE BREAKPOINTS — 320px to 4K
+                   ============================================================ */
+
+        @media (max-width: 1199px) {
+            .navbar .nav-link {
+                font-size: 0.82rem;
+                padding: 5px 12px !important;
+            }
+            .navbar .brand-text {
+                font-size: 1.1rem;
+            }
+            .navbar .navbar-brand img {
+                height: 40px;
+            }
+            .review-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .navbar {
+                min-height: 58px;
+                padding: 4px 0;
+            }
+            .navbar .navbar-brand img {
+                height: 36px;
+            }
+            .navbar .brand-text {
+                font-size: 1rem;
+                padding-left: 10px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.38rem;
+                letter-spacing: 2px;
+            }
+            .navbar .nav-link {
+                font-size: 0.8rem;
+                padding: 5px 12px !important;
+                white-space: normal;
+            }
+            .navbar .btn-custom {
+                padding: 6px 18px;
+                font-size: 0.78rem;
+                margin-top: 4px;
+                width: 100%;
+                text-align: center;
+            }
+            .navbar .navbar-nav {
+                padding: 4px 0;
+                gap: 0;
+            }
+            .navbar-collapse {
+                max-height: 70vh;
+            }
+
+            .page-header {
+                padding: 30px 0 24px;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .review-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+            .review-card {
+                padding: 22px 18px 18px;
+                border-radius: 20px;
+            }
+            .review-card .review-avatar {
+                width: 70px;
+                height: 70px;
+            }
+            .review-card h3 {
+                font-size: 1rem;
+            }
+
+            .review-form-wrapper {
+                padding: 28px 22px;
+                border-radius: 20px;
+            }
+
+            .footer .box {
+                margin-bottom: 24px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .navbar {
+                min-height: 52px;
+                padding: 3px 0;
+            }
+            .navbar .navbar-brand {
+                gap: 8px;
+            }
+            .navbar .navbar-brand img {
+                height: 32px;
+            }
+            .navbar .brand-text {
+                font-size: 0.85rem;
+                padding-left: 8px;
+                border-left-width: 2px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.32rem;
+                letter-spacing: 1.5px;
+            }
+            .navbar .nav-link {
+                font-size: 0.75rem;
+                padding: 4px 10px !important;
+            }
+            .navbar .btn-custom {
+                font-size: 0.72rem;
+                padding: 5px 14px;
+            }
+            .navbar-toggler {
+                padding: 3px 8px;
+            }
+            .navbar-toggler-icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            .page-header {
+                padding: 24px 0 20px;
+            }
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            .page-header p {
+                font-size: 0.82rem;
+                padding: 0 12px;
+            }
+
+            .review-section {
+                padding: 30px 0 20px;
+            }
+            .review-section .section-title {
+                font-size: 1.4rem;
+            }
+            .review-section .section-title::after {
+                width: 55px;
+                height: 3px;
+            }
+            .review-section .section-subtitle {
+                font-size: 0.85rem;
+                padding: 0 12px;
+                margin-bottom: 28px;
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            .review-card {
+                padding: 18px 14px 14px;
+                border-radius: 16px;
+            }
+            .review-card .review-avatar {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 8px;
+            }
+            .review-card h3 {
+                font-size: 0.9rem;
+            }
+            .review-card .role {
+                font-size: 0.72rem;
+                margin-bottom: 6px;
+            }
+            .review-card .stars {
+                font-size: 0.8rem;
+                letter-spacing: 1.5px;
+                margin-bottom: 6px;
+            }
+            .review-card .review-text {
+                font-size: 0.8rem;
+                line-height: 1.6;
+            }
+            .review-card .review-text::before,
+            .review-card .review-text::after {
+                font-size: 1.3rem;
+            }
+
+            .write-review-section {
+                padding: 35px 0;
+            }
+            .write-review-section .section-title {
+                font-size: 1.3rem;
+            }
+            .write-review-section .section-title::after {
+                width: 55px;
+                height: 3px;
+            }
+
+            .review-form-wrapper {
+                padding: 22px 16px;
+                border-radius: 18px;
+            }
+            .review-form-wrapper .form-label {
+                font-size: 0.85rem;
+            }
+            .review-form-wrapper .form-control {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+            .review-form-wrapper .star-rating-input {
+                font-size: 1.6rem;
+                gap: 6px;
+            }
+            .review-form-wrapper .btn-submit {
+                padding: 12px 28px;
+                font-size: 0.9rem;
+            }
+
+            .newsletter {
+                padding: 35px 0;
+            }
+            .newsletter .input-group {
+                flex-direction: column;
+                gap: 10px;
+                max-width: 100%;
+            }
+            .newsletter .form-control {
+                border-radius: 50px;
+                width: 100%;
+                flex: none;
+            }
+            .newsletter .btn-gold {
+                border-radius: 50px;
+                width: 100%;
+            }
+
+            .footer {
+                padding-top: 28px;
+            }
+            .footer .box h3 {
+                font-size: 1rem;
+                margin-bottom: 14px;
+                padding-bottom: 8px;
+            }
+            .footer .box a {
+                font-size: 0.78rem;
+                padding: 4px 0;
+            }
+            .footer .box a i {
+                width: 18px;
+                margin-right: 8px;
+            }
+            .footer .text-center {
+                font-size: 0.72rem;
+                padding: 10px 0;
+                margin-top: 16px;
+            }
+
+            .modal-header {
+                padding: 12px 18px;
+            }
+            .modal-header .modal-title {
+                font-size: 1.1rem;
+            }
+            .modal-body {
+                padding: 18px;
+            }
+            .modal-body .form-control {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+            .modal-footer {
+                padding: 0 18px 18px 18px;
+            }
+            .modal-footer .btn-custom {
+                padding: 10px 30px;
+                font-size: 0.85rem;
+            }
+
+            .toast-container {
+                bottom: 80px;
+                right: 16px;
+                left: 16px;
+            }
+            .toast-custom {
+                padding: 14px 18px;
+                min-width: auto;
+                width: 100%;
+            }
+
+            #backToTop {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                min-height: 46px;
+                padding: 2px 0;
+            }
+            .navbar .navbar-brand img {
+                height: 28px;
+            }
+            .navbar .brand-text {
+                font-size: 0.72rem;
+                padding-left: 6px;
+                border-left-width: 1.5px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.28rem;
+                letter-spacing: 1px;
+            }
+            .navbar .nav-link {
+                font-size: 0.7rem;
+                padding: 3px 8px !important;
+            }
+            .navbar .btn-custom {
+                font-size: 0.65rem;
+                padding: 4px 12px;
+            }
+            .navbar-toggler {
+                padding: 2px 6px;
+            }
+            .navbar-toggler-icon {
+                width: 18px;
+                height: 18px;
+            }
+
+            .page-header {
+                padding: 20px 0 16px;
+            }
+            .page-header h1 {
+                font-size: 1.25rem;
+            }
+            .page-header p {
+                font-size: 0.75rem;
+                padding: 0 10px;
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .review-card {
+                padding: 12px 10px 10px;
+                border-radius: 14px;
+            }
+            .review-card .review-avatar {
+                width: 48px;
+                height: 48px;
+            }
+            .review-card h3 {
+                font-size: 0.78rem;
+            }
+            .review-card .role {
+                font-size: 0.62rem;
+            }
+            .review-card .stars {
+                font-size: 0.65rem;
+                letter-spacing: 1px;
+                margin-bottom: 4px;
+            }
+            .review-card .review-text {
+                font-size: 0.7rem;
+                line-height: 1.5;
+            }
+            .review-card .review-text::before,
+            .review-card .review-text::after {
+                font-size: 1rem;
+            }
+
+            .review-form-wrapper {
+                padding: 16px 12px;
+                border-radius: 14px;
+            }
+            .review-form-wrapper .form-label {
+                font-size: 0.78rem;
+            }
+            .review-form-wrapper .form-control {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                border-radius: 10px;
+            }
+            .review-form-wrapper .star-rating-input {
+                font-size: 1.3rem;
+                gap: 4px;
+            }
+            .review-form-wrapper .btn-submit {
+                padding: 10px 18px;
+                font-size: 0.8rem;
+            }
+
+            .footer .box h3 {
+                font-size: 0.9rem;
+                margin-bottom: 12px;
+                padding-bottom: 6px;
+            }
+            .footer .box h3::after {
+                width: 35px;
+                height: 2px;
+            }
+            .footer .box a {
+                font-size: 0.7rem;
+                padding: 3px 0;
+            }
+            .footer .box a i {
+                width: 16px;
+                margin-right: 6px;
+                font-size: 0.75rem;
+            }
+            .footer .text-center {
+                font-size: 0.62rem;
+                padding: 8px 0;
+                margin-top: 12px;
+            }
+
+            .modal-header {
+                padding: 10px 14px;
+            }
+            .modal-header .modal-title {
+                font-size: 0.95rem;
+            }
+            .modal-body {
+                padding: 14px;
+            }
+            .modal-body .form-label {
+                font-size: 0.75rem;
+            }
+            .modal-body .form-control {
+                padding: 8px 10px;
+                font-size: 0.75rem;
+            }
+            .modal-footer {
+                padding: 0 14px 14px 14px;
+            }
+            .modal-footer .btn-custom {
+                padding: 8px 20px;
+                font-size: 0.75rem;
+            }
+
+            #backToTop {
+                width: 38px;
+                height: 38px;
+                font-size: 0.85rem;
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .navbar .brand-text {
+                font-size: 0.6rem;
+                padding-left: 4px;
+            }
+            .navbar .navbar-brand img {
+                height: 22px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.24rem;
+                letter-spacing: 0.5px;
+            }
+
+            .page-header h1 {
+                font-size: 1rem;
+            }
+            .page-header p {
+                font-size: 0.68rem;
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+            .review-card {
+                padding: 8px 6px 8px;
+                border-radius: 10px;
+            }
+            .review-card .review-avatar {
+                width: 36px;
+                height: 36px;
+                border-width: 2px;
+            }
+            .review-card h3 {
+                font-size: 0.65rem;
+            }
+            .review-card .role {
+                font-size: 0.55rem;
+            }
+            .review-card .stars {
+                font-size: 0.55rem;
+                letter-spacing: 0.5px;
+            }
+            .review-card .review-text {
+                font-size: 0.62rem;
+            }
+            .review-card .review-text::before,
+            .review-card .review-text::after {
+                font-size: 0.85rem;
+            }
+
+            .review-form-wrapper {
+                padding: 12px 8px;
+            }
+            .review-form-wrapper .star-rating-input {
+                font-size: 1rem;
+                gap: 2px;
+            }
+
+            .footer .box h3 {
+                font-size: 0.8rem;
+            }
+            .footer .box a {
+                font-size: 0.62rem;
+            }
+            .footer .text-center {
+                font-size: 0.55rem;
+            }
+
+            #backToTop {
+                width: 34px;
+                height: 34px;
+                font-size: 0.75rem;
+                bottom: 12px;
+                right: 12px;
+            }
+        }
+
+        /* ============================================================
+                   CONTAINER PADDING FIXES
+                   ============================================================ */
+        .container {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        @media (min-width: 576px) {
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+
+        /* ============================================================
+                   ROW CENTERING
+                   ============================================================ */
+        .row.justify-content-center {
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- ===== NAVBAR ===== -->
+    <!-- ============================================================
+    NAVBAR — fully responsive, centered
+    ============================================================ -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <span class="brand-text d-none d-sm-inline-block">
+                <!-- Logo image -->
+                <img src="IMG/logo.png" alt="Cafe Aurora Logo" onerror="this.style.display='none';">
+                <!-- Brand text — always visible -->
+                <span class="brand-text">
                     Cafe Aurora
                     <small>since 2026</small>
                 </span>
@@ -1206,7 +1446,9 @@
         </div>
     </nav>
 
-    <!-- ===== LOGIN MODAL ===== -->
+    <!-- ============================================================
+    LOGIN MODAL — centered, responsive
+    ============================================================ -->
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -1235,7 +1477,9 @@
         </div>
     </div>
 
-    <!-- ===== PAGE HEADER ===== -->
+    <!-- ============================================================
+    PAGE HEADER — centered, responsive
+    ============================================================ -->
     <section class="page-header">
         <div class="container">
             <div class="row justify-content-center">
@@ -1253,7 +1497,9 @@
         </div>
     </section>
 
-    <!-- ===== REVIEW SECTION ===== -->
+    <!-- ============================================================
+    REVIEW SECTION — centered, responsive
+    ============================================================ -->
     <section class="review-section">
         <div class="container">
 
@@ -1270,13 +1516,15 @@
         </div>
     </section>
 
-    <!-- ===== WRITE REVIEW SECTION ===== -->
+    <!-- ============================================================
+    WRITE REVIEW — centered, responsive
+    ============================================================ -->
     <section class="write-review-section">
         <div class="container">
 
             <div class="text-center mb-4">
                 <h2 class="section-title">Share Your <span class="text-gold">Experience</span></h2>
-                <p class="text-muted" style="max-width:600px;margin:0 auto;">Have you visited Cafe Aurora? We'd love to hear your story! Share your feedback with us.</p>
+                <p class="text-muted" style="max-width:600px;margin:0 auto;font-size:clamp(0.9rem,1vw,1rem);">Have you visited Cafe Aurora? We'd love to hear your story! Share your feedback with us.</p>
             </div>
 
             <div class="review-form-wrapper">
@@ -1299,7 +1547,7 @@
                             <span class="star" data-value="5"><i class="fa-regular fa-star"></i></span>
                         </div>
                         <input type="hidden" id="ratingValue" value="0">
-                        <small class="text-muted" id="ratingLabel">Select a rating</small>
+                        <small class="text-muted" id="ratingLabel" style="display:block;margin-top:4px;font-size:clamp(0.75rem,0.85vw,0.85rem);">Select a rating</small>
                     </div>
                     <div class="mb-3">
                         <label for="reviewComment" class="form-label"><i class="fa-regular fa-comment me-2"></i>Your Review</label>
@@ -1312,7 +1560,9 @@
         </div>
     </section>
 
-    <!-- ===== NEWSLETTER ===== -->
+    <!-- ============================================================
+    NEWSLETTER — centered, responsive
+    ============================================================ -->
     <section class="newsletter">
         <div class="container">
             <div class="row justify-content-center text-center">
@@ -1329,13 +1579,17 @@
         </div>
     </section>
 
-    <!-- ===== TOAST CONTAINER ===== -->
+    <!-- ============================================================
+    TOAST CONTAINER
+    ============================================================ -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ============================================================
+    FOOTER — centered, responsive
+    ============================================================ -->
     <footer class="footer">
         <div class="container">
-            <div class="row g-4">
+            <div class="row g-4 justify-content-center">
                 <div class="col-lg-3 col-md-6">
                     <div class="box">
                         <h3><i class="fa-solid fa-code-branch me-2"></i>Our Branches</h3>
@@ -1384,12 +1638,16 @@
         </div>
     </footer>
 
-    <!-- ===== BACK TO TOP ===== -->
+    <!-- ============================================================
+    BACK TO TOP
+    ============================================================ -->
     <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <!-- ===== SCRIPTS ===== -->
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -1621,7 +1879,7 @@
             if (navCollapse) {
                 const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
                 navLinks.forEach(link => {
-                    link.addEventListener('click', () => {
+                    link.addEventListener('click', function() {
                         if (window.innerWidth < 992 && bsCollapse) {
                             bsCollapse.hide();
                         }
@@ -1631,7 +1889,7 @@
 
             // --- Back to Top ---
             const backBtn = document.getElementById('backToTop');
-            window.addEventListener('scroll', () => {
+            window.addEventListener('scroll', function() {
                 if (window.scrollY > 400) {
                     backBtn.classList.add('show');
                 } else {
@@ -1641,7 +1899,7 @@
 
             // --- Active nav link highlight ---
             const currentPath = window.location.pathname.split('/').pop() || 'review.html';
-            document.querySelectorAll('.navbar .nav-link').forEach(link => {
+            document.querySelectorAll('.navbar .nav-link').forEach(function(link) {
                 const href = link.getAttribute('href');
                 if (href === currentPath || (currentPath === 'review.html' && href === 'review.html')) {
                     link.classList.add('active');

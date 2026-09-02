@@ -21,11 +21,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ===== RESET & BASE ===== */
+        /* ============================================================
+                   RESET & BASE — fully centered, responsive from 320px to 4K
+                   ============================================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -33,6 +39,9 @@
             background: #fcf8f3;
             color: #2d1f14;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         h1,
@@ -54,7 +63,9 @@
             display: block;
         }
 
-        /* ===== SCROLLBAR ===== */
+        /* ============================================================
+                   SCROLLBAR
+                   ============================================================ */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -69,57 +80,81 @@
             background: #8f5c3a;
         }
 
-        /* ===== NAVBAR ===== */
+        /* ============================================================
+                   NAVBAR — sticky, fully responsive, centered brand
+                   ============================================================ */
         .navbar {
             background: linear-gradient(135deg, #2d1f14 0%, #4a3122 100%);
-            padding: 10px 0;
+            padding: 6px 0;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 0;
             z-index: 1050;
             border-bottom: 3px solid #b2744c;
+            min-height: 64px;
+        }
+
+        .navbar .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .navbar .navbar-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             flex-shrink: 0;
+            padding: 0;
+        }
+
+        .navbar .navbar-brand img {
+            height: 44px;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .navbar .navbar-brand img:hover {
+            transform: scale(1.05);
         }
 
         .navbar .brand-text {
             color: #f5d6b3;
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.2rem;
             font-weight: 700;
             letter-spacing: 1px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             border-left: 2px solid #b2744c;
-            padding-left: 14px;
+            padding-left: 12px;
             line-height: 1.2;
+            white-space: nowrap;
+            display: inline-block !important;
         }
-
         .navbar .brand-text small {
             display: block;
-            font-size: 0.55rem;
+            font-size: 0.45rem;
             font-family: 'Inter', sans-serif;
             font-weight: 300;
             letter-spacing: 3px;
             color: #b8a392;
             text-transform: uppercase;
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         .navbar .nav-link {
             color: #f5ebe0 !important;
             font-weight: 500;
-            font-size: 0.95rem;
-            padding: 8px 16px !important;
+            font-size: 0.85rem;
+            padding: 6px 14px !important;
             border-radius: 30px;
             transition: all 0.3s ease;
             letter-spacing: 0.3px;
             position: relative;
             white-space: nowrap;
+            text-align: center;
         }
 
         .navbar .nav-link:hover,
@@ -143,38 +178,54 @@
 
         .navbar .nav-link:hover::after,
         .navbar .nav-link.active::after {
-            width: 60%;
+            width: 50%;
         }
 
         .navbar .btn-custom {
             background: #b2744c;
             color: #fff !important;
             border: none;
-            padding: 8px 24px;
+            padding: 8px 22px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(178, 116, 76, 0.4);
             flex-shrink: 0;
+            white-space: nowrap;
+            text-align: center;
         }
 
         .navbar .btn-custom:hover {
             background: #8f5c3a;
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(178, 116, 76, 0.5);
+            color: #fff !important;
         }
 
         .navbar-toggler {
             border: 2px solid #b2744c;
-            padding: 6px 10px;
+            padding: 4px 10px;
             flex-shrink: 0;
         }
         .navbar-toggler-icon {
             filter: invert(1);
         }
 
-        /* ===== MODAL ===== */
+        .navbar-collapse {
+            max-height: 75vh;
+            overflow-y: auto;
+            padding: 4px 0;
+        }
+
+        .navbar .navbar-nav {
+            align-items: center;
+            gap: 2px;
+        }
+
+        /* ============================================================
+                   MODAL — centered, responsive
+                   ============================================================ */
         .modal-content {
             background: #fcf8f3;
             border-radius: 20px;
@@ -186,13 +237,13 @@
             border-bottom: 2px solid #b2744c;
             background: #2d1f14;
             border-radius: 18px 18px 0 0;
-            padding: 20px 30px;
+            padding: 16px 28px;
         }
 
         .modal-header .modal-title {
             color: #f5ebe0;
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
         }
 
         .modal-header .btn-close {
@@ -200,7 +251,7 @@
         }
 
         .modal-body {
-            padding: 30px;
+            padding: 28px;
         }
 
         .modal-body .form-label {
@@ -223,7 +274,7 @@
 
         .modal-footer {
             border-top: none;
-            padding: 0 30px 30px 30px;
+            padding: 0 28px 28px 28px;
             justify-content: center;
         }
 
@@ -244,11 +295,14 @@
             background: #8f5c3a;
             transform: translateY(-3px);
             box-shadow: 0 8px 30px rgba(178, 116, 76, 0.5);
+            color: #fff;
         }
 
-        /* ===== HOME / HERO ===== */
+        /* ============================================================
+                   HERO SECTION — centered, responsive
+                   ============================================================ */
         .hero {
-            padding: 40px 0 60px;
+            padding: 40px 0 50px;
             background: linear-gradient(180deg, #fcf8f3 0%, #f5ebe0 100%);
             position: relative;
             overflow: hidden;
@@ -256,19 +310,20 @@
 
         .hero .content h3 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 6vw, 4.5rem);
+            font-size: clamp(2rem, 5vw, 3.8rem);
             font-weight: 700;
             color: #2d1f14;
             line-height: 1.2;
             text-shadow: 0 2px 20px rgba(178, 116, 76, 0.15);
             animation: fadeInUp 1s ease forwards;
+            margin-bottom: 20px;
         }
 
         .hero .content h3::after {
             content: '☕';
             display: block;
             font-size: 2.5rem;
-            margin-top: 10px;
+            margin-top: 8px;
             animation: pulse 2s infinite;
         }
 
@@ -300,11 +355,10 @@
             padding: 14px 50px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
             transition: all 0.4s ease;
             box-shadow: 0 6px 30px rgba(178, 116, 76, 0.4);
             letter-spacing: 1px;
-            margin-top: 10px;
             display: inline-block;
         }
 
@@ -336,13 +390,12 @@
             filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
         }
 
-        /* ===== IMAGE SLIDER ===== */
         .image-slider {
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            margin-top: 40px;
+            margin-top: 30px;
             padding: 10px 0;
         }
 
@@ -371,15 +424,17 @@
             box-shadow: 0 0 0 6px rgba(178, 116, 76, 0.25);
         }
 
-        /* ===== SECTION TITLES ===== */
+        /* ============================================================
+                   SECTION TITLES — centered
+                   ============================================================ */
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
             color: #2d1f14;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             position: relative;
             display: inline-block;
-            padding-bottom: 15px;
+            padding-bottom: 14px;
         }
 
         .section-title::after {
@@ -388,7 +443,7 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 70px;
             height: 4px;
             background: linear-gradient(90deg, #b2744c, #d4a373);
             border-radius: 4px;
@@ -396,14 +451,17 @@
 
         .section-subtitle {
             color: #6b5a4a;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 1.2vw, 1.05rem);
             max-width: 700px;
-            margin: 0 auto 40px;
+            margin: 0 auto 35px;
+            padding: 0 16px;
         }
 
-        /* ===== ABOUT PREVIEW ===== */
+        /* ============================================================
+                   ABOUT PREVIEW — centered, responsive
+                   ============================================================ */
         .about-preview {
-            padding: 60px 0;
+            padding: 50px 0;
             background: #fff;
             border-radius: 40px 40px 0 0;
             margin-top: -20px;
@@ -429,15 +487,15 @@
             background: #b2744c;
             color: #fff;
             border: none;
-            padding: 12px 36px;
+            padding: 12px 34px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 1vw, 1rem);
             transition: all 0.4s ease;
             box-shadow: 0 4px 20px rgba(178, 116, 76, 0.3);
             display: inline-block;
+            text-align: center;
         }
-
         .btn-gold:hover {
             background: #8f5c3a;
             color: #fff;
@@ -452,11 +510,11 @@
             padding: 10px 32px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 1vw, 1rem);
             transition: all 0.4s ease;
             display: inline-block;
+            text-align: center;
         }
-
         .btn-outline-gold:hover {
             background: #b2744c;
             color: #fff;
@@ -464,23 +522,27 @@
             box-shadow: 0 8px 35px rgba(178, 116, 76, 0.3);
         }
 
-        /* ===== FEATURED PRODUCTS ===== */
+        /* ============================================================
+                   FEATURED PRODUCTS — centered, responsive
+                   ============================================================ */
         .featured-products {
-            padding: 60px 0 40px;
+            padding: 50px 0 30px;
             background: #fff;
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 10px;
         }
 
         .product-card {
             background: #fcf8f3;
             border-radius: 24px;
-            padding: 30px 20px 25px;
+            padding: 28px 18px 22px;
             text-align: center;
             transition: all 0.4s ease;
             border: 2px solid #f5ebe0;
@@ -495,10 +557,10 @@
 
         .product-card img {
             width: 100%;
-            max-width: 200px;
-            height: 180px;
+            max-width: 180px;
+            height: 160px;
             object-fit: contain;
-            margin: 0 auto 20px;
+            margin: 0 auto 18px;
             transition: transform 0.5s ease;
         }
 
@@ -508,30 +570,31 @@
 
         .product-card h3 {
             font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 1.1vw, 1.1rem);
             font-weight: 600;
             color: #2d1f14;
             margin: 0;
-            letter-spacing: 0.3px;
         }
 
         .product-card .price {
             color: #b2744c;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
             margin-top: 8px;
         }
 
-        /* ===== OFFERS PREVIEW ===== */
+        /* ============================================================
+                   OFFERS PREVIEW — centered, responsive
+                   ============================================================ */
         .offers-preview {
-            padding: 60px 0;
+            padding: 50px 0;
             background: #f5ebe0;
         }
 
         .offer-card {
             background: #fff;
             border-radius: 20px;
-            padding: 30px 25px;
+            padding: 28px 20px;
             text-align: center;
             border: 2px solid #f5ebe0;
             transition: all 0.4s ease;
@@ -545,21 +608,22 @@
         }
 
         .offer-card .icon {
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: #b2744c;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .offer-card h4 {
             font-family: 'Inter', sans-serif;
             font-weight: 700;
             color: #2d1f14;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 1.15vw, 1.2rem);
         }
 
         .offer-card p {
             color: #4a3a2e;
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 0.95vw, 0.95rem);
+            margin-bottom: 12px;
         }
 
         .offer-card .badge-gold {
@@ -572,20 +636,25 @@
             display: inline-block;
         }
 
-        /* ===== TESTIMONIALS ===== */
+        /* ============================================================
+                   TESTIMONIALS — centered, responsive
+                   ============================================================ */
         .testimonials {
-            padding: 60px 0 40px;
+            padding: 50px 0 30px;
             background: #fff;
         }
 
         .testimonial {
             background: #fcf8f3;
             border-radius: 20px;
-            padding: 30px 35px;
-            margin-bottom: 25px;
+            padding: 28px 32px;
+            margin-bottom: 20px;
             border-left: 6px solid #b2744c;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             transition: all 0.3s ease;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .testimonial:hover {
@@ -595,7 +664,7 @@
 
         .testimonial h3 {
             font-family: 'Inter', sans-serif;
-            font-size: 1.15rem;
+            font-size: clamp(0.95rem, 1.1vw, 1.15rem);
             font-weight: 400;
             color: #2d1f14;
             line-height: 1.6;
@@ -604,16 +673,15 @@
 
         .testimonial h3::before {
             content: '"';
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: #b2744c;
             font-family: 'Playfair Display', serif;
             margin-right: 6px;
             opacity: 0.6;
         }
-
         .testimonial h3::after {
             content: '"';
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: #b2744c;
             font-family: 'Playfair Display', serif;
             margin-left: 6px;
@@ -631,13 +699,15 @@
             font-weight: 600;
             color: #8f5c3a;
             margin-top: 10px;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 1vw, 1rem);
             letter-spacing: 0.5px;
         }
 
-        /* ===== GALLERY PREVIEW ===== */
+        /* ============================================================
+                   GALLERY PREVIEW — centered, responsive
+                   ============================================================ */
         .gallery-preview {
-            padding: 60px 0;
+            padding: 50px 0;
             background: #f5ebe0;
         }
 
@@ -645,6 +715,8 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .gallery-grid-preview .gallery-item {
@@ -674,9 +746,11 @@
             transform: scale(1.08);
         }
 
-        /* ===== BLOG PREVIEW ===== */
+        /* ============================================================
+                   BLOG PREVIEW — centered, responsive
+                   ============================================================ */
         .blog-preview {
-            padding: 60px 0;
+            padding: 50px 0;
             background: #fff;
         }
 
@@ -699,7 +773,7 @@
 
         .blog-card img {
             width: 100%;
-            height: 220px;
+            height: 200px;
             object-fit: cover;
             background: #d4c5b5;
             transition: transform 0.5s ease;
@@ -710,7 +784,7 @@
         }
 
         .blog-card .blog-body {
-            padding: 24px;
+            padding: 22px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -726,13 +800,13 @@
             font-family: 'Inter', sans-serif;
             font-weight: 700;
             color: #2d1f14;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 1.1vw, 1.1rem);
             margin-bottom: 10px;
         }
 
         .blog-card .blog-body p {
             color: #4a3a2e;
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 0.95vw, 0.95rem);
             line-height: 1.6;
             flex: 1;
         }
@@ -751,70 +825,88 @@
             transform: translateX(6px);
         }
 
-        /* ===== NEWSLETTER ===== */
+        /* ============================================================
+                   NEWSLETTER — centered, responsive
+                   ============================================================ */
         .newsletter {
-            padding: 60px 0;
+            padding: 50px 0;
             background: #2d1f14;
             color: #f5ebe0;
             border-top: 4px solid #b2744c;
             border-bottom: 4px solid #b2744c;
+            text-align: center;
         }
-
         .newsletter h2 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-size: clamp(1.4rem, 3vw, 2.4rem);
             color: #f5d6b3;
         }
-
         .newsletter p {
             color: #b8a392;
+            font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+            max-width: 600px;
+            margin: 0 auto 18px;
+            padding: 0 16px;
         }
-
         .newsletter .input-group {
             max-width: 500px;
             margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-
         .newsletter .form-control {
-            border-radius: 50px 0 0 50px;
+            border-radius: 50px;
             border: 2px solid #b2744c;
             padding: 14px 20px;
             background: #fff;
+            flex: 1 1 200px;
+            min-width: 160px;
         }
-
         .newsletter .form-control:focus {
             border-color: #f5d6b3;
             box-shadow: 0 0 0 4px rgba(178, 116, 76, 0.2);
         }
-
         .newsletter .btn-gold {
-            border-radius: 0 50px 50px 0;
+            border-radius: 50px;
             padding: 14px 32px;
+            flex-shrink: 0;
+        }
+        .newsletter small {
+            font-size: clamp(0.7rem, 0.8vw, 0.85rem);
         }
 
-        /* ===== FOOTER ===== */
+        /* ============================================================
+                   FOOTER — centered, responsive
+                   ============================================================ */
         .footer {
             background: #2d1f14;
             color: #f5ebe0;
-            padding-top: 50px;
+            padding-top: 40px;
             border-top: 6px solid #b2744c;
+            margin-top: auto;
+        }
+
+        .footer .box {
+            text-align: center;
         }
 
         .footer .box h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-size: clamp(1rem, 1.3vw, 1.3rem);
             color: #f5d6b3;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: relative;
-            padding-bottom: 12px;
+            padding-bottom: 10px;
+            display: inline-block;
         }
 
         .footer .box h3::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
-            width: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
             height: 3px;
             background: #b2744c;
             border-radius: 4px;
@@ -823,22 +915,23 @@
         .footer .box a {
             display: block;
             color: #d4c5b5;
-            padding: 8px 0;
-            font-size: 0.95rem;
+            padding: 6px 0;
+            font-size: clamp(0.78rem, 0.9vw, 0.9rem);
             transition: all 0.3s ease;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            text-align: center;
         }
 
         .footer .box a:hover {
             color: #f5d6b3;
-            padding-left: 12px;
+            padding-left: 8px;
             border-bottom-color: rgba(178, 116, 76, 0.2);
         }
 
         .footer .box a i {
-            margin-right: 12px;
+            margin-right: 10px;
             color: #b2744c;
-            width: 22px;
+            width: 20px;
             text-align: center;
             transition: all 0.3s ease;
         }
@@ -850,598 +943,59 @@
 
         .footer .text-center {
             background: #1f140e;
-            padding: 18px 0;
-            margin-top: 30px;
-            font-size: 1rem;
+            padding: 14px 0;
+            margin-top: 24px;
+            font-size: clamp(0.7rem, 0.9vw, 0.9rem);
             font-weight: 400;
             letter-spacing: 0.5px;
             color: #b8a392;
             border-top: 1px solid rgba(178, 116, 76, 0.2);
+            text-align: center;
         }
 
         .footer .text-center small {
             opacity: 0.8;
         }
 
-        /* ===== BACK TO TOP ===== */
+        /* ============================================================
+                   BACK TO TOP
+                   ============================================================ */
         #backToTop {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 24px;
+            right: 24px;
             z-index: 1060;
             background: #b2744c;
             color: #fff;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.2rem;
+            width: 46px;
+            height: 46px;
+            font-size: 1.1rem;
             box-shadow: 0 4px 20px rgba(178, 116, 76, 0.4);
             transition: all 0.3s ease;
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
         #backToTop.show {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-
         #backToTop:hover {
             background: #8f5c3a;
             transform: translateY(-4px);
             box-shadow: 0 8px 35px rgba(178, 116, 76, 0.5);
         }
 
-        /* ================================================================
-                   FULLY RESPONSIVE BREAKPOINTS
-                   ================================================================ */
-
-        @media (max-width: 1199px) {
-            .navbar .nav-link {
-                font-size: 0.85rem;
-                padding: 6px 12px !important;
-            }
-            .navbar .brand-text {
-                font-size: 1.4rem;
-            }
-            .product-grid {
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                gap: 25px;
-            }
-            .gallery-grid-preview {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 16px;
-            }
-        }
-
-        @media (max-width: 991px) {
-            .navbar .brand-text {
-                font-size: 1.2rem;
-                padding-left: 10px;
-            }
-            .navbar .brand-text small {
-                font-size: 0.45rem;
-                letter-spacing: 2px;
-            }
-            .navbar .nav-link {
-                font-size: 0.9rem;
-                padding: 8px 16px !important;
-                white-space: normal;
-            }
-            .navbar .btn-custom {
-                padding: 6px 18px;
-                font-size: 0.8rem;
-                margin-top: 8px;
-                width: 100%;
-                text-align: center;
-            }
-            .navbar .navbar-nav {
-                padding: 10px 0;
-            }
-
-            .hero .content h3 {
-                font-size: clamp(1.8rem, 5vw, 3rem);
-                text-align: center;
-            }
-            .hero .content .btn-hero {
-                display: block;
-                margin: 15px auto 0;
-                width: fit-content;
-            }
-            .hero .image img {
-                max-width: 70%;
-                margin-top: 10px;
-            }
-            .hero .image {
-                animation: none;
-            }
-            .image-slider img {
-                width: 65px;
-                height: 65px;
-                padding: 6px;
-            }
-
-            .about-preview {
-                padding: 40px 0;
-                border-radius: 30px 30px 0 0;
-            }
-            .about-preview .about-img {
-                min-height: 220px;
-            }
-
-            .product-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 20px;
-            }
-            .product-card {
-                padding: 24px 16px 20px;
-            }
-            .product-card img {
-                max-width: 160px;
-                height: 150px;
-            }
-
-            .gallery-grid-preview {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 14px;
-            }
-
-            .testimonial {
-                padding: 24px 28px;
-            }
-            .testimonial h3 {
-                font-size: 1.05rem;
-            }
-
-            .blog-card img {
-                height: 180px;
-            }
-
-            .footer .box {
-                margin-bottom: 30px;
-            }
-            .footer .box h3 {
-                font-size: 1.2rem;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .navbar {
-                padding: 8px 0;
-            }
-            .navbar .brand-text {
-                font-size: 1rem;
-                padding-left: 8px;
-                border-left-width: 1.5px;
-            }
-            .navbar .brand-text small {
-                font-size: 0.4rem;
-                letter-spacing: 1.5px;
-            }
-            .navbar .nav-link {
-                font-size: 0.85rem;
-                padding: 6px 12px !important;
-            }
-            .navbar .btn-custom {
-                font-size: 0.75rem;
-                padding: 6px 14px;
-            }
-            .navbar-toggler {
-                padding: 4px 8px;
-            }
-            .navbar-toggler-icon {
-                width: 22px;
-                height: 22px;
-            }
-
-            .hero {
-                padding: 20px 0 40px;
-            }
-            .hero .content h3 {
-                font-size: clamp(1.5rem, 6vw, 2.4rem);
-                text-align: center;
-            }
-            .hero .content h3::after {
-                font-size: 2rem;
-            }
-            .hero .content .btn-hero {
-                font-size: 0.95rem;
-                padding: 12px 36px;
-            }
-            .hero .image img {
-                max-width: 85%;
-                margin-top: 15px;
-            }
-            .image-slider {
-                gap: 14px;
-                margin-top: 30px;
-            }
-            .image-slider img {
-                width: 55px;
-                height: 55px;
-                padding: 5px;
-                border-width: 2px;
-            }
-
-            .about-preview {
-                padding: 30px 0;
-                border-radius: 24px 24px 0 0;
-            }
-            .about-preview .about-img {
-                min-height: 200px;
-                margin-top: 20px;
-            }
-
-            .featured-products {
-                padding: 40px 0 30px;
-            }
-            .featured-products .section-title,
-            .testimonials .section-title,
-            .offers-preview .section-title,
-            .gallery-preview .section-title,
-            .blog-preview .section-title {
-                font-size: 1.8rem;
-            }
-            .featured-products .section-title::after,
-            .testimonials .section-title::after,
-            .offers-preview .section-title::after,
-            .gallery-preview .section-title::after,
-            .blog-preview .section-title::after {
-                width: 60px;
-                height: 3px;
-            }
-            .section-subtitle {
-                font-size: 0.95rem;
-                padding: 0 15px;
-            }
-
-            .product-grid {
-                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-                gap: 16px;
-                padding: 5px;
-            }
-            .product-card {
-                padding: 18px 12px 16px;
-                border-radius: 18px;
-            }
-            .product-card img {
-                max-width: 130px;
-                height: 130px;
-                margin-bottom: 14px;
-            }
-            .product-card h3 {
-                font-size: 0.9rem;
-            }
-
-            .offers-preview {
-                padding: 40px 0;
-            }
-            .offer-card {
-                padding: 24px 18px;
-            }
-
-            .testimonials {
-                padding: 40px 0 30px;
-            }
-            .testimonial {
-                padding: 18px 20px;
-                border-left-width: 4px;
-                border-radius: 16px;
-                margin-bottom: 18px;
-            }
-            .testimonial h3 {
-                font-size: 0.95rem;
-            }
-            .testimonial h3::before,
-            .testimonial h3::after {
-                font-size: 1.8rem;
-            }
-            .testimonial p:last-child {
-                font-size: 0.9rem;
-            }
-
-            .gallery-preview {
-                padding: 40px 0;
-            }
-            .gallery-grid-preview {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-
-            .blog-preview {
-                padding: 40px 0;
-            }
-            .blog-card img {
-                height: 160px;
-            }
-            .blog-card .blog-body {
-                padding: 18px;
-            }
-            .blog-card .blog-body h4 {
-                font-size: 1rem;
-            }
-            .blog-card .blog-body p {
-                font-size: 0.9rem;
-            }
-
-            .newsletter {
-                padding: 40px 0;
-            }
-            .newsletter .input-group {
-                flex-direction: column;
-                gap: 12px;
-            }
-            .newsletter .form-control {
-                border-radius: 50px;
-            }
-            .newsletter .btn-gold {
-                border-radius: 50px;
-                width: 100%;
-            }
-
-            .footer {
-                padding-top: 35px;
-            }
-            .footer .box h3 {
-                font-size: 1.1rem;
-                margin-bottom: 18px;
-                padding-bottom: 10px;
-            }
-            .footer .box a {
-                font-size: 0.85rem;
-                padding: 6px 0;
-            }
-            .footer .text-center {
-                font-size: 0.85rem;
-                padding: 14px 0;
-                margin-top: 20px;
-            }
-
-            .modal-header {
-                padding: 16px 20px;
-            }
-            .modal-header .modal-title {
-                font-size: 1.2rem;
-            }
-            .modal-body {
-                padding: 20px;
-            }
-            .modal-body .form-control {
-                padding: 10px 14px;
-                font-size: 0.9rem;
-            }
-            .modal-footer {
-                padding: 0 20px 20px 20px;
-            }
-            .modal-footer .btn-custom {
-                padding: 10px 30px;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar .brand-text {
-                font-size: 0.85rem;
-                padding-left: 6px;
-            }
-            .navbar .brand-text small {
-                font-size: 0.35rem;
-                letter-spacing: 1px;
-            }
-            .navbar .nav-link {
-                font-size: 0.8rem;
-                padding: 4px 10px !important;
-            }
-            .navbar .btn-custom {
-                font-size: 0.7rem;
-                padding: 5px 12px;
-            }
-
-            .hero .content h3 {
-                font-size: 1.4rem;
-            }
-            .hero .content h3::after {
-                font-size: 1.6rem;
-            }
-            .hero .content .btn-hero {
-                font-size: 0.8rem;
-                padding: 10px 28px;
-            }
-            .hero .image img {
-                max-width: 90%;
-            }
-            .image-slider {
-                gap: 10px;
-            }
-            .image-slider img {
-                width: 44px;
-                height: 44px;
-                padding: 4px;
-                border-width: 2px;
-            }
-
-            .about-preview .about-img {
-                min-height: 160px;
-            }
-
-            .product-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-            }
-            .product-card {
-                padding: 14px 10px 12px;
-                border-radius: 14px;
-            }
-            .product-card img {
-                max-width: 100px;
-                height: 100px;
-                margin-bottom: 10px;
-            }
-            .product-card h3 {
-                font-size: 0.75rem;
-            }
-            .product-card .price {
-                font-size: 1rem;
-            }
-
-            .gallery-grid-preview {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
-            }
-
-            .offer-card {
-                padding: 18px 14px;
-            }
-            .offer-card .icon {
-                font-size: 2.2rem;
-            }
-            .offer-card h4 {
-                font-size: 1rem;
-            }
-            .offer-card p {
-                font-size: 0.85rem;
-            }
-
-            .testimonial {
-                padding: 14px 16px;
-                border-left-width: 3px;
-                border-radius: 12px;
-            }
-            .testimonial h3 {
-                font-size: 0.85rem;
-            }
-            .testimonial h3::before,
-            .testimonial h3::after {
-                font-size: 1.4rem;
-            }
-            .testimonial p:last-child {
-                font-size: 0.8rem;
-                margin-top: 6px;
-            }
-
-            .blog-card img {
-                height: 140px;
-            }
-            .blog-card .blog-body {
-                padding: 14px;
-            }
-            .blog-card .blog-body h4 {
-                font-size: 0.9rem;
-            }
-            .blog-card .blog-body p {
-                font-size: 0.82rem;
-            }
-
-            .footer .box h3 {
-                font-size: 1rem;
-            }
-            .footer .box a {
-                font-size: 0.8rem;
-                padding: 5px 0;
-            }
-            .footer .box a i {
-                width: 18px;
-                margin-right: 8px;
-            }
-            .footer .text-center {
-                font-size: 0.7rem;
-                padding: 12px 0;
-            }
-
-            .modal-header {
-                padding: 12px 16px;
-            }
-            .modal-header .modal-title {
-                font-size: 1rem;
-            }
-            .modal-body {
-                padding: 16px;
-            }
-            .modal-body .form-label {
-                font-size: 0.85rem;
-            }
-            .modal-body .form-control {
-                padding: 8px 12px;
-                font-size: 0.85rem;
-            }
-            .modal-footer .btn-custom {
-                padding: 8px 20px;
-                font-size: 0.8rem;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .navbar .brand-text {
-                font-size: 0.7rem;
-                padding-left: 4px;
-            }
-
-            .product-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-            }
-            .product-card {
-                padding: 10px 6px 10px;
-            }
-            .product-card img {
-                max-width: 80px;
-                height: 80px;
-            }
-            .product-card h3 {
-                font-size: 0.65rem;
-            }
-
-            .hero .content h3 {
-                font-size: 1.2rem;
-            }
-            .hero .content .btn-hero {
-                font-size: 0.7rem;
-                padding: 8px 20px;
-            }
-            .image-slider img {
-                width: 36px;
-                height: 36px;
-                padding: 3px;
-            }
-
-            .gallery-grid-preview {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 6px;
-            }
-        }
-
-        /* ===== UTILITY ===== */
-        .text-gold {
-            color: #b2744c;
-        }
-        .bg-gold-light {
-            background: #fcf8f3;
-        }
-
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
-        }
-        .fade-in-delay-1 {
-            animation-delay: 0.2s;
-        }
-        .fade-in-delay-2 {
-            animation-delay: 0.4s;
-        }
-        .fade-in-delay-3 {
-            animation-delay: 0.6s;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* ===== TOAST ===== */
+        /* ============================================================
+                   TOAST — centered
+                   ============================================================ */
         .toast-container {
             position: fixed;
             bottom: 90px;
@@ -1495,16 +1049,678 @@
                 transform: translateY(30px);
             }
         }
+
+        /* ============================================================
+                   UTILITY
+                   ============================================================ */
+        .text-gold {
+            color: #b2744c;
+        }
+        .bg-gold-light {
+            background: #fcf8f3;
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        .fade-in-delay-1 {
+            animation-delay: 0.15s;
+        }
+        .fade-in-delay-2 {
+            animation-delay: 0.3s;
+        }
+        .fade-in-delay-3 {
+            animation-delay: 0.45s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ============================================================
+                   FULLY RESPONSIVE BREAKPOINTS — 320px to 4K
+                   ============================================================ */
+
+        @media (max-width: 1199px) {
+            .navbar .nav-link {
+                font-size: 0.82rem;
+                padding: 5px 12px !important;
+            }
+            .navbar .brand-text {
+                font-size: 1.1rem;
+            }
+            .navbar .navbar-brand img {
+                height: 40px;
+            }
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            .gallery-grid-preview {
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .navbar {
+                min-height: 58px;
+                padding: 4px 0;
+            }
+            .navbar .navbar-brand img {
+                height: 36px;
+            }
+            .navbar .brand-text {
+                font-size: 1rem;
+                padding-left: 10px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.38rem;
+                letter-spacing: 2px;
+            }
+            .navbar .nav-link {
+                font-size: 0.8rem;
+                padding: 5px 12px !important;
+                white-space: normal;
+            }
+            .navbar .btn-custom {
+                padding: 6px 18px;
+                font-size: 0.78rem;
+                margin-top: 4px;
+                width: 100%;
+                text-align: center;
+            }
+            .navbar .navbar-nav {
+                padding: 4px 0;
+                gap: 0;
+            }
+            .navbar-collapse {
+                max-height: 70vh;
+            }
+
+            .hero .content h3 {
+                text-align: center;
+            }
+            .hero .btn-hero {
+                display: block;
+                margin: 0 auto;
+                width: fit-content;
+            }
+            .hero .image img {
+                max-width: 70%;
+                margin: 10px auto 0;
+            }
+            .hero .image {
+                animation: none;
+            }
+            .image-slider img {
+                width: 65px;
+                height: 65px;
+                padding: 6px;
+            }
+
+            .about-preview {
+                border-radius: 30px 30px 0 0;
+                padding: 40px 0;
+            }
+            .about-preview .about-img {
+                min-height: 220px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 16px;
+            }
+            .product-card {
+                padding: 22px 14px 18px;
+            }
+            .product-card img {
+                max-width: 150px;
+                height: 140px;
+            }
+
+            .gallery-grid-preview {
+                gap: 14px;
+            }
+
+            .testimonial {
+                padding: 22px 24px;
+            }
+
+            .blog-card img {
+                height: 180px;
+            }
+
+            .footer .box {
+                margin-bottom: 24px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .navbar {
+                min-height: 52px;
+                padding: 3px 0;
+            }
+            .navbar .navbar-brand {
+                gap: 8px;
+            }
+            .navbar .navbar-brand img {
+                height: 32px;
+            }
+            .navbar .brand-text {
+                font-size: 0.85rem;
+                padding-left: 8px;
+                border-left-width: 2px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.32rem;
+                letter-spacing: 1.5px;
+            }
+            .navbar .nav-link {
+                font-size: 0.75rem;
+                padding: 4px 10px !important;
+            }
+            .navbar .btn-custom {
+                font-size: 0.72rem;
+                padding: 5px 14px;
+            }
+            .navbar-toggler {
+                padding: 3px 8px;
+            }
+            .navbar-toggler-icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            .hero {
+                padding: 20px 0 35px;
+            }
+            .hero .content h3 {
+                font-size: clamp(1.6rem, 6vw, 2.4rem);
+            }
+            .hero .content h3::after {
+                font-size: 2rem;
+            }
+            .hero .btn-hero {
+                font-size: 0.9rem;
+                padding: 12px 36px;
+            }
+            .hero .image img {
+                max-width: 85%;
+            }
+            .image-slider {
+                gap: 14px;
+                margin-top: 20px;
+            }
+            .image-slider img {
+                width: 55px;
+                height: 55px;
+                padding: 5px;
+                border-width: 2px;
+            }
+
+            .about-preview {
+                padding: 30px 0;
+                border-radius: 24px 24px 0 0;
+            }
+            .about-preview .about-img {
+                min-height: 200px;
+                margin-top: 20px;
+            }
+
+            .featured-products {
+                padding: 35px 0 25px;
+            }
+            .offers-preview {
+                padding: 35px 0;
+            }
+            .testimonials {
+                padding: 35px 0 25px;
+            }
+            .gallery-preview {
+                padding: 35px 0;
+            }
+            .blog-preview {
+                padding: 35px 0;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 14px;
+                padding: 0 5px;
+            }
+            .product-card {
+                padding: 16px 12px 14px;
+                border-radius: 18px;
+            }
+            .product-card img {
+                max-width: 120px;
+                height: 120px;
+                margin-bottom: 12px;
+            }
+            .product-card h3 {
+                font-size: 0.85rem;
+            }
+
+            .offer-card {
+                padding: 22px 16px;
+            }
+
+            .gallery-grid-preview {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .testimonial {
+                padding: 18px 20px;
+                border-left-width: 4px;
+                border-radius: 16px;
+                margin-bottom: 16px;
+            }
+            .testimonial h3 {
+                font-size: 0.9rem;
+            }
+            .testimonial h3::before,
+            .testimonial h3::after {
+                font-size: 1.8rem;
+            }
+            .testimonial p:last-child {
+                font-size: 0.85rem;
+            }
+
+            .blog-card img {
+                height: 160px;
+            }
+            .blog-card .blog-body {
+                padding: 18px;
+            }
+            .blog-card .blog-body h4 {
+                font-size: 0.95rem;
+            }
+            .blog-card .blog-body p {
+                font-size: 0.85rem;
+            }
+
+            .newsletter {
+                padding: 35px 0;
+            }
+            .newsletter .input-group {
+                flex-direction: column;
+                gap: 10px;
+                max-width: 100%;
+            }
+            .newsletter .form-control {
+                border-radius: 50px;
+                width: 100%;
+                flex: none;
+            }
+            .newsletter .btn-gold {
+                border-radius: 50px;
+                width: 100%;
+            }
+
+            .footer {
+                padding-top: 28px;
+            }
+            .footer .box h3 {
+                font-size: 1rem;
+                margin-bottom: 14px;
+                padding-bottom: 8px;
+            }
+            .footer .box a {
+                font-size: 0.78rem;
+                padding: 4px 0;
+            }
+            .footer .box a i {
+                width: 18px;
+                margin-right: 8px;
+            }
+            .footer .text-center {
+                font-size: 0.72rem;
+                padding: 10px 0;
+                margin-top: 16px;
+            }
+
+            .modal-header {
+                padding: 12px 18px;
+            }
+            .modal-header .modal-title {
+                font-size: 1.1rem;
+            }
+            .modal-body {
+                padding: 18px;
+            }
+            .modal-body .form-control {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+            .modal-footer {
+                padding: 0 18px 18px 18px;
+            }
+            .modal-footer .btn-custom {
+                padding: 10px 30px;
+                font-size: 0.85rem;
+            }
+
+            #backToTop {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            .toast-container {
+                right: 16px;
+                bottom: 80px;
+            }
+            .toast-custom {
+                padding: 14px 18px;
+                min-width: 200px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                min-height: 46px;
+                padding: 2px 0;
+            }
+            .navbar .navbar-brand img {
+                height: 28px;
+            }
+            .navbar .brand-text {
+                font-size: 0.72rem;
+                padding-left: 6px;
+                border-left-width: 1.5px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.28rem;
+                letter-spacing: 1px;
+            }
+            .navbar .nav-link {
+                font-size: 0.7rem;
+                padding: 3px 8px !important;
+            }
+            .navbar .btn-custom {
+                font-size: 0.65rem;
+                padding: 4px 12px;
+            }
+            .navbar-toggler {
+                padding: 2px 6px;
+            }
+            .navbar-toggler-icon {
+                width: 18px;
+                height: 18px;
+            }
+
+            .hero .content h3 {
+                font-size: 1.4rem;
+            }
+            .hero .content h3::after {
+                font-size: 1.6rem;
+            }
+            .hero .btn-hero {
+                font-size: 0.8rem;
+                padding: 10px 28px;
+            }
+            .hero .image img {
+                max-width: 90%;
+            }
+            .image-slider img {
+                width: 44px;
+                height: 44px;
+                padding: 4px;
+                border-width: 2px;
+            }
+
+            .about-preview .about-img {
+                min-height: 160px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .product-card {
+                padding: 12px 8px 10px;
+                border-radius: 14px;
+            }
+            .product-card img {
+                max-width: 90px;
+                height: 90px;
+                margin-bottom: 8px;
+            }
+            .product-card h3 {
+                font-size: 0.7rem;
+            }
+            .product-card .price {
+                font-size: 0.9rem;
+            }
+
+            .gallery-grid-preview {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .offer-card {
+                padding: 16px 12px;
+            }
+            .offer-card .icon {
+                font-size: 2rem;
+            }
+            .offer-card h4 {
+                font-size: 0.9rem;
+            }
+            .offer-card p {
+                font-size: 0.8rem;
+            }
+
+            .testimonial {
+                padding: 14px 16px;
+                border-left-width: 3px;
+                border-radius: 12px;
+            }
+            .testimonial h3 {
+                font-size: 0.8rem;
+            }
+            .testimonial h3::before,
+            .testimonial h3::after {
+                font-size: 1.4rem;
+            }
+            .testimonial p:last-child {
+                font-size: 0.8rem;
+                margin-top: 6px;
+            }
+
+            .blog-card img {
+                height: 140px;
+            }
+            .blog-card .blog-body {
+                padding: 14px;
+            }
+            .blog-card .blog-body h4 {
+                font-size: 0.85rem;
+            }
+            .blog-card .blog-body p {
+                font-size: 0.78rem;
+            }
+
+            .footer .box h3 {
+                font-size: 0.9rem;
+                margin-bottom: 12px;
+                padding-bottom: 6px;
+            }
+            .footer .box h3::after {
+                width: 35px;
+                height: 2px;
+            }
+            .footer .box a {
+                font-size: 0.7rem;
+                padding: 3px 0;
+            }
+            .footer .box a i {
+                width: 16px;
+                margin-right: 6px;
+                font-size: 0.75rem;
+            }
+            .footer .text-center {
+                font-size: 0.62rem;
+                padding: 8px 0;
+                margin-top: 12px;
+            }
+
+            .modal-header {
+                padding: 10px 14px;
+            }
+            .modal-header .modal-title {
+                font-size: 0.95rem;
+            }
+            .modal-body {
+                padding: 14px;
+            }
+            .modal-body .form-label {
+                font-size: 0.75rem;
+            }
+            .modal-body .form-control {
+                padding: 8px 10px;
+                font-size: 0.75rem;
+            }
+            .modal-footer {
+                padding: 0 14px 14px 14px;
+            }
+            .modal-footer .btn-custom {
+                padding: 8px 20px;
+                font-size: 0.75rem;
+            }
+
+            #backToTop {
+                width: 38px;
+                height: 38px;
+                font-size: 0.85rem;
+                bottom: 16px;
+                right: 16px;
+            }
+            .toast-container {
+                right: 12px;
+                bottom: 70px;
+            }
+            .toast-custom {
+                padding: 12px 16px;
+                min-width: 160px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .navbar .brand-text {
+                font-size: 0.6rem;
+                padding-left: 4px;
+            }
+            .navbar .navbar-brand img {
+                height: 22px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.24rem;
+                letter-spacing: 0.5px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+            .product-card {
+                padding: 8px 4px 8px;
+            }
+            .product-card img {
+                max-width: 70px;
+                height: 70px;
+            }
+            .product-card h3 {
+                font-size: 0.6rem;
+            }
+
+            .hero .content h3 {
+                font-size: 1.2rem;
+            }
+            .hero .btn-hero {
+                font-size: 0.7rem;
+                padding: 8px 20px;
+            }
+            .image-slider img {
+                width: 36px;
+                height: 36px;
+                padding: 3px;
+            }
+
+            .gallery-grid-preview {
+                gap: 6px;
+            }
+
+            .footer .box h3 {
+                font-size: 0.8rem;
+            }
+            .footer .box a {
+                font-size: 0.62rem;
+            }
+            .footer .text-center {
+                font-size: 0.55rem;
+            }
+
+            #backToTop {
+                width: 34px;
+                height: 34px;
+                font-size: 0.75rem;
+                bottom: 12px;
+                right: 12px;
+            }
+        }
+
+        /* ============================================================
+                   CONTAINER PADDING FIXES
+                   ============================================================ */
+        .container {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        @media (min-width: 576px) {
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+
+        /* ============================================================
+                   ROW CENTERING
+                   ============================================================ */
+        .row.justify-content-center {
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- ===== NAVBAR ===== -->
+    <!-- ============================================================
+    NAVBAR — fully responsive, centered
+    ============================================================ -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <span class="brand-text d-none d-sm-inline-block">
+                <!-- Logo image -->
+                <img src="IMG/logo.png" alt="Cafe Aurora Logo" onerror="this.style.display='none';">
+                <!-- Brand text — always visible -->
+                <span class="brand-text">
                     Cafe Aurora
                     <small>since 2026</small>
                 </span>
@@ -1534,7 +1750,9 @@
         </div>
     </nav>
 
-    <!-- ===== LOGIN MODAL ===== -->
+    <!-- ============================================================
+    LOGIN MODAL — centered, responsive
+    ============================================================ -->
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -1563,12 +1781,14 @@
         </div>
     </div>
 
-    <!-- ===== HERO SECTION ===== -->
+    <!-- ============================================================
+    HERO SECTION — centered, responsive
+    ============================================================ -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="row align-items-center g-4 g-lg-5">
-                <div class="col-lg-6 col-md-12 order-2 order-lg-1">
-                    <div class="content text-center text-lg-start">
+            <div class="row align-items-center g-4 g-lg-5 justify-content-center">
+                <div class="col-lg-6 col-md-12 order-2 order-lg-1 text-center text-lg-start">
+                    <div class="content">
                         <h3>fresh coffee in the morning</h3>
                         <a href="menu.html" class="btn-hero"><i class="fa-solid fa-mug-hot me-2"></i>Buy Now!</a>
                     </div>
@@ -1588,30 +1808,34 @@
         </div>
     </section>
 
-    <!-- ===== ABOUT PREVIEW ===== -->
+    <!-- ============================================================
+    ABOUT PREVIEW — centered, responsive
+    ============================================================ -->
     <section class="about-preview">
         <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6">
-                    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem); color:#2d1f14;">
+            <div class="row align-items-center g-5 justify-content-center">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.8rem); color:#2d1f14;">
                         Our Story <span class="text-gold">☕</span>
                     </h2>
-                    <p class="mb-3" style="font-size:1.05rem; line-height:1.8; color:#4a3a2e;">
+                    <p class="mb-3" style="font-size:clamp(0.95rem,1.1vw,1.05rem); line-height:1.8; color:#4a3a2e;">
                         Since 2026, Cafe Aurora has been dedicated to crafting the perfect coffee experience. Our beans are ethically sourced from the finest farms around the world, roasted to perfection in small batches to bring out unique flavor profiles.
                     </p>
-                    <p class="mb-4" style="font-size:1.05rem; line-height:1.8; color:#4a3a2e;">
+                    <p class="mb-4" style="font-size:clamp(0.95rem,1.1vw,1.05rem); line-height:1.8; color:#4a3a2e;">
                         We believe that every cup tells a story — from the farmer who nurtured the beans to the barista who carefully brews your drink. Come be a part of our story.
                     </p>
                     <a href="about.html" class="btn-gold"><i class="fa-solid fa-arrow-right me-2"></i>Learn More</a>
                 </div>
                 <div class="col-lg-6">
-                    <img src="IMG/c1.png" alt="About Cafe Aurora" class="about-img" onerror="this.style.background='#d4c5b5';this.style.minHeight='280px';">
+                    <img src="IMG/c1.png" alt="About Cafe Aurora" class="about-img" onerror="this.style.background='#d4c5b5';this.style.minHeight='260px';">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== FEATURED PRODUCTS ===== -->
+    <!-- ============================================================
+    FEATURED PRODUCTS — centered, responsive
+    ============================================================ -->
     <section class="featured-products">
         <div class="container">
             <div class="text-center mb-4">
@@ -1641,15 +1865,17 @@
         </div>
     </section>
 
-    <!-- ===== SPECIAL OFFERS ===== -->
+    <!-- ============================================================
+    SPECIAL OFFERS — centered, responsive
+    ============================================================ -->
     <section class="offers-preview">
         <div class="container">
             <div class="text-center mb-4">
                 <h2 class="section-title">Special <span class="text-gold">Offers</span></h2>
                 <p class="section-subtitle">Don't miss out on our exclusive deals and discounts — limited time offers for our beloved customers.</p>
             </div>
-            <div class="row g-4">
-                <div class="col-md-4">
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4 col-sm-6">
                     <div class="offer-card">
                         <div class="icon"><i class="fa-solid fa-mug-saucer"></i></div>
                         <h4>Morning Brew</h4>
@@ -1657,7 +1883,7 @@
                         <span class="badge-gold">Limited Time</span>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-6">
                     <div class="offer-card">
                         <div class="icon"><i class="fa-solid fa-cake-candles"></i></div>
                         <h4>Combo Deal</h4>
@@ -1665,7 +1891,7 @@
                         <span class="badge-gold">Popular</span>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-6">
                     <div class="offer-card">
                         <div class="icon"><i class="fa-solid fa-gift"></i></div>
                         <h4>Loyalty Reward</h4>
@@ -1680,7 +1906,9 @@
         </div>
     </section>
 
-    <!-- ===== TESTIMONIALS ===== -->
+    <!-- ============================================================
+    TESTIMONIALS — centered, responsive
+    ============================================================ -->
     <section class="testimonials">
         <div class="container">
             <div class="text-center mb-4">
@@ -1708,7 +1936,9 @@
         </div>
     </section>
 
-    <!-- ===== GALLERY PREVIEW ===== -->
+    <!-- ============================================================
+    GALLERY PREVIEW — centered, responsive
+    ============================================================ -->
     <section class="gallery-preview">
         <div class="container">
             <div class="text-center mb-4">
@@ -1732,17 +1962,19 @@
         </div>
     </section>
 
-    <!-- ===== BLOG PREVIEW ===== -->
+    <!-- ============================================================
+    BLOG PREVIEW — centered, responsive
+    ============================================================ -->
     <section class="blog-preview">
         <div class="container">
             <div class="text-center mb-4">
                 <h2 class="section-title">Our <span class="text-gold">Blog</span></h2>
                 <p class="section-subtitle">Stories, tips, and insights from the world of coffee — curated just for you by the Cafe Aurora team.</p>
             </div>
-            <div class="row g-4">
-                <div class="col-md-4">
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4 col-sm-6">
                     <div class="blog-card">
-                        <img src="IMG/bl1.png" alt="Coffee Brewing" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <img src="IMG/bl1.png" alt="Coffee Brewing" onerror="this.style.background='#d4c5b5';this.style.height='200px';">
                         <div class="blog-body">
                             <div class="meta"><i class="fa-regular fa-calendar me-1"></i> Jan 15, 2026</div>
                             <h4>5 Secrets to Perfect Pour-Over</h4>
@@ -1751,9 +1983,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-6">
                     <div class="blog-card">
-                        <img src="IMG/bl2.png" alt="Coffee Beans" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <img src="IMG/bl2.png" alt="Coffee Beans" onerror="this.style.background='#d4c5b5';this.style.height='200px';">
                         <div class="blog-body">
                             <div class="meta"><i class="fa-regular fa-calendar me-1"></i> Jan 10, 2026</div>
                             <h4>Single Origin vs. Blends</h4>
@@ -1762,9 +1994,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-6">
                     <div class="blog-card">
-                        <img src="IMG/bl3.png" alt="Coffee Art" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <img src="IMG/bl3.png" alt="Coffee Art" onerror="this.style.background='#d4c5b5';this.style.height='200px';">
                         <div class="blog-body">
                             <div class="meta"><i class="fa-regular fa-calendar me-1"></i> Jan 5, 2026</div>
                             <h4>Latte Art for Beginners</h4>
@@ -1780,7 +2012,9 @@
         </div>
     </section>
 
-    <!-- ===== NEWSLETTER ===== -->
+    <!-- ============================================================
+    NEWSLETTER — centered, responsive
+    ============================================================ -->
     <section class="newsletter">
         <div class="container">
             <div class="row justify-content-center text-center">
@@ -1797,10 +2031,12 @@
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ============================================================
+    FOOTER — centered, responsive
+    ============================================================ -->
     <footer class="footer">
         <div class="container">
-            <div class="row g-4">
+            <div class="row g-4 justify-content-center">
                 <div class="col-lg-3 col-md-6">
                     <div class="box">
                         <h3><i class="fa-solid fa-code-branch me-2"></i>Our Branches</h3>
@@ -1849,15 +2085,21 @@
         </div>
     </footer>
 
-    <!-- ===== BACK TO TOP ===== -->
+    <!-- ============================================================
+    BACK TO TOP
+    ============================================================ -->
     <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <!-- ===== TOAST CONTAINER ===== -->
+    <!-- ============================================================
+    TOAST CONTAINER
+    ============================================================ -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- ===== SCRIPTS ===== -->
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -1948,7 +2190,7 @@
             if (navCollapse) {
                 const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
                 navLinks.forEach(link => {
-                    link.addEventListener('click', () => {
+                    link.addEventListener('click', function() {
                         if (window.innerWidth < 992 && bsCollapse) {
                             bsCollapse.hide();
                         }
@@ -1958,7 +2200,7 @@
 
             // --- Back to Top ---
             const backBtn = document.getElementById('backToTop');
-            window.addEventListener('scroll', () => {
+            window.addEventListener('scroll', function() {
                 if (window.scrollY > 400) {
                     backBtn.classList.add('show');
                 } else {
@@ -1968,7 +2210,7 @@
 
             // --- Active nav link highlight ---
             const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-            document.querySelectorAll('.navbar .nav-link').forEach(link => {
+            document.querySelectorAll('.navbar .nav-link').forEach(function(link) {
                 const href = link.getAttribute('href');
                 if (href === currentPath || (currentPath === 'index.html' && href === 'index.html')) {
                     link.classList.add('active');
@@ -1978,7 +2220,7 @@
             });
 
             // --- Smooth scroll for anchor links ---
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
                 anchor.addEventListener('click', function(e) {
                     const target = document.querySelector(this.getAttribute('href'));
                     if (target) {

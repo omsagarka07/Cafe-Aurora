@@ -21,11 +21,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ===== RESET & BASE ===== */
+        /* ============================================================
+                   RESET & BASE — fully centered, responsive from 320px to 4K
+                   ============================================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -33,6 +39,9 @@
             background: #fcf8f3;
             color: #2d1f14;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         h1,
@@ -54,7 +63,9 @@
             display: block;
         }
 
-        /* ===== SCROLLBAR ===== */
+        /* ============================================================
+                   SCROLLBAR
+                   ============================================================ */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -69,29 +80,41 @@
             background: #8f5c3a;
         }
 
-        /* ===== NAVBAR ===== */
+        /* ============================================================
+                   NAVBAR — sticky, fully responsive, centered brand
+                   ============================================================ */
         .navbar {
             background: linear-gradient(135deg, #2d1f14 0%, #4a3122 100%);
-            padding: 10px 0;
+            padding: 6px 0;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 0;
             z-index: 1050;
             border-bottom: 3px solid #b2744c;
+            min-height: 64px;
+        }
+
+        .navbar .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .navbar .navbar-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             flex-shrink: 0;
+            padding: 0;
         }
 
         .navbar .navbar-brand img {
-            height: 55px;
+            height: 44px;
             width: auto;
             filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
             transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
         .navbar .navbar-brand img:hover {
             transform: scale(1.05);
@@ -100,35 +123,38 @@
         .navbar .brand-text {
             color: #f5d6b3;
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.2rem;
             font-weight: 700;
             letter-spacing: 1px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             border-left: 2px solid #b2744c;
-            padding-left: 14px;
+            padding-left: 12px;
             line-height: 1.2;
+            white-space: nowrap;
+            display: inline-block !important;
         }
         .navbar .brand-text small {
             display: block;
-            font-size: 0.55rem;
+            font-size: 0.45rem;
             font-family: 'Inter', sans-serif;
             font-weight: 300;
             letter-spacing: 3px;
             color: #b8a392;
             text-transform: uppercase;
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         .navbar .nav-link {
             color: #f5ebe0 !important;
             font-weight: 500;
-            font-size: 0.95rem;
-            padding: 8px 16px !important;
+            font-size: 0.85rem;
+            padding: 6px 14px !important;
             border-radius: 30px;
             transition: all 0.3s ease;
             letter-spacing: 0.3px;
             position: relative;
             white-space: nowrap;
+            text-align: center;
         }
 
         .navbar .nav-link:hover,
@@ -152,38 +178,54 @@
 
         .navbar .nav-link:hover::after,
         .navbar .nav-link.active::after {
-            width: 60%;
+            width: 50%;
         }
 
         .navbar .btn-custom {
             background: #b2744c;
             color: #fff !important;
             border: none;
-            padding: 8px 24px;
+            padding: 8px 22px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(178, 116, 76, 0.4);
             flex-shrink: 0;
+            white-space: nowrap;
+            text-align: center;
         }
 
         .navbar .btn-custom:hover {
             background: #8f5c3a;
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(178, 116, 76, 0.5);
+            color: #fff !important;
         }
 
         .navbar-toggler {
             border: 2px solid #b2744c;
-            padding: 6px 10px;
+            padding: 4px 10px;
             flex-shrink: 0;
         }
         .navbar-toggler-icon {
             filter: invert(1);
         }
 
-        /* ===== MODAL ===== */
+        .navbar-collapse {
+            max-height: 75vh;
+            overflow-y: auto;
+            padding: 4px 0;
+        }
+
+        .navbar .navbar-nav {
+            align-items: center;
+            gap: 2px;
+        }
+
+        /* ============================================================
+                   MODAL — centered, responsive
+                   ============================================================ */
         .modal-content {
             background: #fcf8f3;
             border-radius: 20px;
@@ -195,13 +237,13 @@
             border-bottom: 2px solid #b2744c;
             background: #2d1f14;
             border-radius: 18px 18px 0 0;
-            padding: 20px 30px;
+            padding: 16px 28px;
         }
 
         .modal-header .modal-title {
             color: #f5ebe0;
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
         }
 
         .modal-header .btn-close {
@@ -209,7 +251,7 @@
         }
 
         .modal-body {
-            padding: 30px;
+            padding: 28px;
         }
 
         .modal-body .form-label {
@@ -232,7 +274,7 @@
 
         .modal-footer {
             border-top: none;
-            padding: 0 30px 30px 30px;
+            padding: 0 28px 28px 28px;
             justify-content: center;
         }
 
@@ -253,12 +295,15 @@
             background: #8f5c3a;
             transform: translateY(-3px);
             box-shadow: 0 8px 30px rgba(178, 116, 76, 0.5);
+            color: #fff;
         }
 
-        /* ===== PAGE HEADER ===== */
+        /* ============================================================
+                   PAGE HEADER — centered, responsive
+                   ============================================================ */
         .page-header {
             background: linear-gradient(135deg, #2d1f14 0%, #4a3122 100%);
-            padding: 60px 0 50px;
+            padding: 40px 0 32px;
             border-bottom: 4px solid #b2744c;
             position: relative;
             overflow: hidden;
@@ -270,25 +315,27 @@
             right: 5%;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 8rem;
+            font-size: 7rem;
             opacity: 0.05;
             pointer-events: none;
         }
         .page-header h1 {
             color: #f5d6b3;
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-size: clamp(1.8rem, 5vw, 3.2rem);
             font-weight: 700;
+            margin: 0;
         }
         .page-header p {
             color: #b8a392;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 1.4vw, 1.05rem);
             max-width: 700px;
-            margin: 10px auto 0;
+            margin: 8px auto 0;
+            padding: 0 16px;
         }
         .page-header .breadcrumb {
             background: transparent;
             padding: 0;
-            margin: 0 0 10px 0;
+            margin: 0 0 6px 0;
             justify-content: center;
         }
         .page-header .breadcrumb-item a {
@@ -301,7 +348,32 @@
             color: #b8a392;
         }
 
-        /* ===== BLOG SECTION ===== */
+        /* ============================================================
+                   BUTTONS
+                   ============================================================ */
+        .btn-gold {
+            background: #b2744c;
+            color: #fff;
+            border: none;
+            padding: 12px 34px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.3);
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-gold:hover {
+            background: #8f5c3a;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(178, 116, 76, 0.4);
+        }
+
+        /* ============================================================
+                   BLOG SECTION — centered, responsive
+                   ============================================================ */
         .blog-section {
             padding: 50px 0 30px;
             background: #fff;
@@ -309,12 +381,12 @@
 
         .blog-section .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
             color: #2d1f14;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             position: relative;
             display: inline-block;
-            padding-bottom: 15px;
+            padding-bottom: 14px;
         }
 
         .blog-section .section-title::after {
@@ -323,7 +395,7 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 70px;
             height: 4px;
             background: linear-gradient(90deg, #b2744c, #d4a373);
             border-radius: 4px;
@@ -331,9 +403,10 @@
 
         .blog-section .section-subtitle {
             color: #6b5a4a;
-            font-size: 1.1rem;
+            font-size: clamp(0.85rem, 1.2vw, 1.05rem);
             max-width: 700px;
-            margin: 0 auto 40px;
+            margin: 0 auto 35px;
+            padding: 0 16px;
         }
 
         /* ===== BLOG CARDS ===== */
@@ -377,7 +450,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 0.9vw, 0.85rem);
             color: #8f7a6a;
             margin-bottom: 12px;
             flex-wrap: wrap;
@@ -403,7 +476,7 @@
 
         .blog-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 1.3vw, 1.25rem);
             font-weight: 700;
             color: #2d1f14;
             margin-bottom: 12px;
@@ -411,7 +484,7 @@
         }
 
         .blog-card p {
-            font-size: 0.95rem;
+            font-size: clamp(0.8rem, 0.95vw, 0.95rem);
             color: #4a3a2e;
             line-height: 1.7;
             flex: 1;
@@ -424,7 +497,7 @@
             padding: 8px 28px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 0.85vw, 0.85rem);
             transition: all 0.3s ease;
             display: inline-block;
             align-self: flex-start;
@@ -438,84 +511,88 @@
             box-shadow: 0 6px 25px rgba(178, 116, 76, 0.3);
         }
 
-        /* ===== BUTTONS ===== */
-        .btn-gold {
-            background: #b2744c;
-            color: #fff;
-            border: none;
-            padding: 12px 36px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 20px rgba(178, 116, 76, 0.3);
-            display: inline-block;
-        }
-        .btn-gold:hover {
-            background: #8f5c3a;
-            color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 35px rgba(178, 116, 76, 0.4);
-        }
-
-        /* ===== NEWSLETTER ===== */
+        /* ============================================================
+                   NEWSLETTER — centered, responsive
+                   ============================================================ */
         .newsletter {
-            padding: 60px 0;
+            padding: 50px 0;
             background: #2d1f14;
             color: #f5ebe0;
             border-top: 4px solid #b2744c;
             border-bottom: 4px solid #b2744c;
+            text-align: center;
         }
         .newsletter h2 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-size: clamp(1.4rem, 3vw, 2.4rem);
             color: #f5d6b3;
         }
         .newsletter p {
             color: #b8a392;
+            font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+            max-width: 600px;
+            margin: 0 auto 18px;
+            padding: 0 16px;
         }
         .newsletter .input-group {
             max-width: 500px;
             margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .newsletter .form-control {
-            border-radius: 50px 0 0 50px;
+            border-radius: 50px;
             border: 2px solid #b2744c;
             padding: 14px 20px;
             background: #fff;
+            flex: 1 1 200px;
+            min-width: 160px;
         }
         .newsletter .form-control:focus {
             border-color: #f5d6b3;
             box-shadow: 0 0 0 4px rgba(178, 116, 76, 0.2);
         }
         .newsletter .btn-gold {
-            border-radius: 0 50px 50px 0;
+            border-radius: 50px;
             padding: 14px 32px;
+            flex-shrink: 0;
+        }
+        .newsletter small {
+            font-size: clamp(0.7rem, 0.8vw, 0.85rem);
         }
 
-        /* ===== FOOTER ===== */
+        /* ============================================================
+                   FOOTER — centered, responsive
+                   ============================================================ */
         .footer {
             background: #2d1f14;
             color: #f5ebe0;
-            padding-top: 50px;
+            padding-top: 40px;
             border-top: 6px solid #b2744c;
+            margin-top: auto;
+        }
+
+        .footer .box {
+            text-align: center;
         }
 
         .footer .box h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-size: clamp(1rem, 1.3vw, 1.3rem);
             color: #f5d6b3;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: relative;
-            padding-bottom: 12px;
+            padding-bottom: 10px;
+            display: inline-block;
         }
 
         .footer .box h3::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
-            width: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
             height: 3px;
             background: #b2744c;
             border-radius: 4px;
@@ -524,22 +601,23 @@
         .footer .box a {
             display: block;
             color: #d4c5b5;
-            padding: 8px 0;
-            font-size: 0.95rem;
+            padding: 6px 0;
+            font-size: clamp(0.78rem, 0.9vw, 0.9rem);
             transition: all 0.3s ease;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            text-align: center;
         }
 
         .footer .box a:hover {
             color: #f5d6b3;
-            padding-left: 12px;
+            padding-left: 8px;
             border-bottom-color: rgba(178, 116, 76, 0.2);
         }
 
         .footer .box a i {
-            margin-right: 12px;
+            margin-right: 10px;
             color: #b2744c;
-            width: 22px;
+            width: 20px;
             text-align: center;
             transition: all 0.3s ease;
         }
@@ -551,37 +629,44 @@
 
         .footer .text-center {
             background: #1f140e;
-            padding: 18px 0;
-            margin-top: 30px;
-            font-size: 1rem;
+            padding: 14px 0;
+            margin-top: 24px;
+            font-size: clamp(0.7rem, 0.9vw, 0.9rem);
             font-weight: 400;
             letter-spacing: 0.5px;
             color: #b8a392;
             border-top: 1px solid rgba(178, 116, 76, 0.2);
+            text-align: center;
         }
 
         .footer .text-center small {
             opacity: 0.8;
         }
 
-        /* ===== BACK TO TOP ===== */
+        /* ============================================================
+                   BACK TO TOP
+                   ============================================================ */
         #backToTop {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 24px;
+            right: 24px;
             z-index: 1060;
             background: #b2744c;
             color: #fff;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.2rem;
+            width: 46px;
+            height: 46px;
+            font-size: 1.1rem;
             box-shadow: 0 4px 20px rgba(178, 116, 76, 0.4);
             transition: all 0.3s ease;
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         #backToTop.show {
             opacity: 1;
@@ -594,318 +679,9 @@
             box-shadow: 0 8px 35px rgba(178, 116, 76, 0.5);
         }
 
-        /* ================================================================
-                   FULLY RESPONSIVE BREAKPOINTS
-                   ================================================================ */
-
-        @media (max-width: 1199px) {
-            .navbar .nav-link {
-                font-size: 0.85rem;
-                padding: 6px 12px !important;
-            }
-            .navbar .brand-text {
-                font-size: 1.4rem;
-            }
-        }
-
-        @media (max-width: 991px) {
-            .navbar .navbar-brand img {
-                height: 45px;
-            }
-            .navbar .brand-text {
-                font-size: 1.2rem;
-                padding-left: 10px;
-            }
-            .navbar .brand-text small {
-                font-size: 0.45rem;
-                letter-spacing: 2px;
-            }
-            .navbar .nav-link {
-                font-size: 0.9rem;
-                padding: 8px 16px !important;
-                white-space: normal;
-            }
-            .navbar .btn-custom {
-                padding: 6px 18px;
-                font-size: 0.8rem;
-                margin-top: 8px;
-                width: 100%;
-                text-align: center;
-            }
-            .navbar .navbar-nav {
-                padding: 10px 0;
-            }
-            .page-header {
-                padding: 40px 0 30px;
-            }
-            .page-header h1 {
-                font-size: 2.2rem;
-            }
-            .blog-card .blog-image {
-                height: 190px;
-            }
-            .blog-card h3 {
-                font-size: 1.1rem;
-            }
-            .footer .box {
-                margin-bottom: 30px;
-            }
-            .footer .box h3 {
-                font-size: 1.2rem;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .navbar {
-                padding: 8px 0;
-            }
-            .navbar .navbar-brand img {
-                height: 38px;
-            }
-            .navbar .brand-text {
-                font-size: 1rem;
-                padding-left: 8px;
-                border-left-width: 1.5px;
-            }
-            .navbar .brand-text small {
-                font-size: 0.4rem;
-                letter-spacing: 1.5px;
-            }
-            .navbar .nav-link {
-                font-size: 0.85rem;
-                padding: 6px 12px !important;
-            }
-            .navbar .btn-custom {
-                font-size: 0.75rem;
-                padding: 6px 14px;
-            }
-            .navbar-toggler {
-                padding: 4px 8px;
-            }
-            .navbar-toggler-icon {
-                width: 22px;
-                height: 22px;
-            }
-
-            .page-header {
-                padding: 30px 0 25px;
-            }
-            .page-header h1 {
-                font-size: 1.8rem;
-            }
-            .page-header p {
-                font-size: 0.95rem;
-                padding: 0 15px;
-            }
-
-            .blog-section {
-                padding: 35px 0 20px;
-            }
-            .blog-section .section-title {
-                font-size: 1.8rem;
-            }
-            .blog-section .section-title::after {
-                width: 60px;
-                height: 3px;
-            }
-            .blog-section .section-subtitle {
-                font-size: 0.95rem;
-                padding: 0 15px;
-            }
-
-            .blog-card {
-                border-radius: 18px;
-                margin-bottom: 20px;
-            }
-            .blog-card .blog-image {
-                height: 200px;
-            }
-            .blog-card .blog-body {
-                padding: 20px 18px 22px;
-            }
-            .blog-card h3 {
-                font-size: 1.05rem;
-            }
-            .blog-card p {
-                font-size: 0.9rem;
-            }
-            .blog-card .blog-meta {
-                font-size: 0.8rem;
-            }
-            .blog-card .btn-read {
-                font-size: 0.8rem;
-                padding: 6px 22px;
-            }
-
-            .newsletter {
-                padding: 40px 0;
-            }
-            .newsletter .input-group {
-                flex-direction: column;
-                gap: 12px;
-            }
-            .newsletter .form-control {
-                border-radius: 50px;
-            }
-            .newsletter .btn-gold {
-                border-radius: 50px;
-                width: 100%;
-            }
-
-            .footer {
-                padding-top: 35px;
-            }
-            .footer .box h3 {
-                font-size: 1.1rem;
-                margin-bottom: 18px;
-                padding-bottom: 10px;
-            }
-            .footer .box a {
-                font-size: 0.85rem;
-                padding: 6px 0;
-            }
-            .footer .text-center {
-                font-size: 0.85rem;
-                padding: 14px 0;
-                margin-top: 20px;
-            }
-
-            .modal-header {
-                padding: 16px 20px;
-            }
-            .modal-header .modal-title {
-                font-size: 1.2rem;
-            }
-            .modal-body {
-                padding: 20px;
-            }
-            .modal-body .form-control {
-                padding: 10px 14px;
-                font-size: 0.9rem;
-            }
-            .modal-footer {
-                padding: 0 20px 20px 20px;
-            }
-            .modal-footer .btn-custom {
-                padding: 10px 30px;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar .navbar-brand img {
-                height: 32px;
-            }
-            .navbar .brand-text {
-                font-size: 0.85rem;
-                padding-left: 6px;
-            }
-            .navbar .brand-text small {
-                font-size: 0.35rem;
-                letter-spacing: 1px;
-            }
-            .navbar .nav-link {
-                font-size: 0.8rem;
-                padding: 4px 10px !important;
-            }
-            .navbar .btn-custom {
-                font-size: 0.7rem;
-                padding: 5px 12px;
-            }
-
-            .page-header h1 {
-                font-size: 1.5rem;
-            }
-            .page-header p {
-                font-size: 0.85rem;
-            }
-
-            .blog-card .blog-image {
-                height: 170px;
-            }
-            .blog-card .blog-body {
-                padding: 16px 14px 18px;
-            }
-            .blog-card h3 {
-                font-size: 0.95rem;
-            }
-            .blog-card p {
-                font-size: 0.85rem;
-            }
-            .blog-card .blog-meta {
-                font-size: 0.75rem;
-            }
-            .blog-card .btn-read {
-                font-size: 0.75rem;
-                padding: 5px 18px;
-            }
-
-            .footer .box h3 {
-                font-size: 1rem;
-            }
-            .footer .box a {
-                font-size: 0.8rem;
-                padding: 5px 0;
-            }
-            .footer .box a i {
-                width: 18px;
-                margin-right: 8px;
-            }
-            .footer .text-center {
-                font-size: 0.7rem;
-                padding: 12px 0;
-            }
-
-            .modal-header {
-                padding: 12px 16px;
-            }
-            .modal-header .modal-title {
-                font-size: 1rem;
-            }
-            .modal-body {
-                padding: 16px;
-            }
-            .modal-body .form-label {
-                font-size: 0.85rem;
-            }
-            .modal-body .form-control {
-                padding: 8px 12px;
-                font-size: 0.85rem;
-            }
-            .modal-footer .btn-custom {
-                padding: 8px 20px;
-                font-size: 0.8rem;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .navbar .brand-text {
-                font-size: 0.7rem;
-                padding-left: 4px;
-            }
-            .navbar .navbar-brand img {
-                height: 28px;
-            }
-
-            .blog-card .blog-image {
-                height: 140px;
-            }
-            .blog-card h3 {
-                font-size: 0.85rem;
-            }
-            .blog-card p {
-                font-size: 0.78rem;
-            }
-            .blog-card .blog-meta {
-                font-size: 0.7rem;
-            }
-            .blog-card .btn-read {
-                font-size: 0.7rem;
-                padding: 4px 14px;
-            }
-        }
-
-        /* ===== UTILITY ===== */
+        /* ============================================================
+                   UTILITY
+                   ============================================================ */
         .text-gold {
             color: #b2744c;
         }
@@ -918,13 +694,13 @@
             animation: fadeIn 0.8s ease forwards;
         }
         .fade-in-delay-1 {
-            animation-delay: 0.2s;
+            animation-delay: 0.15s;
         }
         .fade-in-delay-2 {
-            animation-delay: 0.4s;
+            animation-delay: 0.3s;
         }
         .fade-in-delay-3 {
-            animation-delay: 0.6s;
+            animation-delay: 0.45s;
         }
 
         @keyframes fadeIn {
@@ -936,24 +712,520 @@
         .img-placeholder {
             background: #d4c5b5;
             border-radius: 20px;
-            min-height: 200px;
+            min-height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #6b5a4a;
             font-weight: 500;
+        }
+
+        /* ============================================================
+                   FULLY RESPONSIVE BREAKPOINTS — 320px to 4K
+                   ============================================================ */
+
+        @media (max-width: 1199px) {
+            .navbar .nav-link {
+                font-size: 0.82rem;
+                padding: 5px 12px !important;
+            }
+            .navbar .brand-text {
+                font-size: 1.1rem;
+            }
+            .navbar .navbar-brand img {
+                height: 40px;
+            }
+            .blog-card .blog-image {
+                height: 190px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .navbar {
+                min-height: 58px;
+                padding: 4px 0;
+            }
+            .navbar .navbar-brand img {
+                height: 36px;
+            }
+            .navbar .brand-text {
+                font-size: 1rem;
+                padding-left: 10px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.38rem;
+                letter-spacing: 2px;
+            }
+            .navbar .nav-link {
+                font-size: 0.8rem;
+                padding: 5px 12px !important;
+                white-space: normal;
+            }
+            .navbar .btn-custom {
+                padding: 6px 18px;
+                font-size: 0.78rem;
+                margin-top: 4px;
+                width: 100%;
+                text-align: center;
+            }
+            .navbar .navbar-nav {
+                padding: 4px 0;
+                gap: 0;
+            }
+            .navbar-collapse {
+                max-height: 70vh;
+            }
+
+            .page-header {
+                padding: 30px 0 24px;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .blog-card .blog-image {
+                height: 180px;
+            }
+            .blog-card .blog-body {
+                padding: 20px 18px 22px;
+            }
+            .blog-card h3 {
+                font-size: 1.05rem;
+            }
+
+            .footer .box {
+                margin-bottom: 24px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .navbar {
+                min-height: 52px;
+                padding: 3px 0;
+            }
+            .navbar .navbar-brand {
+                gap: 8px;
+            }
+            .navbar .navbar-brand img {
+                height: 32px;
+            }
+            .navbar .brand-text {
+                font-size: 0.85rem;
+                padding-left: 8px;
+                border-left-width: 2px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.32rem;
+                letter-spacing: 1.5px;
+            }
+            .navbar .nav-link {
+                font-size: 0.75rem;
+                padding: 4px 10px !important;
+            }
+            .navbar .btn-custom {
+                font-size: 0.72rem;
+                padding: 5px 14px;
+            }
+            .navbar-toggler {
+                padding: 3px 8px;
+            }
+            .navbar-toggler-icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            .page-header {
+                padding: 24px 0 20px;
+            }
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            .page-header p {
+                font-size: 0.82rem;
+                padding: 0 12px;
+            }
+
+            .blog-section {
+                padding: 35px 0 20px;
+            }
+            .blog-section .section-title {
+                font-size: 1.4rem;
+            }
+            .blog-section .section-title::after {
+                width: 55px;
+                height: 3px;
+            }
+            .blog-section .section-subtitle {
+                font-size: 0.85rem;
+                padding: 0 12px;
+                margin-bottom: 28px;
+            }
+
+            .blog-card {
+                border-radius: 18px;
+                margin-bottom: 4px;
+            }
+            .blog-card .blog-image {
+                height: 200px;
+            }
+            .blog-card .blog-body {
+                padding: 18px 16px 20px;
+            }
+            .blog-card h3 {
+                font-size: 1rem;
+            }
+            .blog-card p {
+                font-size: 0.85rem;
+            }
+            .blog-card .blog-meta {
+                font-size: 0.78rem;
+            }
+            .blog-card .btn-read {
+                font-size: 0.78rem;
+                padding: 6px 22px;
+            }
+
+            .newsletter {
+                padding: 35px 0;
+            }
+            .newsletter .input-group {
+                flex-direction: column;
+                gap: 10px;
+                max-width: 100%;
+            }
+            .newsletter .form-control {
+                border-radius: 50px;
+                width: 100%;
+                flex: none;
+            }
+            .newsletter .btn-gold {
+                border-radius: 50px;
+                width: 100%;
+            }
+
+            .footer {
+                padding-top: 28px;
+            }
+            .footer .box h3 {
+                font-size: 1rem;
+                margin-bottom: 14px;
+                padding-bottom: 8px;
+            }
+            .footer .box a {
+                font-size: 0.78rem;
+                padding: 4px 0;
+            }
+            .footer .box a i {
+                width: 18px;
+                margin-right: 8px;
+            }
+            .footer .text-center {
+                font-size: 0.72rem;
+                padding: 10px 0;
+                margin-top: 16px;
+            }
+
+            .modal-header {
+                padding: 12px 18px;
+            }
+            .modal-header .modal-title {
+                font-size: 1.1rem;
+            }
+            .modal-body {
+                padding: 18px;
+            }
+            .modal-body .form-control {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+            .modal-footer {
+                padding: 0 18px 18px 18px;
+            }
+            .modal-footer .btn-custom {
+                padding: 10px 30px;
+                font-size: 0.85rem;
+            }
+
+            #backToTop {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                min-height: 46px;
+                padding: 2px 0;
+            }
+            .navbar .navbar-brand img {
+                height: 28px;
+            }
+            .navbar .brand-text {
+                font-size: 0.72rem;
+                padding-left: 6px;
+                border-left-width: 1.5px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.28rem;
+                letter-spacing: 1px;
+            }
+            .navbar .nav-link {
+                font-size: 0.7rem;
+                padding: 3px 8px !important;
+            }
+            .navbar .btn-custom {
+                font-size: 0.65rem;
+                padding: 4px 12px;
+            }
+            .navbar-toggler {
+                padding: 2px 6px;
+            }
+            .navbar-toggler-icon {
+                width: 18px;
+                height: 18px;
+            }
+
+            .page-header {
+                padding: 20px 0 16px;
+            }
+            .page-header h1 {
+                font-size: 1.25rem;
+            }
+            .page-header p {
+                font-size: 0.75rem;
+                padding: 0 10px;
+            }
+
+            .blog-section {
+                padding: 28px 0 16px;
+            }
+            .blog-section .section-title {
+                font-size: 1.2rem;
+            }
+            .blog-section .section-title::after {
+                width: 45px;
+                height: 3px;
+            }
+            .blog-section .section-subtitle {
+                font-size: 0.78rem;
+                padding: 0 10px;
+                margin-bottom: 22px;
+            }
+
+            .blog-card .blog-image {
+                height: 170px;
+            }
+            .blog-card .blog-body {
+                padding: 14px 12px 16px;
+            }
+            .blog-card h3 {
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+            }
+            .blog-card p {
+                font-size: 0.78rem;
+                line-height: 1.6;
+            }
+            .blog-card .blog-meta {
+                font-size: 0.7rem;
+                margin-bottom: 8px;
+            }
+            .blog-card .btn-read {
+                font-size: 0.7rem;
+                padding: 5px 16px;
+                margin-top: 10px;
+            }
+
+            .newsletter {
+                padding: 28px 0;
+            }
+            .newsletter h2 {
+                font-size: 1.1rem;
+            }
+            .newsletter p {
+                font-size: 0.78rem;
+                padding: 0 10px;
+            }
+            .newsletter .form-control {
+                padding: 12px 16px;
+                font-size: 0.85rem;
+            }
+            .newsletter .btn-gold {
+                padding: 12px 24px;
+                font-size: 0.85rem;
+            }
+
+            .footer {
+                padding-top: 22px;
+            }
+            .footer .box h3 {
+                font-size: 0.9rem;
+                margin-bottom: 12px;
+                padding-bottom: 6px;
+            }
+            .footer .box h3::after {
+                width: 35px;
+                height: 2px;
+            }
+            .footer .box a {
+                font-size: 0.7rem;
+                padding: 3px 0;
+            }
+            .footer .box a i {
+                width: 16px;
+                margin-right: 6px;
+                font-size: 0.75rem;
+            }
+            .footer .text-center {
+                font-size: 0.62rem;
+                padding: 8px 0;
+                margin-top: 12px;
+            }
+
+            .modal-header {
+                padding: 10px 14px;
+            }
+            .modal-header .modal-title {
+                font-size: 0.95rem;
+            }
+            .modal-body {
+                padding: 14px;
+            }
+            .modal-body .form-label {
+                font-size: 0.75rem;
+            }
+            .modal-body .form-control {
+                padding: 8px 10px;
+                font-size: 0.75rem;
+            }
+            .modal-footer {
+                padding: 0 14px 14px 14px;
+            }
+            .modal-footer .btn-custom {
+                padding: 8px 20px;
+                font-size: 0.75rem;
+            }
+
+            #backToTop {
+                width: 38px;
+                height: 38px;
+                font-size: 0.85rem;
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .navbar .brand-text {
+                font-size: 0.6rem;
+                padding-left: 4px;
+            }
+            .navbar .navbar-brand img {
+                height: 22px;
+            }
+            .navbar .brand-text small {
+                font-size: 0.24rem;
+                letter-spacing: 0.5px;
+            }
+
+            .page-header h1 {
+                font-size: 1rem;
+            }
+            .page-header p {
+                font-size: 0.68rem;
+            }
+
+            .blog-card .blog-image {
+                height: 140px;
+            }
+            .blog-card h3 {
+                font-size: 0.78rem;
+            }
+            .blog-card p {
+                font-size: 0.7rem;
+            }
+            .blog-card .blog-meta {
+                font-size: 0.62rem;
+            }
+            .blog-card .btn-read {
+                font-size: 0.62rem;
+                padding: 4px 12px;
+            }
+
+            .newsletter h2 {
+                font-size: 0.95rem;
+            }
+            .newsletter p {
+                font-size: 0.7rem;
+            }
+
+            .footer .box h3 {
+                font-size: 0.8rem;
+            }
+            .footer .box a {
+                font-size: 0.62rem;
+            }
+            .footer .text-center {
+                font-size: 0.55rem;
+            }
+
+            #backToTop {
+                width: 34px;
+                height: 34px;
+                font-size: 0.75rem;
+                bottom: 12px;
+                right: 12px;
+            }
+        }
+
+        /* ============================================================
+                   CONTAINER PADDING FIXES
+                   ============================================================ */
+        .container {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        @media (min-width: 576px) {
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+
+        /* ============================================================
+                   ROW CENTERING
+                   ============================================================ */
+        .row.justify-content-center {
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- ===== NAVBAR ===== -->
+    <!-- ============================================================
+    NAVBAR — fully responsive, centered
+    ============================================================ -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <span class="brand-text d-none d-sm-inline-block">
+                <!-- Logo image -->
+                <img src="IMG/logo.png" alt="Cafe Aurora Logo" onerror="this.style.display='none';">
+                <!-- Brand text — always visible -->
+                <span class="brand-text">
                     Cafe Aurora
                     <small>since 2026</small>
                 </span>
@@ -987,7 +1259,9 @@
         </div>
     </nav>
 
-    <!-- ===== LOGIN MODAL ===== -->
+    <!-- ============================================================
+    LOGIN MODAL — centered, responsive
+    ============================================================ -->
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -1016,7 +1290,9 @@
         </div>
     </div>
 
-    <!-- ===== PAGE HEADER ===== -->
+    <!-- ============================================================
+    PAGE HEADER — centered, responsive
+    ============================================================ -->
     <section class="page-header">
         <div class="container">
             <div class="row justify-content-center">
@@ -1034,7 +1310,9 @@
         </div>
     </section>
 
-    <!-- ===== BLOG SECTION ===== -->
+    <!-- ============================================================
+    BLOG SECTION — centered, responsive
+    ============================================================ -->
     <section class="blog-section">
         <div class="container">
 
@@ -1044,12 +1322,12 @@
             </div>
 
             <!-- Row 1 -->
-            <div class="row g-4">
+            <div class="row g-4 justify-content-center">
 
                 <!-- Blog 1 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="blog-card">
-                        <img src="IMG/bl1.png" alt="How Should You Feel at a Cafe" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <img src="IMG/bl1.png" alt="How Should You Feel at a Cafe" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='200px';">
                         <div class="blog-body">
                             <div class="blog-meta">
                                 <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
@@ -1065,7 +1343,7 @@
                 <!-- Blog 2 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="blog-card">
-                        <img src="IMG/bl2.png" alt="Barista Training" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <img src="IMG/bl2.png" alt="Barista Training" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='200px';">
                         <div class="blog-body">
                             <div class="blog-meta">
                                 <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
@@ -1081,7 +1359,7 @@
                 <!-- Blog 3 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="blog-card">
-                        <img src="IMG/bl3.png" alt="Food & Bakery Program" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <img src="IMG/bl3.png" alt="Food & Bakery Program" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='200px';">
                         <div class="blog-body">
                             <div class="blog-meta">
                                 <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
@@ -1096,12 +1374,12 @@
             </div>
 
             <!-- Row 2 -->
-            <div class="row g-4 mt-2">
+            <div class="row g-4 mt-2 justify-content-center">
 
                 <!-- Blog 4 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="blog-card">
-                        <img src="IMG/bl4.png" alt="Designing a Cafe" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <img src="IMG/bl4.png" alt="Designing a Cafe" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='200px';">
                         <div class="blog-body">
                             <div class="blog-meta">
                                 <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
@@ -1117,7 +1395,7 @@
                 <!-- Blog 5 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="blog-card">
-                        <img src="IMG/bl5.png" alt="Dalgona Coffee" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <img src="IMG/bl5.png" alt="Dalgona Coffee" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='200px';">
                         <div class="blog-body">
                             <div class="blog-meta">
                                 <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
@@ -1133,7 +1411,7 @@
                 <!-- Blog 6 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="blog-card">
-                        <img src="IMG/bl6.png" alt="A Heart of Coffee" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <img src="IMG/bl6.png" alt="A Heart of Coffee" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='200px';">
                         <div class="blog-body">
                             <div class="blog-meta">
                                 <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
@@ -1148,12 +1426,12 @@
             </div>
 
             <!-- Row 3 -->
-            <div class="row g-4 mt-2">
+            <div class="row g-4 mt-2 justify-content-center">
 
                 <!-- Blog 7 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="blog-card">
-                        <img src="IMG/bl7.png" alt="Who's your Daddy" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <img src="IMG/bl7.png" alt="Who's your Daddy" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='200px';">
                         <div class="blog-body">
                             <div class="blog-meta">
                                 <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
@@ -1169,7 +1447,7 @@
                 <!-- Blog 8 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="blog-card">
-                        <img src="IMG/bl8.png" alt="Covid-19 Impact on Coffee Industry" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <img src="IMG/bl8.png" alt="Covid-19 Impact on Coffee Industry" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='200px';">
                         <div class="blog-body">
                             <div class="blog-meta">
                                 <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
@@ -1185,7 +1463,7 @@
                 <!-- Blog 9 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="blog-card">
-                        <img src="IMG/bl9.png" alt="Pour Over vs Chemex" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='220px';">
+                        <img src="IMG/bl9.png" alt="Pour Over vs Chemex" class="blog-image" onerror="this.style.background='#d4c5b5';this.style.height='200px';">
                         <div class="blog-body">
                             <div class="blog-meta">
                                 <a href="#"><i class="fa-regular fa-calendar"></i> 4th March 2024</a>
@@ -1207,7 +1485,9 @@
         </div>
     </section>
 
-    <!-- ===== NEWSLETTER ===== -->
+    <!-- ============================================================
+    NEWSLETTER — centered, responsive
+    ============================================================ -->
     <section class="newsletter">
         <div class="container">
             <div class="row justify-content-center text-center">
@@ -1224,10 +1504,12 @@
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ============================================================
+    FOOTER — centered, responsive
+    ============================================================ -->
     <footer class="footer">
         <div class="container">
-            <div class="row g-4">
+            <div class="row g-4 justify-content-center">
                 <div class="col-lg-3 col-md-6">
                     <div class="box">
                         <h3><i class="fa-solid fa-code-branch me-2"></i>Our Branches</h3>
@@ -1276,12 +1558,16 @@
         </div>
     </footer>
 
-    <!-- ===== BACK TO TOP ===== -->
+    <!-- ============================================================
+    BACK TO TOP
+    ============================================================ -->
     <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <!-- ===== SCRIPTS ===== -->
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -1291,7 +1577,7 @@
             if (navCollapse) {
                 const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
                 navLinks.forEach(link => {
-                    link.addEventListener('click', () => {
+                    link.addEventListener('click', function() {
                         if (window.innerWidth < 992 && bsCollapse) {
                             bsCollapse.hide();
                         }
@@ -1301,7 +1587,7 @@
 
             // --- Back to Top ---
             const backBtn = document.getElementById('backToTop');
-            window.addEventListener('scroll', () => {
+            window.addEventListener('scroll', function() {
                 if (window.scrollY > 400) {
                     backBtn.classList.add('show');
                 } else {
@@ -1311,7 +1597,7 @@
 
             // --- Active nav link highlight ---
             const currentPath = window.location.pathname.split('/').pop() || 'blogs.html';
-            document.querySelectorAll('.navbar .nav-link').forEach(link => {
+            document.querySelectorAll('.navbar .nav-link').forEach(function(link) {
                 const href = link.getAttribute('href');
                 if (href === currentPath || (currentPath === 'blogs.html' && href === 'blogs.html')) {
                     link.classList.add('active');
@@ -1321,7 +1607,7 @@
             });
 
             // --- Smooth scroll for anchor links ---
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
                 anchor.addEventListener('click', function(e) {
                     const target = document.querySelector(this.getAttribute('href'));
                     if (target) {
